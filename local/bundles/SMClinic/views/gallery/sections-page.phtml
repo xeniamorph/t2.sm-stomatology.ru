@@ -1,0 +1,44 @@
+<?php
+\TAO::App()->SetTitle('Фото и видео клиники «СМ-Стоматология» | Сеть стоматологических клиник в Москве');
+\TAO::App()->SetPageProperty("description", "Полезные видео от специалистов клиники «СМ-Стоматология», фотографии интерьера наших клиник. Узнайте цены на лечение зубов в Москве на нашем сайте.");
+?>
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1>Галерея</h1>
+		</div>
+	</div>
+</div>
+
+<div class="gallery-tabs nav-tabs__block">
+	<div class="container">
+		<div class="nav-tabs__content">
+			<div class="tabs">
+				<input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+				<label for="tab-btn-1">Фотогалерея</label>
+				<input type="radio" name="tab-btn" id="tab-btn-2" value="">
+				<label for="tab-btn-2">Видеогалерея</label>
+				<?php
+					$sectionList = $this->getSections([
+						'filter' => [
+							'=CODE' => 'photo'
+						]
+					]);
+					$photoGallery = array_shift($sectionList);
+					require dirname(__FILE__).'/tab1.phtml';
+
+					$sectionList = $this->getSections([
+						'filter' => [
+							'=CODE' => 'video'
+						]
+					]);
+					$videoGallery = array_shift($sectionList);
+					require dirname(__FILE__).'/tab2.phtml';
+				?>
+			</div>
+		</div>
+	</div>
+</div>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

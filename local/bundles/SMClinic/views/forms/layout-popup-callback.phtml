@@ -1,0 +1,102 @@
+<?php
+$uniqName = uniqid($name);
+?>
+<div class="modal fade modal--hidden" id="modal-callback">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div class="close" data-dismiss="modal"></div>
+				<p class="modal-title">
+					Заказать обратный звонок
+				</p>
+			</div>
+
+			<div class="tao-form tao-form-<?= $name ?> tao-form-<?= $uniqName ?>">
+				<?php /*
+				<ul class="tao-form-errors"<?= (count($this->errors)>0? '' : ' style="display: none;"') ?>>
+					<?php foreach($this->errors as $field => $error) if (strlen($error)>1) { ?>
+						<li data-field="<?= $field ?>" class="error-field-<?= $field ?>"><?= $error ?></li>
+					<?php } ?>
+				</ul>
+				 */?>
+				<form id="tao-form-<?= $uniqName ?>" method="post" action="<?= $action ?>" class="js-analytic-callback tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+
+					<div class="modal-body">
+
+						<div class="b-form">
+
+							<div class="b-form__group b-form__group--float-label">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text"
+									class="form-control b-form__control b-field-<?= $fields['name']['code'] ?>"
+									name="<?= $fields['name']['code'] ?>"
+								>
+								<label for="">Имя</label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="tel"
+									class="form-control b-form__control b-field-<?= $fields['phone']['code'] ?> b-form__phone"
+									name="<?= $fields['phone']['code'] ?>"
+								>
+								<label for="">Телефон<span class="required">*</span></label>
+							</div>
+
+							<div class="b-form__group">
+								<div class="b-form__select b-custom-select">
+									<select name="<?= $fields['time']['code'] ?>" class="form-control b-form__control">
+										<option>Удобное время</option>
+										<option value="Сейчас">Сейчас</option>
+										<?php for($i = 8; $i < 22; $i++) {?>
+											<option value="<?= $i ?>:00"><?= $i ?>:00</option>
+											<option value="<?= $i ?>:30"><?= $i ?>:30</option>
+										<?php } ?>
+										<option value="22:00">22:00</option>
+									</select>
+								</div>
+							</div>
+
+							<div class="b-form__group b-form__note">
+								Наш сотрудник ответит вам в ближайшее время.
+							</div>
+
+						</div>
+					</div>
+
+
+					<div class="modal-footer">
+						<input type="hidden" name="taoform" value="<?= $name ?>">
+						<button type="submit" class="btn btn-primary"
+						>
+							Отправить
+						</button>
+					</div>
+					<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+					<input type="hidden" name="formtype" value="callback">
+					<input type="hidden" name="analytics" value="OrderCall_Toolbar">
+					<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+				</form>
+				<?/*
+				<script>
+					$(function () {
+						$(document).ready(function() {
+							addSourcesForm('#tao-form-<?= $uniqName ?>');
+						});
+					});
+				</script>
+				<?php if ($this->ajax()) { ?>
+					<?php $this->options['jsname'] = $uniqName ?>
+					<script>
+						$(function() {
+							taoAjaxForm('<?= $uniqName ?>', <?= json_encode($this->options) ?>);
+						});
+					</script>
+				<?php } ?>
+				*/?>
+			</div>
+
+		</div>
+	</div>
+</div>

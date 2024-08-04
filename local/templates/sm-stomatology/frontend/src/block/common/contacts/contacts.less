@@ -1,0 +1,55 @@
+@import "../../../style/config";
+
+.b-contacts {
+	margin: 30px 0;
+}
+
+.b-contact {
+	border-bottom: 2px solid #e6e7dc;
+
+	&--list-page {
+		margin-bottom: 30px;
+		padding-bottom: 35px;
+	}
+
+	img {
+		width: 100%;
+	}
+
+	&__title {
+		font: 30px/25px "BlissProLight";
+		color: @secondary-color !important;
+		margin-bottom: 23px;
+	}
+
+	&--card {
+		border-bottom: none;
+	}
+
+	&__text {
+		margin: 30px 0;
+	}
+}
+
+.half-bordered {
+	position: relative;
+
+	&::after {
+		content: "";
+		display: block;
+		position: absolute;
+		height: 2px;
+		border-bottom: 2px solid #e6e7dc;
+		bottom: 0;
+		right: 0;
+		left: 51%;
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.half-bordered {
+		&::after {
+			display: none;
+		}
+	}
+}

@@ -1,0 +1,33 @@
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1><?= $this->title() ?></h1>
+		</div>
+	</div>
+</div>
+
+<?php
+$sectionId = $this->id();
+?>
+<div class="m-doctors">
+	<div class="container">
+		<?php require \TAO::infoblock('doctors')->viewPath('search-form.phtml'); ?>
+		<?php require \TAO::infoblock('doctors')->viewPath('filter-list.phtml'); ?>
+	</div>
+</div>
+
+<?php
+$description = explode('<!-- {form} -->', $this['DESCRIPTION']);
+print $description[0];
+if(isset($description[1])) {
+	print \TAO::Form('Callback')->setOption('layout','callback-in-text')->render();
+	print $description[1];
+}
+?>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?= $this->preparePage() ?>
+<?= $this->renderPostDescription() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

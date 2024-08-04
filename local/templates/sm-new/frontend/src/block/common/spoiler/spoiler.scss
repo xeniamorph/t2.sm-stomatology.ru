@@ -1,0 +1,13 @@
+.js-spoiler-box.active .js-spoiler-hidden {
+	max-height: 1000px;
+}
+
+.js-spoiler-hidden {
+	max-height: 0;
+	transition: 0.3s;
+	overflow: hidden;
+}
+
+.js-spoiler-toggle {
+	cursor: pointer;
+}

@@ -1,0 +1,69 @@
+<?php
+$uniqName = uniqid($name);
+?>
+<div class="feedback-form">
+	<div class="container">
+		<div class="feedback-action">
+	<div class="feedback-action__form">
+		<form id="tao-form-<?= $uniqName ?>" class="js-analytic-appoiment-in-text tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+			<div class="page-form__header">
+				<div class="feedback-action__subtitle">Записаться на прием</div>
+				<div class="feedback-action__title">поля, отмеченные * необходимы к заполнению</div>
+			</div>
+
+			<div class="feedback-form__border">
+				<div class="page-form__body">
+					<div class="feedback-action__row">
+						<div class="feedback-action__cell">
+							<label class="page-form__label">Имя</label>
+							<input type="text"
+								   placeholder="Имя"
+								   class="page-form__input b-field-<?= $fields['name']['code'] ?>"
+								   name="<?= $fields['name']['code'] ?>"
+							>
+						</div>
+						<div class="feedback-action__cell">
+							<label class="page-form__label">Телефон <span class="required">*</span></label>
+							<input type="tel"
+								   placeholder="Телефон *"
+								   class="page-form__input b-field-<?= $fields['phone']['code']?> b-form__phone"
+								   name="<?= $fields['phone']['code'] ?>"
+							>
+						</div>
+						<div class="feedback-action__cell">
+							<input type="hidden" name="taoform" value="<?= $name ?>">
+							<label class="page-form__label">&nbsp;</label>
+							<button class="feedback-action__submit" type="submit">Заказать звонок</button>
+						</div>
+					</div>
+				</div>
+				<div class="feedback-action__footer">
+					<div class="page-form__cell-2">
+						<div class="feedback-action__read">
+							Нажимая на кнопку, вы даете согласие
+							на <a href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="page-form__cell-bot">
+				<div class="feedback-action__read-bot">
+					Запись через сайт является предварительной.
+					Наш сотрудник свяжется с Вами для подтверждения записи к специалисту.
+					<br>
+					Мы гарантируем неразглашение персональных данных и отсутствие
+					рекламных рассылок по указанному вами телефону. Ваши данные необходимы
+					для обеспечения обратной связи и организации записи к специалисту клиники.
+				</div>
+			</div>
+
+			<input type="hidden" name="formtype" value="appointment">
+			<input type="hidden" name="analytics" value="OrderDoctor_Stat">
+			<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+		</form>
+		<div class="feedback-action__image"><img src="/local/templates/sm-new/img/cta_woman_doc.png"></div>
+	</div>
+</div>
+	</div>
+</div>

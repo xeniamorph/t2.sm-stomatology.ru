@@ -1,0 +1,63 @@
+@import "../../../style/config";
+
+.b-link {
+	font-family: "WaldorfLightItalic", sans-serif;
+	color: #1b5773;
+	font-size: 21px;
+	line-height: 25px;
+	font-style: italic;
+	text-decoration: underline;
+
+	&:active,
+	&:focus,
+	&:hover {
+		color: #1b5773;
+		text-decoration: none;
+	}
+
+	&--block {
+		font-family: "BlissPro-Bold", sans-serif;
+		display: block;
+		font-size: 18px;
+		margin-bottom: 5px;
+	}
+
+	&--with-arrow {
+		&::after {
+			font-family: "FontAwesome", sans-serif;
+			content: "\f105";
+			color: #d28e93;
+			display: inline-block;
+			margin-left: 10px;
+			font-style: normal;
+			text-decoration: none;
+		}
+	}
+
+	&--1 {
+		color: #d28e93;
+
+		&:active,
+		&:focus,
+		&:hover {
+			color: #d28e93;
+		}
+	}
+
+	&--2 {
+		color: #d8d3ab;
+
+		&:active,
+		&:focus,
+		&:hover {
+			color: #d8d3ab;
+		}
+	}
+
+	&--red {
+		font-size: inherit !important;
+		color: @main-color !important;
+		font-family: inherit !important;
+		font-style: inherit !important;
+	}
+}

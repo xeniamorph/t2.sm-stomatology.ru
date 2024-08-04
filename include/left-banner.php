@@ -1,0 +1,1 @@
+<a href="/stock/luchshaya-profilaktika-kariesa-po-vygodnoy-tsene/" target="_blank"><img src="/upload/b/240x400.jpg"></a>

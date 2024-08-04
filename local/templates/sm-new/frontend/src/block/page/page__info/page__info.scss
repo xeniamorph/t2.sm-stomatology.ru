@@ -1,0 +1,89 @@
+.page__info {
+	&--wrapp {
+		display: flex;
+	}
+
+	&--content {
+		background-image: url(/local/templates/sm-new/img/back_blue.jpg);
+		background-size: cover;
+		border-radius: 20px;
+		padding: 40px;
+		position: relative;
+		height: auto;
+	}
+
+	&--text p {
+		margin-bottom: 20px;
+	}
+
+	&_title {
+		margin-bottom: 20px;
+		font-weight: 700;
+	}
+
+	&.services &--content {
+		margin-left: 1px;
+		margin-right: 1px;
+	}
+
+	&--text {
+		font-weight: 300;
+		font-size: 16px;
+		line-height: 22px;
+		color: #fff;
+		width: 70%;
+		padding: 22px 0;
+	}
+
+	&--img {
+		width: 264px;
+		height: 274px;
+		position: absolute;
+		bottom: 0;
+		right: 60px;
+	}
+
+	&--img img {
+		width: 100%;
+	}
+
+	@media all and (max-width: 1024px) {
+		&--text {
+			width: 55%;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&--wrapp {
+			flex-direction: column;
+		}
+
+		&--text {
+			width: 100%;
+			z-index: 111;
+		}
+
+		&--img {
+			width: 264px;
+			height: 274px;
+			position: absolute;
+			bottom: 0;
+			right: 60px;
+			filter: opacity(0.5);
+		}
+	}
+
+	@media all and (max-width: 480px) {
+		&--content {
+			padding: 25px;
+		}
+
+		&--img {
+			display: none;
+		}
+
+		&--text {
+			padding: 0;
+		}
+	}
+}

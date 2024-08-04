@@ -1,0 +1,49 @@
+<?php
+$priceIdList = $this['prices']->value();
+if(count($priceIdList) > 0) {
+	$priceList = [];
+
+	function addItemToArray(&$array, $index ,$item)
+	{
+		if($array[$index]) {
+			addItemToArray($array, $index + 1,$item);
+		} else {
+			$array[$index] = $item;
+		}
+	}
+
+	foreach ($priceIdList as $priceId) {
+		$price = \TAO::infoblock('prices')->getItems([
+			'filter' => [
+				'ID' => $priceId,
+				'ACTIVE' => 'Y'
+			]
+		]);
+		if(!empty($price)) {
+			$type = $price[0]->property('type')->value();
+			if($type) {
+				addItemToArray($priceList[$type], $priceId['sort'], $price[0]);
+			} else {
+				addItemToArray($priceList['consultations'], $priceId['sort'], $price[0]);
+			}
+		}
+	}
+
+	ksort($priceList);
+	foreach ($priceList as $tabs) {
+		ksort($tabs);
+	}
+
+	if(count($priceList) > 0) {?>
+		<?= TAO::frontend()->renderBlock('price/price', [
+			'title' => 'Цены',
+			'priceList' => $priceList,
+			'url' => $_SERVER['HTTP_REFERER'],
+			'typeName' => [
+				'consultations' => 'Консультации',
+				'diagnostics' => 'Диагностика',
+				'services' => 'Услуги'
+			]
+		]); ?>
+	<?php }?>
+<?php }?>

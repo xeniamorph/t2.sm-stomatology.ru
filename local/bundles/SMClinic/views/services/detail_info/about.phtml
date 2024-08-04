@@ -1,0 +1,89 @@
+<div class="top-color__block">
+	<div class="container">
+		<div class="top-color__box">
+			<div class="top-color__content">
+				<?=$item['PREVIEW_TEXT']?>
+			</div>
+			<div class="top-color__photo">
+				<img src="<?=$item->previewPicture()->resizedImage('crop446x220')?>" loading="lazy"></div>
+		</div>
+	</div>
+</div>
+<?php 
+Global $APPLICATION;
+
+$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
+		"AREA_FILE_SHOW" => "file",
+		"PATH" => "/include/page_banner.php",
+		"EDIT_TEMPLATE" => "standard.php"
+	),
+	false
+);?>
+
+<?php /*блок с выпадающим текстом*/?>
+<?php /* if($item['dropdown']->value()) { ?>
+	<div class="b-content-dd">
+		<div class="b-content-dd__links b-content-dd__links--block b-content-dd__items">
+			<?php $i = 1; ?>
+			<?php foreach ($item['dropdown']->valueData() as $ddText) {?>
+				<div>
+					<a href="#bb<?= $i ?>"
+					   class="b-content-dd-link">
+						<span class="b-content-dd-link__txt"><?= $ddText['DESCRIPTION']?></span>
+					</a>
+					<div class="b-content-dd-item" id="bb<?= $i ?>">
+						<?= $ddText['VALUE']['TEXT']?>
+					</div>
+				</div>
+				<?php $i++ ?>
+			<?php } ?>
+		</div>
+	</div>
+	<hr>
+<?php } */?>
+
+<?php /*слайдер*/ ?>
+<?php if($item['sliders']->value()) { ?>
+	<div class="b-text text">
+		<div class="container">
+			<div class="b-text__wrapper">
+				<div class="b-text__title">
+					<h2><?= $item['title_slider'] ?></h2>
+				</div>
+
+				<div class="b-text__text">
+					<?php foreach ((array)$item['sliders']->valueData() as $slide) { ?>
+						<p>
+							<span>
+								<?= $slide['DESCRIPTION'] ?>
+							</span>
+							<br>
+							<?= $slide['VALUE']['TEXT'] ?>
+						</p>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<?php } ?>
+
+<?php
+$text = explode('<!-- {form} -->', $item['DETAIL_TEXT']);
+print $text[0];
+if(isset($text[1])) {
+	print \TAO::Form('Callback')->setOption('layout','callback-in-text')->render();
+	print $text[1];
+} ?>
+
+<div class="b-text text">
+	<div class="container">
+		<div class="b-text__wrapper">
+			<div class="b-text__text">
+				<p>Узнать подробности и записаться на консультацию специалиста вы можете по телефону:
+					<b><a href="tel:+74957774806">+7 (495) 777-48-06</a></b> или заполнив форму обратной связи.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,36 @@
+<?php
+$link = $this['link']->value();
+?>
+<?php if ($link == '') { ?>
+	<span class="b-main-carousel__item b-main-carousel-item db" style="background-image: url(<?= $this->previewPicture()->resizedImage('fit1200x400') ?>);">
+<?php } else { ?>
+	<div class="b-main-carousel__item b-main-carousel-item db" style="background-image: url(<?= $this->previewPicture()->resizedImage('fit1200x400') ?>);">
+	<a class="b-main-carousel__item_href" href="<?= $this['link']->value() ?>" >
+<?php } ?>
+		<?php $colorTextStyle = ' style="color:';?>
+		<?php $colorTextStyle .= ($this->property('color')->value() ? $this->property('color')->value() : '#fff');?>
+		<?php $colorTextStyle .='" '; ?>
+		<div class="b-main-carousel-item__description">
+			<p<?= $colorTextStyle ?>class="b-main-carousel-item__title">
+				<?
+					if(!empty($this['DETAIL_TEXT'])) {
+						echo $this['DETAIL_TEXT'];
+					} else {
+						echo $this->title();
+					}
+				?>
+			</p>
+			<div class="b-main-carousel-item__text">
+				<?= $this['PREVIEW_TEXT']?>
+			</div>
+		</div>
+<?php if ($link == '') { ?>
+	<span>
+<?php } else { ?>
+	</a>
+	<? if(!empty($this->property('add_block')->value()['TEXT'])): ?>
+		<div class="b-main-carousel__item_add"><?= $this->property('add_block')->value()['TEXT']; ?></div>
+	<? endif; ?>
+</div>
+
+<?php } ?>

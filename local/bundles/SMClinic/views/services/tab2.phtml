@@ -1,0 +1,82 @@
+<?= $item['price_title']->value()['TEXT'] ?>
+
+<?php $priceIdList = $item['prices']->value() ?>
+
+<?php
+$priceList = [];
+foreach ($priceIdList as $priceId) {
+	$price = \TAO::infoblock('prices')->getItems([
+		'filter' => [
+			'ID' => $priceId['service'],
+			'ACTIVE' => 'Y'
+		]
+	]);
+	if(!empty($price)) {
+		addItemToArray($priceList, $priceId['sort'], $price[0]);
+	}
+}
+function addItemToArray(&$array, $index ,$item)
+{
+	if($array[$index]) {
+		addItemToArray($array, $index + 1,$item);
+	} else {
+		$array[$index] = $item;
+	}
+}
+
+ksort($priceList);
+?>
+<?php
+global $APPLICATION;
+$APPLICATION->IncludeComponent("sm:text", "", ['IBLOCK_ID' => 23,'ELEMENT_ID' => 	15723], false);
+?>
+<div>
+	<?= $item['price_text']->value()['TEXT'] ?>
+</div>
+
+<table class="table b-table">
+	<thead>
+	<tr>
+		<th>Наименование услуги</th>
+		<th>Цена&nbsp;(руб.)&nbsp;*</th>
+	</tr>
+	</thead>
+	<tbody>
+	<?php foreach ($priceList as $price) {?>
+		<tr>
+			<td><?= $price->title() ?></td>
+			<td><?= $price['sum'] ?> руб.</td>
+		</tr>
+		<script type="application/ld+json">
+		{
+			"@context": "http://schema.org",
+			"@type": "Offer",
+			"availability": "http://schema.org/InStock",
+			"itemOffered": "Service",
+			"name": "<?= $price->title() ?>",
+			"url": "<?= $_SERVER['HTTP_REFERER'] ?>",
+			"priceCurrency": "RUB",
+			"price": "<?= $price['sum'] ?>"
+		}
+		</script>
+	<?php } ?>
+	</tbody>
+</table>
+<?/*
+<div style="margin:10px 0;color:#a70632;"><b>Уважаемые посетители! Обращаем ваше внимание, что с 1 января 2018 года в «СМ-Клиника» изменяются цены на прием специалистов и некоторые медицинские услуги. Актуальные цены уточняйте, пожалуйста, по телефону в контакт-центре или в регистратуре клиник.</b></div>
+*/?>
+<p>
+	Принимаем к оплате банковские карты VISA, MASTERCARD, MAESTRO
+	<?/*<img src="<?= TAO::frontendUrl('/img/common/payment-methods.png') ?>" alt=""
+	     style="vertical-align: middle; margin-left: 10px;">*/?>
+</p>
+
+<? //require "note.php" ?>
+
+<?php if(!stripos($_SERVER["REDIRECT_URL"], 'services/protezirovanie-ortopediya')) { ?>
+	<p class="b-heading--secondary b-heading--black">
+		Записаться на прием
+	</p>
+	
+	<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?php } ?>

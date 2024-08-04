@@ -1,0 +1,56 @@
+<div class="reviews-list__item text">
+	<div class="reviews-list__header">
+		<div class="reviews-list__icon"></div>
+		<div class="reviews-list__label">
+			<?= $this->title() ?>
+			<div class="reviews-list__date">Отзыв от <b><?= $this['DATE_ACTIVE_FROM']?></b></div>
+		</div>
+	</div>
+	<div class="reviews-list__review">
+		<div class="reviews-list__review-title"></div>
+		<div class="reviews-list__review-wrap">
+			<div>
+				<?php
+				if(strrpos($this['review']->value()['TEXT'], '<p>') <= 0) {
+					echo nl2br($this['review']->value()['TEXT']);
+				} else {
+					echo $this['review']->value()['TEXT'];
+				}
+				?>
+			</div>
+			<?php if($this->previewPicture()->id){ ?>
+				<div class="reviews-list__review-img">
+					<a href="<?=$this->previewPicture()->url()?>" class="js-fancybox">
+						<img src="<?= $this->previewPicture()->resizedImage('fit130x170') ?>" alt="">
+					</a>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+	<?php if($this['answer']->value()) { ?>
+		<div class="reviews-list__answer">
+			<div class="reviews-answer">
+				<div class="reviews-answer__left">
+					<div class="reviews-answer__logo">
+						<?php if($this->detailPicture()->id){ ?>
+							<img src="<?= $this->detailPicture()->resizedImage('fit100x100') ?>" alt="">
+						<?php } else { ?>
+							<img src="<?=SITE_TEMPLATE_PATH?>/svg/min_logo_sm.svg" alt="">
+						<?php } ?>
+					</div>
+				</div>
+				<div class="reviews-answer__right">
+					<div class="reviews-answer__right-title">Ответ клиники</div>
+					<?php
+					if(strrpos($this['answer']->value()['TEXT'], '<p>') <= 0) {
+						echo nl2br($this['answer']->value()['TEXT']);
+					} else {
+						echo $this['answer']->value()['TEXT'];
+					}
+					?>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+</div>
+

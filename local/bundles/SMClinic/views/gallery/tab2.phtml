@@ -1,0 +1,18 @@
+<?php
+$videoList = $videoGallery->getItems();
+?>
+<div id="content-2">
+	<div class="gallery-tabs__items">
+		<?php foreach ($videoList as $video) { ?>
+			<a class="gallery-tabs__item" href="<?= $video->url() ?>">
+				<div class="gallery-tabs__image gallery-tabs__image--video">
+					<img src="<?= $video->previewPicture()->resizedImage('crop680x300') ?>">
+					<div class="gallery-tabs__play"></div>
+				</div>
+				<div class="gallery-tabs__desc">
+					<div class="gallery-tabs__caption"><?= $video->title() ?></div>
+				</div>
+			</a>
+		<?php } ?>
+	</div>
+</div>

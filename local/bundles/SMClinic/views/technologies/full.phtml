@@ -1,0 +1,87 @@
+<?php
+\TAO::navigation()->flag('technologies');
+\TAO::navigation()->route()->add(['url' => $this->url(), 'title' => $this->title()]);
+$this->preparePage();
+?>
+<div class="article-headline">
+	<div class="container">
+		<div class="article-headline__title">
+			<h1><?= $this->title() ?></h1>
+		</div>
+	</div>
+</div>
+
+<div class="dental-unit">
+	<div class="container">
+		<div class="dental-unit__wrapper">
+			<div class="dental-unit__img">
+				<img src="<?= $this->previewPicture()->resizedImage('crop397x280') ?>" alt="<?= $this->title()?>">
+			</div>
+			<?php if(!empty($this['services']->value())) {?>
+				<div class="dental-unit__text">
+					<div class="dental-unit__text-title">
+						Услуги
+					</div>
+					<div class="dental-unit__link-wrapp">
+						<?php if($this['services']->value()) {
+							$serviceList = \TAO::infoblock('services')->getItems([
+								'filter' => ['ACTIVE' => 'Y', 'ID' => $this['services']->value()]
+							]);
+							?>
+							<?php foreach ($serviceList as $service) { ?>
+								<div>
+									<a href="<?= $service->url() ?>" class="dental-unit__link">
+										<?= $service->title() ?>
+									</a>
+								</div>
+							<?php } ?>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+<?php if(!empty($this['DETAIL_TEXT'])) {?>
+	<div class="b-text m-30 text">
+		<div class="container">
+			<div class="b-text__wrapper">
+				<div class="b-text__title">
+					<h2>Описание оборудование</h2>
+				</div>
+				<?= $this['DETAIL_TEXT'] ?>
+			</div>
+		</div>
+	</div>
+<?php }?>
+
+<?php if(count($this['gallery']->value()) > 0) {?>
+	<div class="article-similar-block">
+		<div class="container">
+			<div class="page-title-2">
+				Фотогалерея
+			</div>
+			<?php
+			$galleryImg = [];
+			foreach ($this['gallery']->valueData() as $key=>$data) {
+				$img = new \TAO\File($data['VALUE']);
+				$galleryImg[$key] = [
+						'resized' => $img->resizedImage('crop257x257'),
+						'max' => $img
+				];
+			}?>
+ 
+ 			<?
+				$alt = "Стоматологическая клиника ".$this->title()." фото ";
+			?>
+
+			<?= TAO::frontend()->renderBlock('article/article-similar', [
+				'alt' => $alt,
+				'images' => $galleryImg
+			]); ?>
+		</div>
+	</div>
+<?php }?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

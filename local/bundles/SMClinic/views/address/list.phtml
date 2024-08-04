@@ -1,0 +1,149 @@
+<?php
+\TAO::App()->SetTitle('Контакты «СМ-Стоматология» в Москве — время работы, схема проезда');
+\TAO::App()->SetPageProperty("description", "Адреса, схема проезда, телефоны и график работы сети клиник «СМ-Стоматология». Запись по телефону +7 495 777-48-06.");
+?>
+<div class="b-analyzes-heading">
+	<div class="container">
+		<div class="b-analyzes-heading__wrap">
+			<div class="b-analyzes-heading__title">
+				<h1>Контактная информация</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php
+$res = CIBlockElement::GetByID(2882);
+if($ar_res = $res->GetNext()) {
+	if($ar_res['ACTIVE'] == 'Y') {?>
+		<div class="warning-text text">
+			<div class="container">
+				<div class="warning-text__text blue_back">
+					<div class="warning-text__box">
+						<div>
+							<?=$ar_res['DETAIL_TEXT'] ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php }
+}?>
+
+<?php
+$clinics = [];
+foreach ($items as $item) {
+	$type = 'adults';
+	if($item['childrens']->value()) {
+		$clinics['childrens'][] = $item;
+		$type = 'childrens';
+	} else {
+		$clinics['adults'][] = $item;
+	}
+
+	//формируем данные для карты
+	$coords = explode(',', $item['map_address']->value());
+	$metroList = \TAO::infoblock('metro')->getItems([
+		'filter' => ['ID' => $item['metro']->value()]
+	]);
+
+	$metro = array_shift($metroList);
+	$metroColor = SMClinicHelper::getMetroColorById($metro->id());
+	$json[$type][] = [
+		'coords' => $coords,
+		'zoom' => 11,
+		'options' => [
+			[
+				'id' => $item->id(),
+				'departament' => '',
+				"iconImages" => [
+					SITE_TEMPLATE_PATH.'/build/prod/src/i/map-point-gray.svg?v=7',
+					SITE_TEMPLATE_PATH.'/build/prod/src/i/map-point-green.svg?v=7'	// Активная иконка
+				],
+				'hintContent' => $item->title(),
+				'balloonContent' => $item['address']->value(),
+			],
+			[
+				'iconLayout' => 'default#image',
+				'iconImageHref' => SITE_TEMPLATE_PATH.'/build/prod/src/i/map-point-green.svg?v=7',
+				"iconImageSize" => [49, 62],
+				"iconImageOffset" => [-25, -55],
+				"hideIconOnBalloonOpen" => false
+			]
+		],
+		'content' => [
+			'img' => $item->previewPicture()->resizedImage('252x143'),
+			'mapBlock' => '<img src="' . SITE_TEMPLATE_PATH . '/svg/metro-icon-'.$metroColor . '.svg"><div class="map-block__label '.$metroColor.'"><span>'.$metro->title().'</span><br>'.$item['address']->value().'</div>',
+			'clock' => $item['time']->value()['TEXT'],
+			'link' => $item['link_to_site']->value()?:$item->url()
+		]
+	];
+}
+?>
+
+<div class="map-block__tabs">
+	<div class="map-block__tab container">
+		<div data-name="adults" data-tab-id="tab-btn-1" class="map-block__tab-item js-active">Взрослые стоматологии</div>
+		<div data-name="childrens" data-tab-id="tab-btn-2" class="map-block__tab-item">Детские стоматологии</div>
+	</div>
+	<div class="map-block__content">
+		<div data-name="adults" class="map-block js-active"  style="min-height: 480px">
+			<div class="js-ymap-lazyload map-block__map" data-type="adults" data-event="onScroll" style="height: 550px"></div>
+			<div class="container map-block__content">
+				<?php
+				$card = $clinics['adults'][0];
+				require dirname(__FILE__) . '/maps-teaser.phtml';
+				?>
+			</div>
+		</div>
+		<div data-name="childrens" class="map-block"  style="min-height: 480px">
+			<div class="js-ymap-lazyload map-block__map" data-type="childrens" data-event="onScroll" style="height: 550px"></div>
+			<div class="container map-block__content">
+				<?php
+				$card = $clinics['childrens'][0];
+				require dirname(__FILE__) . '/maps-teaser.phtml';
+				?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="nav-tabs__block">
+	<div class="container">
+		<div class="nav-tabs__content">
+			<div class="nav-tabs__title">
+				Как добраться:
+			</div>
+			<div class="tabs">
+				<input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+				<label for="tab-btn-1">Взрослые стоматологии</label>
+				<input type="radio" name="tab-btn" id="tab-btn-2" value="">
+				<label for="tab-btn-2">Детские стоматологии</label>
+
+				<div id="content-1">
+					<div class="choice-addr__wrapp">
+						<?php foreach ($clinics['adults'] as $item) { ?>
+							<?= $item->render() ?>
+						<?php } ?>
+					</div>
+				</div>
+
+				<div id="content-2">
+					<div class="choice-addr__wrapp">
+						<?php foreach ($clinics['childrens'] as $item) { ?>
+							<?= $item->render() ?>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	window.mapPoints = <?= json_encode($json, JSON_UNESCAPED_UNICODE) ?>;
+</script>
+
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

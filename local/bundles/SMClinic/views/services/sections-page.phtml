@@ -1,0 +1,112 @@
+<?php
+\TAO::app()->setTitle('Стоматология в Москве — цены на услуги в сети клиник «СМ-Стоматология»');
+\TAO::app()->SetPageProperty("description", "Качественная диагностика, лечение зубов, имплантация, протезирования и другие услуги в стоматологической клинике«СМ Стоматология». Узнать цены, записаться на прием или задать вопрос он-лайн на сайте.");
+?>
+
+<?= TAO::frontend()->renderBlock('common/heading-btn', [
+	'title' => 'Услуги и цены'
+]); ?>
+
+<?= $this->renderPreDescription() ?>
+<?php
+$sectionList = $this->getSections([
+	'filter' => [
+		'IBLOCK_ID' => $this->id(),
+		'ACTIVE' => 'Y',
+		'DEPTH_LEVEL' => 1
+	]
+]);
+?>
+
+<div class="price-content">
+	<div class="container">
+		<div class="price-content__cols">
+			<?php foreach ($sectionList as $section) { ?>
+				<div class="price-content__cols-item">
+					<div class="price-content__flex-wrap">
+						<div class="price-content__img-wrap" itemscope itemtype="http://schema.org/ImageObject">
+							<a href="<?= $section->url() ?>">
+								<img src="<?= $section->picture()->resizedImage('crop140x140') ?>"  alt="<?= $section->title() ?> фото" title="<?= $section->title() ?>" itemprop="contentUrl">
+							</a>
+						</div>
+						<?php if($section->id() != 18): // Детская стоматология ?>
+						<a href="<?= $section->url() ?>" class="price-content__title">
+						<?php else: ?>
+						<a href="/services/detskaya-stomatologiya/" class="price-content__title">
+						<?php endif; ?>
+							<?= $section->title() ?>
+						</a>
+						<a class="price-content__circle-blue" href="<?= $section->url() ?>"><img src="/local/templates/sm-new/svg/circle_blue.svg" alt=""></a>
+					</div>
+
+					<div class="price-content__table">
+						<div class="main-table__item">
+							<div class="table__title">Наименование услуги</div>
+							<div class="table-list__cost cost-main">Цена (руб) *</div>
+						</div>
+						<?php if($section->id() == 35): ?>
+							<a class="table-item" href="/services/online-konsultatsiya-vracha/">
+								<div class="table__title">Экспертное мнение стоматолога онлайн</div>
+								<span class="table-list__cost">Бесплатно</span>
+							</a>
+						<?php endif; ?>
+						<?php
+						$elementList = \TAO::infoblock('services')->getItems([
+							'filter' => [
+								'ACTIVE' => 'Y',
+								'SECTION_ID' => $section->id(),
+								'INCLUDE_SUBSECTIONS' => 'Y'
+							]
+						]);
+						?>
+						<?php if($elementList) { ?>
+							<?php foreach ($elementList as $element) { ?>
+								<a class="table-item" href="<?= $element->url() ?>">
+									<div class="table__title"><?= $element->title() ?></div>
+									<span class="table-list__cost"><? if($element->id() != 45): ?>От<? endif; ?> <?= $element->getMinSum() ?> руб.</span>
+								</a>
+								<script type="application/ld+json">
+									{
+										"@context": "http://schema.org",
+										"@type": "Offer",
+										"availability": "http://schema.org/InStock",
+										"itemOffered": "Service",
+										"name": "<?= $element->title() ?>",
+										"url": "https://www.sm-stomatology.ru<?= $element->url() ?>",
+										"priceCurrency": "RUB",
+										"price": "<?= $element->getPriceToList() ?>"
+									}
+								</script>
+							<?php } ?>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+
+<div class="b-text">
+	<div class="container">
+		<div class="b-text__wrapper b-text-link">
+			<div class="b-text__text">
+				<p>С полным прайс-листом можно ознакомиться в регистратуре
+					или задать вопрос по телефону <a href="tel:+74962638687">+7 (4962) 63-86-87</a></p>
+
+				<p>* Администрация клиники принимает все меры по своевременному обновлению размещенного
+					на сайте прайс-листа, однако во избежание возможных недоразумений,
+					советуем уточнять стоимость услуг в регистратуре или в
+					контакт-центре по телефону <a href="tel:+74962638687">+7 (4962) 63-86-87</a>
+				</p>
+
+				<p>Размещенный прайс не является офертой. Медицинские
+					услуги оказываются на основании договора.</p>
+			</div>
+		</div>
+	</div>
+</div>
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?= $this->renderPostDescription() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

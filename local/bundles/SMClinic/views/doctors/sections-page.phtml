@@ -1,0 +1,68 @@
+<?php
+\TAO::app()->setTitle('Врачи стоматологической клиники «СМ-Стоматология» | Стоматологический центр в Москве');
+\TAO::app()->SetPageProperty("description", "Подробная информация о врачах стоматологической клиники «См-Стоматология»: квалификация, научные степени и сертификаты. Записаться на прием или получить онлайн консультацию на сайте «СМ-Стоматология».");
+?>
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1>Наши врачи</h1>
+		</div>
+	</div>
+</div>
+
+<div class="m-doctors">
+	<div class="container">
+		<?php require \TAO::infoblock('doctors')->viewPath('search-form.phtml'); ?>
+		<?php require \TAO::infoblock('doctors')->viewPath('filter-list.phtml'); ?>
+	</div>
+</div>
+
+<?php /****search form end*****/ ?>
+	<?php
+		$directionList = $this->getSections([
+            'filter' => [
+                'ACTIVE'=>'Y'
+            ]
+        ]);
+	?>
+
+<div class="specialist-card-block">
+	<div class="container">
+		<div class="page-title-3">Наши специалисты</div>
+		<div class="specialist-card__box">
+			<div class="specialist-card__wrap">
+				<?php foreach ($directionList as $direction) {?>
+					<a href="<?= $direction->url() ?>" class="specialist-card__items">
+						<div class="specialist-card">
+							<div class="specialist-card__cell">
+								<div class="specialist-card__left">
+									<img class="specialist-card__image" src="<?= $direction->picture()->resizedImage('crop397x197') ?>" alt="<?= $direction->title() ?> фото" title="<?= $direction->title() ?>"></div>
+								<div class="specialist-card__center">
+									<div class="specialist-card__title">
+										<?= $direction->title() ?>
+									</div>
+								</div>
+							</div>
+						</div>
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+$description = explode('<!-- {form} -->', $this->description());
+print $description[0];
+if(isset($description[1])) {
+	print \TAO::Form('Callback')->setOption('layout','callback-in-text')->render();
+	print $description[1];
+}
+?>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?//= $this->renderPreDescription() ?>
+<?//= $this->renderSectionsList($args) ?>
+<?= $this->renderPostDescription() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

@@ -1,0 +1,267 @@
+@import "../../../style/config";
+
+#js-main-map {
+	height: 750px;
+}
+
+.b-map {
+	height: 750px;
+	position: relative;
+	background: #f7f1d9;
+	margin: 50px 0 0;
+
+	&__info {
+		background: rgba(255, 255, 255, 0.8);
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		right: 10%;
+		left: auto;
+		margin: 0;
+		width: 520px;
+		padding: 40px 50px;
+		overflow: hidden;
+
+		&-logo {
+			display: block;
+			margin: 0 0 24px;
+			width: 350px;
+		}
+
+		&-work-time {
+			float: right;
+			color: #8e7f7a;
+			font: 17px "BlissProLight";
+			margin-top: -25px;
+		}
+
+		&-phone {
+			color: #626365;
+			font: 24px "BlissPro";
+		}
+
+		&-row {
+			margin: 24px 0 0 30px;
+		}
+
+		&-footer {
+			margin-top: 20px;
+			color: #727476;
+			font: 12px "BlissPro";
+
+			strong {
+				display: block;
+				color: #626365;
+				margin-bottom: 10px;
+			}
+		}
+	}
+
+	.b-contacts-list__item {
+		cursor: pointer;
+
+		&--selected a,
+		&--selected {
+			color: #a03339;
+		}
+
+		&--selected {
+			position: relative;
+
+			&::before {
+				content: "";
+				position: absolute;
+				left: -50px;
+				top: 0;
+				width: 28px;
+				height: 40px;
+				background-image: url(~img/common/map/marker.png);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+			}
+		}
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-map {
+		&__info {
+			right: 20px;
+			margin: 0;
+			width: 360px;
+			padding: 20px;
+
+			&-log {
+				margin: 0 0 12px;
+			}
+
+			&-work-time {
+				float: none;
+				display: block;
+				margin: 10px 0 0 20px;
+			}
+
+			&-phone {
+				margin-left: 20px;
+			}
+
+			&-row {
+				margin-top: 10px;
+			}
+
+			&-footer {
+				margin-top: 0;
+
+				strong {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-map {
+		&__info {
+			right: 20px;
+			margin: 0;
+			width: 360px;
+			padding: 20px;
+
+			&-work-time {
+				float: none;
+				display: block;
+				margin: 10px 0 0 20px;
+			}
+
+			&-phone {
+				margin-left: 20px;
+			}
+
+			&-row {
+				margin-top: 10px;
+			}
+
+			&-footer {
+				margin-top: 0;
+
+				strong {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	#js-main-map {
+		height: 500px;
+	}
+
+	.b-map {
+		height: auto;
+
+		#js-main-map {
+			height: 400px;
+		}
+
+		&__info {
+			position: static;
+			width: auto;
+			display: flex;
+			flex-direction: column;
+
+			&-top {
+				order: 2;
+				width: 80%;
+				margin: 10px auto;
+			}
+
+			&-middle {
+				order: 1;
+			}
+
+			&-footer {
+				order: 3;
+				width: 80%;
+				margin: 10px auto;
+			}
+
+			&-row {
+				margin: 10px;
+			}
+
+			&-footer {
+				padding: 0 15px;
+			}
+		}
+
+		.b-socials {
+			display: flex;
+			flex-flow: row wrap;
+			justify-content: space-between;
+
+			&__item {
+				display: block;
+				margin: 30px 0 0;
+			}
+		}
+	}
+}
+
+.mapBalloon {
+	background: #fff;
+	color: #000;
+	width: 238px;
+	height: 138px;
+	position: absolute;
+	border: 1px solid #c6c6c6;
+	padding: 9px;
+	border-radius: 6px;
+
+	&::before {
+		content: '';
+		position: absolute;
+		background: url('/images/mapMarker.png') no-repeat;
+		width: 28px;
+		height: 40px;
+		bottom: -38px;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+
+.btn-yandex {
+	text-align: center;
+	width: ~'calc(100% - 18px)';
+	position: absolute;
+	bottom: 9px;
+	box-sizing: border-box;
+}
+
+.btn-close {
+	border: 1px solid #c6c6c6;
+	border-radius: 50%;
+	position: absolute;
+	cursor: pointer;
+	top: -15px;
+	right: -15px;
+	background: #fff;
+	padding: 0 6px 2px;
+	color: #c6c6c6;
+	text-align: center;
+	margin: 4px 0 0;
+
+	&:hover {
+		color: #000;
+	}
+}
+
+.b-modal-map.in {
+	.modal-dialog {
+		margin-top: 0;
+		top: 50%;
+		transform: translateY(-50%);
+	}
+}

@@ -1,0 +1,81 @@
+<?php
+\TAO::navigation()->route()->addArray($route);
+$item->preparePage('full');
+?>
+
+<?= TAO::frontend()->renderBlock('common/heading-btn', [
+	'title' => $item->title()
+]); ?>
+
+<?php
+$tabs = [
+	'1' => [
+		'name'=> 'Лечение',
+		'value'=> trim($item['PREVIEW_TEXT']) != '',
+		'code'=> 'about'
+	],
+	'2' => [
+		'name'=> 'Цены',
+		'value'=> !empty($item['prices']->value()),
+		'code'=> 'prices'
+	],
+	'3' => [
+		'name'=> 'Заболевания',
+		'value'=> !empty($item['diseases']->value()),
+		'code'=> 'diseases'
+	],
+	'4' => [
+		'name'=> 'Наши врачи',
+		'value'=> !empty($item['doctors']->value()),
+		'code'=> 'doctors'
+	],
+	'5' => [
+		'name'=> 'Преимущества',
+		'value'=> count($item['benefits']->value()),
+		'code'=> 'benefits'
+	],
+	'6' => [
+		'name'=> 'Оборудование',
+		'value'=> !empty($item['technologies']->value()),
+		'code'=> 'technologies'
+	],
+	'7' => [
+		'name'=> 'Другие услуги',
+		'value'=> !empty($item['RELATED_ELEMENTS']->value()),
+		'code'=> 'services'
+	]
+];
+
+//$tabsForOrtopediya = [$tabs[2], $tabs[1], $tabs[6], $tabs[4], $tabs[3], $tabs[5]];
+$tabsForAll = [$tabs[1], $tabs[6], $tabs[4], $tabs[2], $tabs[3], $tabs[5], $tabs[7]];
+?>
+<div class="page-nav-sticky__wrapper">
+	<div class="container">
+		<div class="page-nav-sticky">
+			<div class="page-nav-sticky__buttons four-columns">
+				<?php foreach ($tabsForAll as $tab) {
+					if($tab['value']) { ?>
+						<a class="page-nav-sticky__button"
+						   data-toggle="tab" href="#<?=$tab['code']?>" role="tab">
+							<?=$tab['name']?>
+						</a>
+					<?php }
+				} ?>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="tab-content">
+	<?php foreach ($tabsForAll as $tab) {
+		if($tab['value']) { ?>
+			<div id="<?=$tab['code']?>" class="anchor-hided"></div>
+			<div class="tab-panes" role="tabpanel">
+				<?php require dirname(__FILE__).'/detail_info/'.$tab['code'].'.phtml'; ?>
+			</div>
+		<?php }
+	} ?>
+</div>
+
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

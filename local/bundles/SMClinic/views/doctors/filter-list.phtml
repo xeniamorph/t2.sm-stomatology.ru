@@ -1,0 +1,50 @@
+<div class="m-doctors__wrap">
+	<div class="m-doctors__items js-form-search__result">
+		<?php foreach($doctorList as $doctor) {?>
+			<div class="doctor-card">
+				<div class="b-card b-card--doctor">
+					<a class="doctor-card__cell" href="<?= $doctor->url() ?>">
+						<div class="doctor-card__left">
+							<img class="doctor-card__image" src="<?= $doctor->previewPicture()->resizedImage('fit100x127') ?>">
+						</div>
+						<div class="doctor-card__right">
+							<div class="doctor-card__name"><?= $doctor->title() ?></div>
+							<div class="doctor-card__spec"><?= $doctor['specialization']->value() ?></div>
+						</div>
+					</a>
+					<div class="doctor-card__cell doctor-card__cell--middle">
+						<div class="doctor-card__left">
+							<?php if($doctor['experience']->value()) {
+								foreach ($doctor->property('experience')->valueData() as $itemEx) {
+									$experienceDesc = $itemEx['DESCRIPTION'];
+									$experience = $itemEx['VALUE'];
+								}
+								?>
+								<div class="doctor-card__text">Стаж: <div class="bold"><?= $experience ?></div> <?=$experienceDesc?></div>
+							<?php }?>
+
+							<div class="doctor-card__text">Отзывы: <div class="bold"><?=count($reviewsCount[$doctor->id()])?></div></div>
+						</div>
+						<div class="doctor-card__right">
+							<?php foreach ($doctorsMetro[$doctor->id()] as $key=>$metro) {?>
+								<div class="doctor-card__metro ">
+									<div class="doctor-card__point metro_<?= $metro['color'] ?>"></div>
+									<div><?=$metro['title']?></div>
+								</div>
+							<?php }?>
+						</div>
+					</div>
+
+					<div class="doctor-card__button">
+						<a href="#" class="btn btn--doctor btn-primary js-open-popup" data-toggle="modal" data-target=".popup-form-feedback" data-analytics="OrderDoctor">Записаться на прием</a>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
+	</div>
+	<?php if(count($allDoctorList) > $pageNumber*$itemsPerPage) {?>
+		<div class="m-doctors__show"><button class="m-doctors__button" data-url="?page-doctor=<?=$_GET['page-doctor'] ? $_GET['page-doctor'] + 1 : 2?>">Показать ещё</button></div>
+	<?php }?>
+
+	<span class="m-doctors__empty hide"> Врачи не найдены. Измените параметры фильтрации.<span></span></span>
+</div>

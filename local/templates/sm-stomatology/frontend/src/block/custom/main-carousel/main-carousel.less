@@ -1,0 +1,77 @@
+@import "../../../style/config";
+@import "-item/-item";
+
+.b-main-carousel {
+	height: 400px;
+
+	.owl-dots {
+		display: none;
+	}
+
+	.owl-next,
+	.owl-prev {
+		position: absolute;
+		top: 50%;
+		width: 40px;
+		height: 80px;
+		background: #fff;
+		display: block;
+		margin-top: -40px;
+
+		&::before {
+			font: 56px/76px "FontAwesome";
+			color: @third-color;
+			text-align: center;
+			display: block;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+		}
+
+		&:hover::before {
+			color: darken(@third-color, 10%);
+		}
+	}
+
+	.owl-prev {
+		left: 0;
+		border-radius: 0 40px 40px 0;
+
+		&::before {
+			left: 2px;
+			content: "\f104";
+		}
+
+		&:hover {
+			box-shadow: 3px 0 2px rgba(0, 0, 0, 0.2);
+		}
+	}
+
+	.owl-next {
+		right: 0;
+		border-radius: 40px 0 0 40px;
+
+		&::before {
+			left: 17px;
+			content: "\f105";
+		}
+
+		&:hover {
+			box-shadow: -3px 0 2px rgba(0, 0, 0, 0.2);
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-main-carousel {
+		.owl-next,
+		.owl-prev {
+			display: none;
+		}
+
+		.owl-dots {
+			display: block;
+			bottom: 20px;
+		}
+	}
+}

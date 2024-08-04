@@ -1,0 +1,41 @@
+<?php
+$priceList = [];
+foreach ($priceIdList as $priceId) {
+	$price = \TAO::infoblock('prices')->getItems([
+		'filter' => [
+			'ID' => $priceId['service'],
+			'ACTIVE' => 'Y'
+		]
+	]);
+	if(!empty($price)) {
+		$type = $price[0]->property('type')->value();
+		if($type) {
+			addItemToArray($priceList[$type], $priceId['sort'], $price[0]);
+		} else {
+			addItemToArray($priceList['consultations'], $priceId['sort'], $price[0]);
+		}
+	}
+}
+function addItemToArray(&$array, $index ,$item)
+{
+	if($array[$index]) {
+		addItemToArray($array, $index + 1,$item);
+	} else {
+		$array[$index] = $item;
+	}
+}
+ksort($priceList);
+foreach ($priceList as $tabs) {
+	ksort($tabs);
+}
+?>
+<?= TAO::frontend()->renderBlock('price/price', [
+	'title' => 'Цены',
+	'priceList' => $priceList,
+	'url' => $_SERVER['HTTP_REFERER'],
+	'typeName' => [
+		'consultations' => 'Консультации',
+		'diagnostics' => 'Диагностика',
+		'services' => 'Услуги'
+	]
+]); ?>

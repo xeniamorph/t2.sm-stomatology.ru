@@ -1,0 +1,119 @@
+<?php
+\TAO::App()->SetTitle('Отзывы из клиник  | «СМ-Стоматология»');
+\TAO::App()->SetPageProperty("description", "Отзывы из клиник с сайта «СМ-Стоматология». Записаться на прием к стоматологу или задать вопрос он-лайн");
+\TAO::navigation()->route()->add(['url' => '/reviews-clinic/', 'title' => 'Отзывы'])
+?>
+<div class="b-heading">
+	<h1 class="b-heading__title">Отзывы</h1>
+	<a href="#" class="b-heading__link hidden-md-down"
+		data-toggle="modal" data-target="#modal-ask-question"
+	>
+		Есть вопросы?
+	</a>
+</div>
+
+<div class="b-tabs">
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link<?= (\TAO\Urls::isCurrent('/reviews-site/') ? ' active' : '' ); ?>" href="/reviews-site/">
+				Отзывы с сайта
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link<?= (\TAO\Urls::isCurrent('/reviews-clinic/') ? ' active' : '' ); ?>" href="/reviews-clinic/"
+			<?= (preg_match('\'/reviews-clinic/page-[0-9]+/\'', $_SERVER['REDIRECT_URL']) ? 'rel= "canonical"' : '' ); ?>>
+				Отзывы из клиник
+			</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active">
+			<div class="b-reviews b-reviews--clinics">
+
+				<a href="#review-form" class="btn btn-primary btn--fixed-width js-anchor">
+					Оставить отзыв
+				</a>
+
+				<a href="#" class="b-reviews--btn-link"
+				   data-toggle="modal"
+				   data-target="#modal-support">
+					Написать руководителю Службы клиентской поддержки
+				</a>
+
+				<div class="b-reviews__list">
+					<?php foreach ($reviewList as $review) { ?>
+						<div class="b-review">
+							<div class="b-review__title">
+								<div class="b-review__date"><?= $review['DATE_ACTIVE_FROM']?></div>
+								<?= $review->title() ?>
+							</div>
+
+							<div class="b-review__text">
+								<div class="row">
+									<?php if($review->previewPicture()->id){ ?>
+										<div class="col-sm-2">
+
+											<a class="b-lightbox" href="<?= $review->previewPicture()->url() ?>">
+												<img src="<?= $review->previewPicture()->resizedImage('fit130x170') ?>" alt="">
+											</a>
+										</div>
+									<?php } ?>
+									<div class="col-sm-<?= $review->previewPicture()->id ? '10' : '12' ?>">
+									<?= $review['review']->value()['TEXT'] ?>
+									</div>
+								</div>
+							</div>
+
+							<?php if($review['answer']->value()) { ?>
+								<div class="b-review__response">
+									<div class="row">
+										<?php if($review->detailPicture()->id){ ?>
+											<div class="col-sm-2">
+												<img src="<?= $review->detailPicture()->resizedImage('fit130x170') ?>" alt="">
+											</div>
+										<?php } else { ?>
+											<div class="col-sm-2">
+												<img src="/upload/gv.jpg" alt="">
+											</div>
+										<?php } ?>
+										<div class="col-sm-10">
+											<?= $review['answer']->value()['TEXT'] ?>
+										</div>
+									</div>
+								</div>
+							<?php } ?>
+						</div>
+					<?php } ?>
+				</div>
+				<?php
+					//if($numPage > 1) {
+						print $pagination->render( $_GET['page'] ? $_GET['page'] : 1, $numPage );
+					//}
+				?>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<div id="review-form" class="b-anchor"></div>
+<?=
+	\TAO::Form('Review')->setOption('layout', 'review-in-text')->render();
+?>
+
+<blockquote class="blockquote blockquote--left">
+	<p>
+		Ваши персональные данные не будут использованы для спамовой рассылки и не попадут в открытый
+		доступ и не будут переданы третьим лицам.
+	</p>
+</blockquote>
+
+<p>
+	Уважаемые посетители, большая просьба при написании отзыва, заполнять все поля формы и указывать
+	адрес электронной почты для связи.
+</p>
+<p>
+	В противном случае администрация клиники не сможет отреагировать на оставленную информацию и
+	связаться с вами для решения возникших вопросов.
+</p>

@@ -1,0 +1,26 @@
+@import "../../../style/config";
+
+.b-contacts-list {
+	text-align: left;
+
+	&__item {
+		margin-bottom: 15px;
+
+		a {
+			display: block;
+			color: @secondary-color;
+			font: 16px/22px "BlissPro";
+		}
+	}
+}
+
+@media (max-width: @media-bs-sm) {
+	.b-contacts-list {
+		width: 186px;
+		margin: 0 auto;
+
+		a {
+			font-size: 14px;
+		}
+	}
+}

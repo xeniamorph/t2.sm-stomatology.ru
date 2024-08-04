@@ -1,0 +1,41 @@
+<?php
+$link_to_site = $card['link_to_site']->value();
+$url = ($link_to_site) ? $link_to_site : $card->url();
+$phone = $card['phone']->value()?:'+7 (495) 777-48-06';
+?>
+<div class="map-block__adress-card">
+
+	<div class="map-block__img">
+		<a href="<?= $url ?>" <?= ($link_to_site ? 'target="_blank"' : '') ?>>
+			<img src="<?= $card->previewPicture()->resizedImage('242x156') ?>" alt="">
+		</a>
+	</div>
+	<div class="map-block__items">
+		<div class="map-block__item map-block__item--metro">
+			<?php
+			$metroList = \TAO::infoblock('metro')->getItems([
+				'filter' => ['ID' => $card['metro']->value()]
+			]);
+			$metro = array_shift($metroList);
+			$metroColor = SMClinicHelper::getMetroColorById($metro->id());
+			?>
+			<img src="<?=SITE_TEMPLATE_PATH?>/svg/metro-icon-<?=$metroColor?>.svg">
+			<div class="map-block__label <?= $metroColor ?>">
+				<span><?= $metro->title() ?></span>
+				<?= $card['address']->value()?>
+			</div>
+		</div>
+
+		<div class="map-block__item">
+			<img src="<?=SITE_TEMPLATE_PATH?>/svg/time-icon.svg" loading="lazy">
+			<div class="map-block__label-time">
+				<?= $card['time']->value()['TEXT'] ?>
+			</div>
+		</div>
+
+		<div class="map-block__btn-wrapp">
+			<a class="map-block__btn" href="<?= $url ?>" <?= ($link_to_site ? 'target="_blank"' : '') ?>>Подробнее о клинике</a>
+		</div>
+	</div>
+</div>
+

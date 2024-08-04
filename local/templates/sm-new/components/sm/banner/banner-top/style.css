@@ -1,0 +1,21 @@
+.b-top-menu { margin-top: 15px; } .top-b { margin-top: 15px; }
+.top-b-p { text-align: center; }
+
+.top_banner span {
+    position: absolute;
+    bottom: 4px;
+    right: 40px;
+    text-decoration: none;
+    color: #7c7c7c;
+    font-size: 12px;
+}
+@media all and (max-width:768px){
+
+    .top_banner span {
+        font-size: 9px;
+        bottom: 1px;
+        right: inherit;
+        width: 100%;
+        text-align: center;
+    }
+}

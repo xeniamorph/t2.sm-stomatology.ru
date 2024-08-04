@@ -1,0 +1,23 @@
+@import "../../../style/config";
+
+@color: #d8d3ab;
+
+.b-service-link {
+	color: @color;
+	display: block;
+	font: 20px/25px "BlissPro";
+	margin: 0 0 10px 50px;
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: #fff;
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-service-link {
+		font: 18px/25px "BlissPro";
+		margin: 0 0 10px;
+	}
+}

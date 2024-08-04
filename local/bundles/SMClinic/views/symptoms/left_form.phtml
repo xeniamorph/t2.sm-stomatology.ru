@@ -1,0 +1,23 @@
+<?php \TAO::bundle('SMClinic')->useScript('symptom-select.js')?>
+<?php
+$symptomList = \TAO::infoblock('symptoms')->getItems();
+?>
+<div class="b-aside-menu">
+	<hr>
+	<p class="h5">Узнать болезнь по симптому</p>
+	<div class="b-form b-form--inline">
+		<form action="/patients/find-disease/" class="js-form-symptoms">
+			<div class="b-form__group">
+				<div class="b-form__select b-custom-select b-custom-select--style-2">
+					<select name="" class="form-control b-form__control js-symptoms"
+					        data-theme="select-theme-style2 c-symptom-select c-wrap-word-select">
+						<option value="">Укажите симптом</option>
+						<?php foreach ($symptomList as $symptom) { ?>
+							<option value="<?= $symptom->id() ?>"><?= $symptom->title() ?></option>
+						<?php } ?>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

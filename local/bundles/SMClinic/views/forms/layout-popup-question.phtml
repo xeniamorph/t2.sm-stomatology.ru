@@ -1,0 +1,110 @@
+<?php
+$uniqName = uniqid($name);
+?>
+
+<div class="modal fade modal--hidden" id="modal-ask-question">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div class="close" data-dismiss="modal"></div>
+				<p class="modal-title">
+					Задать вопрос
+				</p>
+			</div>
+
+			<div class="tao-form tao-form-<?= $name ?> tao-form-<?= $uniqName ?>">
+				<?php /*
+				<ul class="tao-form-errors"<?= (count($this->errors)>0? '' : ' style="display: none;"') ?>>
+					<?php foreach($this->errors as $field => $error) if (strlen($error)>1) { ?>
+						<li data-field="<?= $field ?>" class="error-field-<?= $field ?>"><?= $error ?></li>
+					<?php } ?>
+				</ul>
+				 */?>
+				<form id="tao-form-<?= $uniqName ?>" method="post" action="<?= $action ?>" class="js-analytic-question tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+
+
+					<div class="modal-body">
+
+						<div class="b-form">
+
+							<div class="b-form__group b-form__group--float-label">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text"
+									class="form-control b-form__control b-field-<?= $fields['name']['code'] ?>"
+									name="<?= $fields['name']['code'] ?>"
+								>
+								<label for="">Имя</label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="tel"
+									class="form-control b-form__control b-field-<?= $fields['phone']['code'] ?> b-form__phone"
+									name="<?= $fields['phone']['code'] ?>"
+								>
+								<label for="">Телефон<span class="required">*</span></label>
+							</div>
+
+							<?php /*
+							<div class="b-form__group b-form__group--float-label">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text"
+									class="form-control b-form__control b-field-<?= $fields['name']['code'] ?>"
+									name="<?= $fields['email']['code'] ?>"
+								>
+								<label for="">E-mail</label>
+							</div>
+							*/ ?>
+
+							<div class="b-form__group b-form__group--float-label">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<textarea name="<?= $fields['question']['code'] ?>" class="form-control b-form__control b-field-<?= $fields['name']['code'] ?>"></textarea>
+								<label for="">Вопрос</label>
+							</div>
+							<div class="b-form__group--float-label">
+								Этот сайт защищен reCAPTCHA и применяются
+								<a target="_blank" href="https://policies.google.com/privacy">Политика конфиденциальности</a> и
+								<a target="_blank" href="https://policies.google.com/terms">Условия обслуживания Google</a>.
+							</div>
+						</div>
+					</div>
+
+
+					<div class="modal-footer">
+						<input type="hidden" name="taoform" value="<?= $name ?>">
+						<input type="hidden" name="user_email" value="">
+						<button type="submit" class="btn btn-primary recaptchaForm"
+								id="question-popup"
+								data-method="onRecaptchaQuestionPopup"
+								data-badge="inline">
+							Отправить
+						</button>
+					</div>
+					<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+					<input type="hidden" name="formtype" value="question">
+					<input type="hidden" name="analytics" value="AskQuestion_Toolbar">
+					<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+				</form>
+				<?/*
+				<script>
+					$(function () {
+						$(document).ready(function() {
+							addSourcesForm('#tao-form-<?= $uniqName ?>');
+						});
+					});
+				</script>
+				<?php if ($this->ajax()) { ?>
+					<?php $this->options['jsname'] = $uniqName ?>
+					<script>
+						var onRecaptchaQuestionPopup = function(token) {
+							captchaFormProcess('<?= $uniqName ?>', 'question-popup', <?= json_encode($this->options) ?>);
+						};
+					</script>
+				<?php } ?>
+				*/?>
+			</div>
+
+		</div>
+	</div>
+</div>

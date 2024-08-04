@@ -1,0 +1,34 @@
+<?php
+$benefitList = $item['benefits']->valueData();
+?>
+
+<div class="bg-privilege">
+	<div class="container">
+		<div class="bg-privilege__wrapper">
+			<div class="bg-privilege__text-col">
+				<h2 class="bg-privilege__title">
+					Преимущества
+				</h2>
+				<?php foreach ($benefitList as $benefit) {?>
+					<?php if($benefit['DESCRIPTION']) { ?>
+						<div class="bg-privilege__text">
+							<div><span><?= $benefit['DESCRIPTION']?></span></div>
+
+							<div>
+								<?= $benefit['VALUE']['TEXT'] ?>
+							</div>
+						</div>
+						<?php $i++; ?>
+					<?php } else { ?>
+						<div>
+							<?= $benefit['VALUE']['TEXT'] ?>
+						</div>
+					<?php } ?>
+				<?php } ?>
+			</div>
+			<div class="bg-privilege__img-wrapp">
+				<img src="/local/templates/sm-new/img/plomb_img.png" alt="">
+			</div>
+		</div>
+	</div>
+</div>

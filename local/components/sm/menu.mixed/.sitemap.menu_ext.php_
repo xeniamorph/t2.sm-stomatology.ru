@@ -1,0 +1,23 @@
+<?
+if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();
+
+global $APPLICATION;
+
+$aMenuLinksExt = $APPLICATION->IncludeComponent(
+    "sm:menu.mixed",
+    "",
+    Array(
+        "IBLOCK_ID" => "7", 
+        "DEPTH_LEVEL" => "4", 
+        "CACHE_TYPE" => "A", 
+        "CACHE_TIME" => "3600",
+        "FOLDER" => __DIR__,
+        "INCLUDE_ELEMENTS" => true,
+        "INCLUDE_SECTION" => true
+    ),
+    false,
+    ["HIDE_ICONS"=>"Y"]
+);
+
+$aMenuLinks = array_merge($aMenuLinks, $aMenuLinksExt);
+?>

@@ -1,0 +1,49 @@
+.age-list {
+	margin: 30px 0;
+
+	a {
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #ad3d8c;
+	}
+
+	&__wrapper {
+		display: grid;
+		gap: 30px;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+	}
+
+	&__item {
+		padding: 20px;
+		background: #f3f7f8;
+		border-radius: 20px;
+	}
+
+	&__title {
+		font-size: 28px;
+		line-height: 48px;
+		font-weight: 700;
+		margin-bottom: 20px;
+	}
+
+	@media all and (max-width: 768px) {
+		&__title {
+			font-size: 26px;
+			line-height: 33px;
+		}
+
+		&__wrapper {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+
+	@media all and (max-width: 567px) {
+		&__title {
+			font-size: 22px;
+			line-height: 30px;
+		}
+	}
+}

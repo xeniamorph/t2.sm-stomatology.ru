@@ -1,0 +1,28 @@
+<?php
+$pagenavDesc = '';
+if(intval($page) > 1) {
+	$pagenavDesc = ' - Страница №'.$page;
+}
+\TAO::App()->SetTitle('Полезные статьи про здоровье зубов и десен от клиники «СМ-Стоматология»' . $pagenavDesc);
+\TAO::app()->SetPageProperty("description", "Статьи о здоровье и лечении зубов от специалистов стоматологической клиники «СМ-Стоматология». Подробнее с материалами можно ознакомиться на нашем сайте.");
+?>
+<?= TAO::frontend()->renderBlock('common/heading-btn', [
+	'title' => Статьи
+]); ?>
+
+<div class="articles-list">
+	<div class="container">
+		<div class="articles-list__wrap">
+			<div class="articles-list__items">
+				<?php foreach ($items as $item) { ?>
+					<?= $item->render() ?>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?= $this->renderPageNavigator($page, $numPages, $pagerVar) ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

@@ -1,0 +1,32 @@
+<?php
+\TAO::App()->SetTitle('Правовая информация | Стоматологическая клиника «СМ-Стоматология»');
+\TAO::App()->SetPageProperty("description", "Справочная информация, политика конфиденциальности и лицензии сети стоматологических клиник  «СМ-Стоматология». Узнайте цены на консультацию стоматолога на сайте.");
+?>
+
+<div class="heading-btn">
+	<div class="container">
+		<div class="heading-btn__wrap ">
+			<div class="heading-btn__title">
+				<h1>Правовая информация</h1>
+			</div>
+			<div class="heading-btn__btn-wrapp one-button">
+				<div><a class="btn-appointment js-open-popup question" data-toggle="modal" data-target=".modal-ask-question" href="">Остались вопросы?</a></div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="page-nav-sticky">
+	<div class="container">
+		<div class="page-nav-sticky__buttons four-columns">
+			<a class="page-nav-sticky__button" href="#spravochnaya-informatsiya">Справочная информация</a>
+			<a class="page-nav-sticky__button" href="#sm-stomatologiya-v-staropetrovskom-proezde">Лицензии</a>
+			<a class="page-nav-sticky__button link" href="/about/obrabotka-dannykh/#policy">Политика конфиденциальности</a>
+			<a class="page-nav-sticky__button link" href="/about/obrabotka-dannykh/">Обработка персональных данных</a>
+		</div>
+	</div>
+</div>
+
+<?php foreach($items as $item) { ?>
+	<?= $item->render() ?>
+<?php } ?>

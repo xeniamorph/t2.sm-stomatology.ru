@@ -1,0 +1,18 @@
+{% if arRelatedElements %}
+{% if(arRelatedElements | length) %}
+<div class="{{ block }}">
+	{% for element in arRelatedElements %}
+	<div class="{{ block.elem('element') }}">
+		<div class="{{ block.elem('img-layout') }}">
+			<img src="{{ element.ICON }}" class="{{ block.elem('img') }}">
+		</div>
+		<div class="{{ block.elem('text-layout') }}">
+			<a href="{{ element.DETAIL_PAGE_URL }}" class="{{ block.elem('link') }}">
+				{{ element.NAME }}
+			</a>
+		</div>
+	</div>
+	{% endfor %}
+</div>
+{% endif %}
+{% endif %}

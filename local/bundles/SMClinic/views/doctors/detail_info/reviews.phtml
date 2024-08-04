@@ -1,0 +1,39 @@
+<?php
+$reviewList = \TAO::infoblock('review')->getItems([
+	'filter' => ['ACTIVE' => 'Y', 'PROPERTY_doctors' => $this->id()],
+	'order' => ['active_from' => 'DESC'],
+	'per_page' => 5,
+	'page' => $_GET['page-reviews'] ? : 1
+]);
+$numPage = ceil($countReviews/5);
+$pagination = \TAO::pager('page-reviews')->setType('')->setUrl($_SERVER['REQUEST_URI']);
+?>
+
+<div class="reviews-list" id="reviews-list">
+	<div class="container">
+		<?php if(count($reviewList) > 0) {?>
+			<h3 class="page-title-3">Отзывы о враче</h3>
+			<div class="reviews-list__items">
+				<?php foreach ($reviewList as $review) { ?>
+					<?= $review->render() ?>
+				<?php } ?>
+			</div>
+		<?php } else { ?>
+			<div class="page-title-3">Оставьте свой отзыв первым!</div>
+		<?php } ?>
+	</div>
+</div>
+
+<?php if($numPage > 1) {?>
+	<div class="reviews-list__pager">
+		<?php print $pagination->render( $_GET['page-reviews'] ? : 1, $numPage );?>
+	</div>
+<?php }?>
+<?=
+	\TAO::Form('Review')
+	->setOption('layout', 'review-in-text')
+	->setOption('doctor_id', $this->id())
+	->setOption('doctor_fio', $this->title())
+	->render();
+?>
+

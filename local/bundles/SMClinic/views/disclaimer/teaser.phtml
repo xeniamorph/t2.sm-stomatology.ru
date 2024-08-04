@@ -1,0 +1,27 @@
+<?php
+$certificatesList = [];
+if(count($this['certificates']->value()) > 0) {
+	foreach($this['certificates']->value() as $key=>$idImg) {
+		$img = new \TAO\File($idImg);
+		$certificatesList[$key]['img'] = $img;
+		$certificatesList[$key]['imgResize'] = $img->resizedImage('fit400x');
+	}
+}?>
+
+<div class="legal_info">
+<div class="anchor-hided" id="<?= $this['CODE'] ?>"></div>
+	<div class="container">
+		<div class="legal_info__desc text">
+			<div class="legal_info__header">
+				<h2 class="legal_info__title"><?= $this->title() ?></h2>
+			</div>
+			<?= $this['PREVIEW_TEXT'] ?>
+			<?php if (count($certificatesList) > 0) {?>
+				<?= TAO::frontend()->renderBlock('common/certificates', [
+					'certificates' => $certificatesList,
+					'galleryCode' => $this['CODE']
+				]); ?>
+			<?php }?>
+		</div>
+	</div>
+</div>

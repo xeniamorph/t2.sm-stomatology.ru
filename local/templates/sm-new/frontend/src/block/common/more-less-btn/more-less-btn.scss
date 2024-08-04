@@ -1,0 +1,29 @@
+.more-less {
+	margin: 40px 0;
+
+	&__btn-wrapp {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&__button {
+		text-decoration: none;
+		background: #fff;
+		border-radius: 30px;
+		padding: 10px 40px;
+		font-size: 15px;
+		color: #389dac;
+		-webkit-box-shadow: -1px 4px 19px 6px rgba(40, 170, 189, 0.28);
+		-moz-box-shadow: -1px 4px 19px 6px rgba(69, 192, 211, 0.28);
+		box-shadow: -1px 4px 19px 6px rgba(81, 179, 194, 0.28);
+		border: none;
+		cursor: pointer;
+	}
+
+	&__button:hover {
+		-webkit-box-shadow: 1px 4px 27px -2px rgba(69, 154, 167, 0.12);
+		-moz-box-shadow: 1px 4px 27px -2px rgba(69, 154, 167, 0.12);
+		box-shadow: 1px 4px 27px -2px rgba(69, 154, 167, 0.12);
+	}
+}

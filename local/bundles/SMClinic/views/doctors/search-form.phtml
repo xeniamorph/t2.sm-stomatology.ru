@@ -1,0 +1,165 @@
+<?php
+$pageNumber = $_GET['page-doctor'] ? $_GET['page-doctor'] : 1;
+$itemsPerPage = 12;
+
+$filter = ['ACTIVE' => 'Y'];
+
+/* $doctorID - привязка на стр. услуг и заболеваний*/
+if($doctorID) {
+	$filter['ID'] = $doctorID;
+}
+
+/* $sectionId - категория*/
+if($sectionId) {
+	$filter['SECTION_ID'] = $sectionId;
+}
+
+$allDoctorList = \TAO::infoblock('Doctors')->getItems(['filter' => $filter]);
+
+$doctorList = \TAO::infoblock('Doctors')->getItems([
+	'filter' => $filter,
+	'limit' => $itemsPerPage,
+	'offset' => $itemsPerPage * ($pageNumber - 1),
+]);
+$js_metroList = [];
+$js_doctorList = [];
+$js_specialityList = [];
+
+/* получения кол-ва отзывов*/
+$doctorReview = \TAO::infoblock('review')->getRows([
+	'filter' => ['ACTIVE' => 'Y'],
+	'fields' => ['ID','NAME','PROPERTY_doctors']
+]);
+$reviewsCount = [];
+foreach ($doctorReview as $review) {
+	if(!in_array($reviewsCount, $review['PROPERTY_DOCTORS_VALUE'])){
+		$reviewsCount[$review['PROPERTY_DOCTORS_VALUE']][] = $review['ID'];
+	}
+}
+
+$doctorsMetro = [];
+
+foreach ($allDoctorList as $doctor) {
+	if($doctor['clinics']->value()){
+		$categories = $doctor->getCategories();
+		foreach ($categories as $category) {
+			if(isset($js_specialityList[$category['ID']])) {
+				$js_specialityList[$category['ID']]['docList'][$doctor->id()] = $doctor->id();
+			}else{
+				$js_specialityList[$category['ID']] = [
+					'name' => $category['NAME'],
+					'id' => $category['ID']
+				];
+				$js_specialityList[$category['ID']]['docList'][$doctor->id()] = $doctor->id();
+			}
+		}
+
+		$clinicIdList = $doctor['clinics']->value();
+		foreach($clinicIdList as $clinicId){
+			$clinicInfoList = \TAO::infoblock('Address')->getItems([
+				'filter' => ['ACTIVE' => 'Y', 'ID' => $clinicId]
+			]);
+
+			if(!empty($clinicInfoList)) {
+
+				$clinic = array_shift($clinicInfoList);
+							
+				$metro_list = \TAO::infoblock('metro')->getItems([
+					'filter' => ['ACTIVE' => 'Y', 'ID' => $clinic['metro']->value()]
+				]);
+				$metro = array_shift($metro_list);
+
+				$metroId =  $metro->id();
+
+				if(!in_array($doctorsMetro, $doctor->id())) {
+					$doctorsMetro[$doctor->id()][$metroId] =  [
+						'title' => $metro->title(),
+						'color' => SMClinicHelper::getMetroColorById($metroId)
+					];
+				}
+
+				if(isset($js_metroList[$metroId])) {
+					$js_metroList[$metroId]['docList'][] = $doctor->id();
+				}else{
+					$js_metroList[$metroId] = [
+						'name' => $metro->title(),
+						'id' => $metroId
+					];
+					$js_metroList[$metroId]['docList'][] = $doctor->id();
+
+				}
+				$js_metroList[$metroId]['docList'] = array_unique($js_metroList[$metroId]['docList']);
+			}
+		}
+	}
+	$experience = '';
+
+	if($doctor['experience']->value()) {
+		foreach ($doctor->property('experience')->valueData() as $itemEx) {
+			$experienceDesc = $itemEx['DESCRIPTION'];
+			$experience = $itemEx['VALUE'];
+		}
+	}
+
+	$js_doctorList[$doctor->id()] = [
+		'name' => $doctor->title(),
+		'img' => $doctor->previewPicture()->resizedImage('fit150x200'),
+		'specialization' => $doctor['specialization']->value(),
+		'link' => $doctor->url(),
+		'reviews' => count($reviewsCount[$doctor->id()]) > 0 ? 'Отзывы: <div class="bold">'.count($reviewsCount[$doctor->id()]).'</div>' : '',
+		'experience' => $experience ? 'Стаж: <div class="bold">' . $experience.'</div>' . $experienceDesc : '',
+		'metroList' => $doctorsMetro[$doctor->id()]
+	];
+}
+asort($js_metroList);
+?>
+<script>
+var metroList = <?= json_encode($js_metroList) ?>;
+var doctorList = <?= json_encode($js_doctorList) ?>;
+var specialityList = <?= json_encode($js_specialityList) ?>;
+</script>
+<?php 
+\TAO::bundle('SMClinic')->useScript('search-doctors.js');
+?>
+<div class="m-doctors__box">
+	<div class="m-doctors__left">
+		<form action="" class="m-doctors__ctrl">
+			<div class="m-ctrl">
+				<div class="m-ctrl__left">
+					<div class="m-ctrl__buttons">
+						<div class="m-ctrl__button">
+							<input id="m-doctors__fio-search" autocomplete="off" type="text" minlength="3" class="js-form-search__doctor" placeholder="Введите ФИО">
+							<span type="submit" class="js-form-search__submit"><i></i></span>
+						</div>
+
+						<?php if(!$sectionId) {?>
+							<div class="m-ctrl__select">
+								<select id="m-doctors__spec-search" autocomplete="off" class="js-form-search__spec select" placeholder="Название специальности">
+									<option value="0">Название специальности</option>
+									<?php foreach ($js_specialityList as $id => $special) { ?>
+										<option value="<?= $id ?>" data-id="<?= $clinic['id'] ?>">
+											<?= $special['name'] ?><br>
+										</option>
+									<?php } ?>
+								</select>
+							</div>
+						<?php }?>
+						<div class="m-ctrl__select" autocomplete="off">
+							<select id="m-doctors__metro-search" name="" class="js-form-search__clinic select" placeholder="Выбрать станцию метро">
+								<option value="0">Выбрать станцию метро</option>
+								<?php foreach ($js_metroList as $id => $metro) { ?>
+									<option value="<?= $id ?>" data-id="<?= $clinic['id'] ?>">
+										<?= $metro['name'] ?><br>
+									</option>
+								<?php } ?>
+							</select>
+						</div>
+					</div>
+				</div>
+				<div class="m-ctrl__right">
+					<button class="m-ctrl__search js-form-search__submit">Показать результат</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

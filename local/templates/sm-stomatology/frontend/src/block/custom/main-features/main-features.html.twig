@@ -1,0 +1,28 @@
+<div class="b-features-list owl-carousel">
+	{% for slide in slides %}
+		<div class="b-features-list__item b-feature">
+			<div class="row row-eq-height">
+				<div class="col-xs-12 col-sm-6">
+					<div class="b-feature__image"
+						 style="background-image: url({{slide.image()}});"></div>
+				</div>
+				<div class="col-xs-12 col-sm-6">
+					<div class="b-feature__title">
+						{{slide.title}}
+					</div>
+					<div class="b-feature__text">
+						{{slide.text()}}
+					</div>
+					<div class="b-feature__links">
+						<a href="/reviews-site/" class="b-feature__link b-link b-link--with-arrow">
+							отзывы
+						</a>
+						<a href="/about/" class="b-feature__link b-link b-link--with-arrow">
+							подробнее
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	{% endfor %}
+</div>

@@ -1,0 +1,58 @@
+@main-color: #a03339;
+@secondary-color: #1b5773;
+@third-color: #f6cec1;
+@fourth-color: #d8d3ab;
+@gray-color: #e5e5e5;
+@media-bs-lg: 1199px;
+@media-bs-md: 992px;
+@media-bs-smd: 900px;
+@media-bs-sm: 767px;
+@media-bs-xs: 575px;
+@media-bs-xxs: 470px;
+
+.pa {
+	position: absolute;
+}
+
+.pr {
+	position: relative;
+}
+
+.db {
+	display: block;
+}
+
+.dib {
+	display: inline-block;
+}
+
+.clear {
+	clear: both;
+}
+
+.ellipsis {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 100%;
+
+	.dib;
+}
+
+.placeholder(@rules) {
+	&::-webkit-input-placeholder {
+		@rules();
+	}
+
+	&:-moz-placeholder {
+		@rules();
+	}
+
+	&::-moz-placeholder {
+		@rules();
+	}
+
+	&:-ms-input-placeholder {
+		@rules();
+	}
+}

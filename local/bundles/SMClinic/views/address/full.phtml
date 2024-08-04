@@ -1,0 +1,217 @@
+<?php
+\TAO::navigation()->route()->addArray([
+	['url' => $this['LIST_PAGE_URL'], 'title' => 'Контакты'],
+	['url' => $this->url(), 'title' => $this->title()]
+]);
+$this->preparePage();
+$APPLICATION->AddHeadString('<link href="https://'.$_SERVER["SERVER_NAME"].$this["DETAIL_PAGE_URL"].'" rel="canonical" />',true);
+?>
+
+<div class="article-headline">
+	<div class="container">
+		<div class="article-headline__title">
+			<h1><?= $this->title() ?></h1>
+		</div>
+	</div>
+</div>
+
+<div class="contacts-content__main" itemscope itemtype="http://schema.org/MedicalOrganization">
+	<meta itemprop="name" content="<?=$this->title()?>">
+	<div class="container">
+		<div class="contacts-content__wrap">
+			<div class="contacts-content__img" itemscope itemtype="https://schema.org/ImageObject">
+				<img class="b-contact__img"
+					 src="<?= $this->previewPicture()->resizedImage('577x308') ?>" itemprop="contentUrl">
+				<meta itemprop="name" content="<?=$this->title()?>">
+			</div>
+			<div class="contacts-content__flex-wrap">
+				<div class="contacts-content__text-wrap">
+					<div class="contacts-content__text-item">
+						<div class="contacts-content__item-adress">
+							<div class="contacts-content__address">
+								<span>Адрес:</span>
+							</div>
+							<div class="contacts-content__metro contacts-content__metro_green">
+								<?php
+								$metroList = \TAO::infoblock('metro')->getItems([
+									'filter' => ['ID' => $this['metro']->value()]
+								]);
+								$metro = array_shift($metroList);
+								$metroColor = SMClinicHelper::getMetroColorById($metro->id());
+								?>
+
+								<img src="<?=SITE_TEMPLATE_PATH?>/svg/metro-icon-<?=$metroColor?>.svg" loading="lazy">
+								<div class="contacts-content__label <?=$metroColor?>" >
+									<meta itemprop="address" content="<?=$this['address']->value()?>">
+									<meta itemprop="telephone" content="<?=$this['phone']->value()?:'+7 (495) 777-48-06'?>">
+									<span><?= $metro->title() ?></span> <br>
+									<a class="contacts-content__link" href="#map"><?= $this['address']->value()?></a>
+								</div>
+							</div>
+						</div>
+
+						<div class="contacts-content__item-time">
+							<div class="contacts-content__item-time">
+								<div class="contacts-content__time">
+									<span>Часы работы клиники:</span>
+								</div>
+								<div class="contacts-content__metro contacts-content__metro_green">
+									<img src="<?=SITE_TEMPLATE_PATH?>/svg/time-icon.svg" loading="lazy">
+
+									<div class="contacts-content__label">
+										<?= $this['time']->value()['TEXT'] ?>
+									</div>
+								</div>
+							</div>
+							<a class="n-header__button n-header__button_pink n-header__button--contacts-detail  js-open-popup" href="#" data-target=".popup-form-feedback" data-analytics="OrderDoctor_Toolbar">
+								Записаться на приём
+							</a>
+						</div>
+					</div>
+
+					<?php
+					$res = CIBlockElement::GetByID(2882);
+					if($ar_res = $res->GetNext())
+						if($ar_res['ACTIVE'] == 'Y')
+							echo '<div class="warning-text__text blue_back">
+							<div class="warning-text__box">
+								<div>' . $ar_res['DETAIL_TEXT'] . '</div></div></div>';
+					?>
+				</div>
+			</div>
+		</div>
+
+		<div class="contacts-content">
+			<div class="contacts-content__text text" itemprop="description">
+				<?= $this['DETAIL_TEXT'] ?>
+			</div>
+		</div>
+
+		<div class="map-img__block" id="map">
+			<div class="js-ymap-lazyload" data-event="onScroll" style="height: 100%;"></div>
+		</div>
+
+		<?php
+		$public_transport = $this['public_transport']->value();
+		$personal_transport = $this['personal_transport']->value();
+		if ($public_transport || $personal_transport){?>
+			<div class="nav-tabs__block">
+				<div class="container">
+					<div class="nav-tabs__content">
+						<div class="nav-tabs__title">
+							Как добраться:
+						</div>
+						<div class="tabs">
+							<?php if ($public_transport) {?>
+								<input type="radio" name="tab-btn" id="tab-btn-1" value="" checked>
+								<label for="tab-btn-1">Общественным транспортом</label>
+							<?php }?>
+
+							<?php if ($personal_transport) {?>
+								<input type="radio" name="tab-btn" id="tab-btn-2" value="" <?=$public_transport?'':'checked'?> {>
+								<label for="tab-btn-2">Автомобилем</label>
+							<?php }?>
+							<?php if ($public_transport) {?>
+								<div id="content-1">
+									<div class="tab-content">
+										<div class="nav-tabs__tabs--info">
+											<?php foreach ($this['public_transport']->valueData() as $data) {?>
+												<div class="nav-tabs__tabs--elem">
+													<div class="nav-tabs__tabs--elem-title">
+														<?= $data['DESCRIPTION']?>
+													</div>
+													<?= $data['VALUE']['TEXT'] ?>
+												</div>
+											<?php } ?>
+										</div>
+									</div>
+								</div>
+							<?php }?>
+
+							<?php if ($personal_transport) {?>
+								<div id="content-2">
+									<div class="tab-content">
+										<div class="nav-tabs__tabs--info">
+											<?php foreach ($this['personal_transport']->valueData() as $data) {?>
+												<div class="nav-tabs__tabs--elem">
+													<div class="nav-tabs__tabs--elem-title">
+														<?= $data['DESCRIPTION']?>
+													</div>
+													<?= $data['VALUE']['TEXT'] ?>
+												</div>
+											<?php } ?>
+										</div>
+									</div>
+								</div>
+							<?php }?>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php }?>
+
+		<?= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render();?>
+
+		<?php if($this['gallery']->value()) {
+			$galleryImg = []; ?>
+			<div class="article-similar-block">
+				<div class="container">
+					<h2 class="page-title-2">
+						Фотогалерея
+					</h2>
+					<?php
+					$galleryImg = [];
+					foreach ($this['gallery']->valueData() as $key=>$data) {
+						$img = new \TAO\File($data['VALUE']);
+						$galleryImg[$key] = [
+							'resized' => $img->resizedImage('crop257x257'),
+							'max' => $img
+						];
+					}
+ 
+					$alt = "Стоматологическая клиника ".$this->title()." фото ";
+					$imgTitle = "Стоматологическая клиника ".$this->title();
+
+					print TAO::frontend()->renderBlock('article/article-similar', [
+						'alt' => $alt,
+						'title' => $imgTitle,
+						'images' => $galleryImg
+					]);?>
+				</div>
+			</div>
+		<?php }?>
+	</div>
+</div>
+<?php
+$coords = explode(',', $this['map_address']->value());
+
+$json[] = [
+	'coords' => $coords,
+	'zoom' => 13,
+	'options' => [
+		[
+		'id' => $this->id(),
+		'departament' => '',
+		"iconImages" => [
+			SITE_TEMPLATE_PATH.'/build/prod/src/i/map-point-gray.svg?v=7',
+			SITE_TEMPLATE_PATH.'/build/prod/src/i/map-point-green.svg?v=7'	// Активная иконка
+		],
+		'hintContent' => $this->title(),
+		'balloonContent' => $this['address']->value(),
+		],
+		[
+			'iconLayout' => 'default#image',
+			'iconImageHref' => SITE_TEMPLATE_PATH.'/build/prod/src/i/map-point-green.svg?v=7',
+			"iconImageSize" => [49, 62],
+			"iconImageOffset" => [-25, -55],
+			"hideIconOnBalloonOpen" => false
+		]
+	]
+];
+?>
+<script type="text/javascript">
+	window.mapPoints = <?= json_encode($json, JSON_UNESCAPED_UNICODE) ?>;
+</script>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

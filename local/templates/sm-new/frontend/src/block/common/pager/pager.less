@@ -1,0 +1,77 @@
+@import "../../../style/config";
+
+.b-pager {
+	border-top: 2px solid #e5e7dc;
+	border-bottom: 2px solid #e5e7dc;
+	text-align: center;
+	padding: 20px 0;
+	margin: 20px 0 40px;
+
+	&__link {
+		margin: 0 10px;
+		padding: 5px 15px;
+		color: lighten(@secondary-color, 10%);
+		text-decoration: none !important;
+
+		.dib;
+
+		&--current {
+			background: #fae5e0;
+			color: @secondary-color;
+		}
+
+		&-start {
+			float: left;
+			display: inline-block;
+		}
+
+		&--first,
+		&--prev {
+			padding-left: 0;
+			margin-left: 0;
+		}
+
+		&-pages {
+			display: inline-block;
+		}
+
+		&-end {
+			float: right;
+			display: inline-block;
+		}
+
+		&--last,
+		&--next {
+			padding-right: 0;
+			margin-right: 0;
+		}
+	}
+}
+
+@media (max-width: 1206px) {
+	.b-pager {
+		&__link {
+			&-start {
+				float: none;
+				display: block;
+			}
+
+			&-pages {
+				display: block;
+			}
+
+			&-end {
+				float: none;
+				display: block;
+			}
+
+			&--first,
+			&--prev,
+			&--last,
+			&--next {
+				margin: 0 10px;
+				padding: 5px 15px;
+			}
+		}
+	}
+}

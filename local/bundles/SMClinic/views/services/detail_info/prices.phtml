@@ -1,0 +1,58 @@
+<?php $priceIdList = $item['prices']->value() ?>
+
+<?php
+$priceList = [];
+foreach ($priceIdList as $priceId) {
+	$price = \TAO::infoblock('prices')->getItems([
+		'filter' => [
+			'ID' => $priceId['service'],
+			'ACTIVE' => 'Y'
+		]
+	]);
+	if(!empty($price)) {
+		$type = $price[0]->property('type')->value();
+		if($type) {
+			addItemToArray($priceList[$type], $priceId['sort'], $price[0]);
+		} else {
+			addItemToArray($priceList['consultations'], $priceId['sort'], $price[0]);
+		}
+	}
+}
+function addItemToArray(&$array, $index ,$item)
+{
+	if($array[$index]) {
+		addItemToArray($array, $index + 1,$item);
+	} else {
+		$array[$index] = $item;
+	}
+}
+ksort($priceList);
+foreach ($priceList as $tabs) {
+	ksort($tabs);
+}
+?>
+<?php
+global $APPLICATION;
+$APPLICATION->IncludeComponent("sm:text", "", ['IBLOCK_ID' => 23,'ELEMENT_ID' => 15723], false);
+?>
+<?= TAO::frontend()->renderBlock('price/price', [
+	'title' => $item['price_title']->value()['TEXT'],
+	'text' => $item['price_text']->value()['TEXT'],
+	'priceList' => $priceList,
+	'url' => $_SERVER['HTTP_REFERER'],
+	'typeName' => [
+		'consultations' => 'Консультации',
+		'diagnostics' => 'Диагностика',
+		'services' => 'Услуги'
+	]
+]); ?>
+
+
+<?php if(!stripos($_SERVER["REDIRECT_URL"], 'services/protezirovanie-ortopediya')) { ?>
+<div id="tab2"></div>
+<div class="feedback-form">
+	<div class="container">
+	<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+	</div>
+</div>
+<?php } ?>

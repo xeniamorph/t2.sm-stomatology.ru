@@ -1,0 +1,22 @@
+<?php
+$reviewList = \TAO::infoblock('review')->getItems([
+	'filter' => ['ACTIVE' => 'Y', 'PROPERTY_doctors' => $this->id()],
+	'order' => ['active_from' => 'DESC']
+]);
+?>
+<?php if(count($reviewList) > 0) {?>
+	<?php foreach ($reviewList as $review) { ?>
+		<?= $review->render() ?>
+	<?php } ?>
+<?php } else { ?>
+	<h3>Оставьте свой отзыв первым!</h3>
+<?php } ?>
+
+
+<?=
+	\TAO::Form('Review')
+	->setOption('layout', 'review-in-text')
+	->setOption('doctor_id', $this->id())
+	->setOption('doctor_fio', $this->title())
+	->render();
+?>

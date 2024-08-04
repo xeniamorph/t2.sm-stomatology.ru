@@ -1,0 +1,101 @@
+<?php
+$section = $this->infoblock()->getSectionById($this['IBLOCK_SECTION_ID']);
+\TAO::navigation()->route()->addArray([
+	['url' => $this['LIST_PAGE_URL'], 'title' => $this['IBLOCK_NAME']],
+	['url' => $section->url() , 'title' => $section->title()],
+	['url' => $this->url() , 'title' => $this->title()],
+]);
+$this->preparePage('full');
+$categoryList = $this->getCategories();
+$countReviews = count(\TAO::infoblock('review')->getItems(['filter' => ['ACTIVE' => 'Y', 'PROPERTY_doctors' => $this->id()]]));
+?>
+<div itemscope itemtype="https://schema.org/Physician">
+	<div class="headline">
+		<div class="container">
+			<div class="headline__title" itemprop="name">
+				<h1><?= $this->title() ?></h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="rezume-intro">
+		<div class="container">
+			<div class="rezume-intro__box">
+				<div class="rezume-intro__photo" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+					<img
+						src="<?= $this->previewPicture()->resizedImage('fit208x237')?>"
+						alt="<?= $this->title() ?> — <?= $this['specialization']->value() ?>"
+						title="<?= $this->title() ?> — стоматолог клиники «СМ-Стоматология»"
+						loading="lazy"
+						itemprop="contentUrl"
+					>
+					<meta itemprop="name" content="<?=$this->title()?>">
+				</div>
+				<div class="rezume-intro__content">
+					<div class="rezume-intro__left">
+						<div class="rezume-intro__top">
+							<div class="rezume-intro__specs">
+								<?php foreach($categoryList as $key=>$category) {?>
+									<a class="rezume-intro__spec <?=($this['IBLOCK_SECTION_ID'] == $key)?: 'right-btn'?>" href="<?=$category->url()?>"><?=$category->title()?></a>
+								<?php }?>
+							</div>
+							<a class="n-header__button n-header__button_pink js-open-popup rezume" href="#" data-target=".popup-form-feedback" data-analytics="OrderDoctor">Записаться</a>
+						</div>
+						<div class="rezume-intro__text">
+							<?= $this['specialization']->value() ?>
+						</div>
+						<div class="rezume-intro__address">
+							<div class="rezume-intro__address-icon"></div>
+							<div class="rezume-intro__address-text">Врач ведет прием по адресу:
+								<?php if ($this['clinics']->value()) {
+									$clinicList = \TAO::infoblock('Address')->getItems([
+										'filter' => ['ACTIVE' => 'Y', 'ID' => $this['clinics']->value()]
+									]);
+								}
+								foreach ($clinicList as $clinic) {?>
+									<a href="<?= $clinic->url() ?>"  itemprop="address">
+										<?= $clinic->title() ?>
+									</a>
+								<?php } ?>
+							</div>
+						</div>
+
+					</div>
+					<div class="rezume-intro__right">
+						<?php if($this->experience()['val']) {?>
+							<div class="rezume-intro__exp">Врачебный стаж:
+								<div>
+									<?=$this->experience()['val'] ?> <?=$this->experience()['desc']?>
+								</div>
+							</div>
+						<?php }?>
+
+						<div class="rezume-intro__bot">
+							<a class="rezume-intro__btn" href="#reviews-list">
+								<span>Отзывы</span>
+								<div><?=$countReviews?></div>
+							</a>
+							<a class="rezume-intro__btn rezume-intro__btn_pen" href="#review-form"><span>Написать отзыв</span></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<?php
+		require dirname(__FILE__) . '/detail_info/about.phtml';
+
+		$videoList = $this['video_list']->value();
+		if($videoList) {
+			require dirname(__FILE__) . '/detail_info/video.phtml';
+		}
+
+		$certificates = $this['certificates']->value();
+		if($certificates) {
+			require dirname(__FILE__) . '/detail_info/certificates.phtml';
+		}
+
+		require dirname(__FILE__) . '/detail_info/reviews.phtml';
+	?>
+</div>

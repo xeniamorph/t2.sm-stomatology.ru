@@ -1,0 +1,67 @@
+.topmenu {
+	a {
+		padding: 0 28px;
+	}
+
+	li {
+		display: block;
+	}
+
+	> li {
+		display: inline-block;
+		position: relative;
+	}
+
+	> li:last-child > li > a {
+		text-transform: uppercase;
+		letter-spacing: 0.75px;
+		color: #1c1c1c;
+	}
+
+	&.search-open {
+		margin: 0 auto;
+		width: 100%;
+
+		a {
+			@media all and (min-width: 1024px) {
+				padding: 0 22px;
+			}
+
+			@media all and (min-width: 1024px) and (max-width: 1380px) {
+				padding: 0 16px;
+			}
+
+			@media all and (min-width: 1024px) and (max-width: 1300px) {
+				padding: 0 10px;
+			}
+
+			@media all and (min-width: 1024px) and (max-width: 1240px) {
+				font-size: 12px;
+				padding: 0 5px;
+			}
+		}
+	}
+
+	@media all and (max-width: 1400px) {
+		a {
+			padding: 0 20px;
+		}
+	}
+
+	@media all and (max-width: 1250px) {
+		a {
+			padding: 0 14px;
+		}
+	}
+
+	@media all and (max-width: 1150px) {
+		a {
+			padding: 0 10px;
+		}
+	}
+
+	@media all and (max-width: 1024px) {
+		display: flex;
+		flex-direction: column;
+	}
+}

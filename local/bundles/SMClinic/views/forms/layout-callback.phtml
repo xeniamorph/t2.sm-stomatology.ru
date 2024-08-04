@@ -1,0 +1,35 @@
+<div class="tao-form tao-form-<?= $name ?>">
+    <ul class="tao-form-errors"<?= (count($this->errors)>0? '' : ' style="display: none;"') ?>>
+        <?php foreach($this->errors as $field => $error) if (strlen($error)>1) { ?>
+            <li data-field="<?= $field ?>" class="error-field-<?= $field ?>"><?= $error ?></li>
+        <?php } ?>
+    </ul>
+	<form id="tao-form-<?= $name ?>" method="post" action="<?= $action ?>" class="tao-form tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+		<input type="text" name="<?= $fields['name']['code'] ?>" placeholder="<?= $fields['name']['NAME'] ?>"><br>
+		<input type="tel" name="<?= $fields['phone']['code'] ?>" placeholder="<?= $fields['phone']['NAME'] ?>"><br>
+		<input type="text" name="<?= $fields['time']['code'] ?>" placeholder="<?= $fields['time']['NAME'] ?>"><br>
+		<textarea name="<?= $fields['question']['code'] ?>" placeholder="<?= $fields['question']['NAME'] ?>"></textarea><br>
+		<input type="hidden" name="taoform" value="<?= $name ?>">
+		<input type="submit" value="<?= $this->option('submit_text')?>">
+		<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+		<input type="hidden" name="formtype" value="callback">
+		<input type="hidden" name="analytics" value="OrderCall_Stat">
+		<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+	</form>
+	<?/*
+	<script>
+		$(function () {
+			$(document).ready(function() {
+				addSourcesForm('#tao-form-<?= $uniqName ?>');
+			});
+		});
+	</script>
+	<?php if ($this->ajax()) { ?>
+		<script>
+			$(function() {
+				taoAjaxForm('<?= $name ?>', <?= json_encode($this->options) ?>);
+			});
+		</script>
+	<?php } ?>
+	*/?>
+</div>

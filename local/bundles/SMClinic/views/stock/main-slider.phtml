@@ -1,0 +1,21 @@
+<?php
+\TAO::load('file');
+$img = new \TAO\File($this['slide_img']->value());
+?>
+<a href="<?= $this->url() ?>" class="b-main-carousel__item b-main-carousel-item db"
+	 style="background-image: url(<?= $img->resizedImage('fit1200x400') ?>);">
+	<div class="b-main-carousel-item__description">
+		<h3 class="b-main-carousel-item__title">
+			<?= $this->title() ?>
+		</h3>
+		<div class="b-main-carousel-item__text">
+			<?= $this['PREVIEW_TEXT']?>
+		</div>
+		<?/*>
+		<img src="<?= $this->previewPicture()->resizedImage('fit1200x400') ?>"
+			 alt=""
+			 class="hidden-md-down"
+			 style="margin-top: -50px;">
+		 */?>
+	</div>
+</a>

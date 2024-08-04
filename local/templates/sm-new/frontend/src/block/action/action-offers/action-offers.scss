@@ -1,0 +1,125 @@
+.action-offers {
+	margin: 40px 0 0;
+
+	&__label-wrapp {
+		display: grid;
+		gap: 20px;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+	}
+
+	&__label-item {
+		background: white;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 52px;
+		border-radius: 5px;
+
+		img {
+			max-height: 100%;
+			max-width: 100%;
+		}
+	}
+
+	&__title {
+		font-size: 28px;
+		font-weight: bold;
+		margin-bottom: 40px;
+		position: relative;
+	}
+
+	&__items {
+		display: grid;
+		gap: 40px;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+	}
+
+	&__item {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-orient: vertical;
+		-webkit-box-direction: normal;
+		-webkit-flex-direction: column;
+		-moz-box-orient: vertical;
+		-moz-box-direction: normal;
+		-ms-flex-direction: column;
+		flex-direction: column;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		-webkit-box-align: start;
+		-webkit-align-items: flex-start;
+		-moz-box-align: start;
+		-ms-flex-align: start;
+		align-items: flex-start;
+		width: 100%;
+		background: #f3f7f8;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		padding: 20px 20px 30px 20px;
+	}
+
+	&__subtitle {
+		font-size: 20px;
+		font-weight: bold;
+		position: relative;
+		padding: 20px 0;
+		color: #000;
+	}
+
+	&__metro {
+		margin-bottom: 5px;
+		color: #1b8863;
+		font-size: 16px;
+		letter-spacing: 0.25px;
+		font-weight: 700;
+	}
+
+	&__address {
+		font-size: 16px;
+		letter-spacing: 0.25px;
+		margin-bottom: 30px;
+	}
+
+	&__text {
+		font-size: 15px;
+	}
+
+	@media all and (max-width: 1024px) {
+		&__items {
+			display: block;
+		}
+
+		&__title {
+			font-size: 24px;
+		}
+	}
+
+	@media all and (max-width: 1250px) {
+		&__items {
+			display: grid;
+			gap: 25px;
+			grid-template-columns: repeat(1, 1fr);
+			grid-template-rows: auto;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&__label-wrapp {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		&__item {
+			align-items: center;
+		}
+	}
+}

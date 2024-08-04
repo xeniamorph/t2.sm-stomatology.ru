@@ -1,0 +1,40 @@
+@import "../../../style/config";
+
+.b-form {
+	&--inline {
+		margin-bottom: 20px;
+		padding: 0;
+
+		.b-form {
+			&__title {
+				font: 30px/60px "BlissProLight";
+				color: #000;
+			}
+
+			&__note {
+				text-align: left;
+				font: 13px "BlissProLight";
+			}
+		}
+
+		.btn-lg {
+			top: -5px;
+			display: block;
+			min-width: 100%;
+
+			.pr;
+		}
+
+		.pickmeup {
+			min-width: 330px;
+		}
+
+		textarea.b-form__control.b-form__control--empty + label {
+			top: 2px;
+		}
+
+		textarea.b-form__control.b-form__control--empty:focus + label {
+			top: -15px;
+		}
+	}
+}

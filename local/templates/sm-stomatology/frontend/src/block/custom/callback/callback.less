@@ -1,0 +1,29 @@
+@import "../../../style/config";
+
+.b-callback {
+	&--header {
+		color: #93151d;
+		font: 17px "BlissProLight";
+		text-decoration: underline;
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-callback {
+		&--header {
+			top: 50px;
+			left: 30px;
+			font: 15px "BlissProLight";
+
+			.pa;
+		}
+	}
+}
+
+@media (max-width: @media-bs-sm) {
+	.b-callback {
+		&--header {
+			display: none;
+		}
+	}
+}

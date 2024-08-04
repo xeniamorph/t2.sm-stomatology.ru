@@ -1,0 +1,44 @@
+<?php
+\TAO::App()->SetTitle('Заболевания | «СМ-Стоматология»');
+\TAO::App()->SetPageProperty("description", "Заболевания «СМ-Стоматология». Записаться на прием к стоматологу или задать вопрос он-лайн");
+?>
+
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1>Заболевания</h1>
+		</div>
+	</div>
+</div>
+
+<div class="alphabet-list" >
+	<div class="container">
+		<div class="alphabet-list__wrapper">
+			<?php foreach ($sortDiseaseList as $letterId => $diseaseList) {	?>
+				<div class="alphabet-list__item">
+					<?/*<div class="alphabet-list__img">
+						<img src="<?= SITE_TEMPLATE_PATH ?>/svg/<?= mb_strtolower($alphabet[$letterId]) ?>.svg" alt="">
+					</div>*/?>
+					<div class="alphabet-list__letter">
+						<?=$alphabet[$letterId]?>
+					</div>
+					<div class="alphabet-list__disease">
+						<?php foreach($diseaseList as $disease) {?>
+							<a href="<?= $disease->url() ?>"><?= $disease->title() ?></a>
+						<?php } ?>
+					</div>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+
+
+<div class="callback-form">
+	<div class="container">
+		<?= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render(); ?>
+	</div>
+</div>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

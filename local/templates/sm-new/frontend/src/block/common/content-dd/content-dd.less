@@ -1,0 +1,105 @@
+@import "../../../style/config";
+
+.b-content-dd {
+	margin: 10px 0 50px;
+
+	&__links {
+		margin-bottom: 20px;
+
+		&--block {
+			.b-content-dd-link {
+				margin: 15px 16px 15px 0 !important;
+
+				&::after {
+					content: "";
+					display: block;
+					width: 100%;
+					height: 1px;
+				}
+
+				&--open {
+					&::after {
+						margin-bottom: 30px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.b-content-dd-link {
+	color: @secondary-color;
+	margin-right: 40px;
+	text-decoration: none !important;
+	font: 21px/21px "WaldorfLightItalic";
+	display: inline-block;
+
+	&:hover,
+	&:focus,
+	&:active {
+		color: @secondary-color;
+	}
+
+	.pr;
+
+	&::before {
+		content: "\f107";
+		font-family: "FontAwesome", sans-serif;
+		color: @main-color;
+		right: -15px;
+
+		.pa;
+	}
+
+	&--open {
+		border-color: transparent;
+		color: #000;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: #000;
+		}
+
+		&::before {
+			content: "\f106";
+		}
+	}
+
+	&--not-desc {
+		border: none;
+		cursor: default;
+
+		&::before {
+			display: none;
+		}
+	}
+
+	&__txt {
+		border-bottom: 1px dotted #1b5773;
+	}
+}
+
+.b-content-dd-item {
+	display: none;
+
+	&--open {
+		display: block;
+		padding-bottom: 4px;
+		margin: -18px 0 0;
+	}
+}
+
+@media (max-width: @media-bs-sm) {
+	.b-content-dd-link {
+		width: 100%;
+		margin: 10px 0;
+		border-bottom: none !important;
+
+		.db;
+
+		&::before {
+			position: static;
+		}
+	}
+}

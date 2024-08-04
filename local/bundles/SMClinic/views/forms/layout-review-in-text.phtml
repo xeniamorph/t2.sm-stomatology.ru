@@ -1,0 +1,68 @@
+<?php
+$uniqName = uniqid($name);
+?>
+<div class="reviews-form">
+	<div class="container">
+		<div class="page-title-3">Оставить отзыв</div>
+
+		<div class="tao-form tao-form-<?= $name ?> tao-form-<?= $uniqName ?>" id="review-form">
+			<form id="tao-form-<?= $uniqName ?>" method="post" action="<?= $action ?>" class="reviews-form__form tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+				<div class="reviews-form__body">
+					<div class="reviews-form__row">
+						<div class="reviews-form__input">
+							<input type="text"
+								   class=" b-field-<?= $fields['fio']['code'] ?>"
+								   name="<?= $fields['fio']['code'] ?>"
+								   placeholder="Ваше имя*"
+								   required
+							>
+						</div>
+						<div class="reviews-form__input">
+							<input type="text"
+								   class="b-field-<?= $fields['email']['code'] ?>"
+								   name="<?= $fields['email']['code'] ?>" placeholder="Ваша электронная почта для ответа*"
+								   required
+							>
+						</div>
+						<div class="reviews-form__input">
+							<input type="text"
+								   class="b-field-<?= $fields['number_cart']['code'] ?>"
+								   name="<?= $fields['number_cart']['code'] ?>" placeholder="Номер карты"
+							>
+						</div>
+					</div>
+
+					<div class="reviews-form__textarea">
+					<textarea
+							type="text"
+							placeholder="Ваш отзыв*"
+							name="<?= $fields['review']['code'] ?>"
+							class="b-field-<?= $fields['review']['code'] ?>"
+							style="height: 120px !important;" required></textarea>
+					</div>
+					<div class="reviews-form__submit">
+						<button class="reviews-form__button recaptchaForm"
+								id="review-in-text"
+								data-method="onRecaptchaReviewInText"
+								data-badge="inline">
+							Отправить отзыв
+						</button>
+					</div>
+				</div>
+
+				<div class="reviews-form__bot">Нажимая на кнопку, вы даете согласие на
+					<a href="/about/obrabotka-dannykh/" target="_blank">
+						обработку своих персональных данных</a>
+				</div>
+
+				<input type="hidden" name="<?= $fields['doctors']['code'] ?>" value="<?= $this->options['doctor_id']?>">
+				<input type="hidden" name="doctor_fio" value="<?= $this->options['doctor_fio']?>">
+				<input type="hidden" name="taoform" value="<?= $name ?>">
+				<input type="hidden" name="user_email" value="">
+				<input type="hidden" name="formtype" value="review">
+				<input type="hidden" name="analytics" value="review">
+				<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+			</form>
+		</div>
+	</div>
+</div>

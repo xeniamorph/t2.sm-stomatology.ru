@@ -1,0 +1,209 @@
+#_header {
+	.n-header {
+		display: none !important;
+	}
+
+	.n-header-banner {
+		display: none;
+	}
+
+	&.new .n-header {
+		display: block !important;
+	}
+
+	&.new .n-header-height {
+		height: 160px;
+		display: block;
+	}
+
+	@media all and (max-width: 1024px) {
+		&.new .n-header-height {
+			height: 130px;
+		}
+	}
+
+	&.new .n-header__lk {
+		text-transform: uppercase;
+	}
+
+	&.new .n-header__lk span,
+	&.new .n-header__lk div > div {
+		display: none;
+	}
+
+	&.new .n-header__contacts {
+		padding: 0;
+		width: 220px;
+	}
+
+	&.new .n-header__contacts::before {
+		display: none;
+	}
+
+	&.new .n-header__menu a {
+		font-size: 14px;
+	}
+
+	&.new .n-header__button {
+		width: 150px;
+	}
+
+	&.new .n-header__button.n-header__button_en {
+		width: 40px;
+	}
+
+	&.new .n-header__lk_pc {
+		margin: 0 10px;
+	}
+
+	&.new .n-header__box {
+		padding: 0 15px;
+	}
+
+	&.new .n-header-banner {
+		display: block;
+		margin: 30px 0 0;
+	}
+
+	@media all and (max-width: 1024px) {
+		&.new .n-header-banner {
+			margin: 0;
+		}
+	}
+
+	&.new .n-header-banner img {
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		display: block;
+	}
+
+	@media all and (max-width: 1024px) {
+		&.new .n-header-banner img {
+			-webkit-border-radius: 0;
+			-moz-border-radius: 0;
+			border-radius: 0;
+		}
+	}
+
+	&.new #header_main {
+		display: none !important;
+	}
+}
+
+.wrapper__box {
+	min-height: 100%;
+	overflow: hidden;
+	padding: 166px 0 0;
+}
+
+.alert-toolbar {
+	display: none;
+}
+
+.header__search {
+	position: relative;
+	z-index: 13;
+	margin-left: auto;
+	padding-right: 20px;
+	display: flex;
+	align-items: center;
+
+	@media (max-width: 1024px) {
+		margin-left: 0;
+		padding: 0 10px 10px;
+	}
+}
+
+.header__search {
+	position: relative;
+	z-index: 13;
+}
+
+#_dev-menu-close {
+	display: none;
+}
+
+.lk__img {
+	fill: #fff;
+}
+
+.lk_link_svg {
+	fill: #fff;
+}
+
+.s_img {
+	fill: #fff;
+}
+
+.main-page {
+	padding: 230px 0 0 0;
+	background: url("..//local/templates/sm-new/img/main_page_bg.jpg");
+	background-size: cover;
+}
+
+.main-page__wrapper {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+@media all and (max-width: 1024px) {
+	.s_img {
+		fill: #1b5773;
+	}
+}
+
+@media all and (max-width: 600px) {
+	.lk__link {
+		order: 3;
+	}
+}
+
+@media all and (max-width: 360px) {
+	.main-page {
+		padding: 200px 0 0 0;
+	}
+}
+
+.show-alert-toolbar .n-header {
+	padding-top: 176px;
+}
+
+.show-alert-toolbar .n-header__top {
+	top: 70px;
+}
+
+@media all and (max-width: 1024px) {
+	.show-alert-toolbar .n-header {
+		padding-top: 0;
+		padding-bottom: 144px;
+	}
+
+	.show-alert-toolbar .n-header__search {
+		top: 138px;
+	}
+}
+
+@media all and (max-width: 768px) {
+	.lk__link {
+		order: 3;
+		margin-left: 20px;
+	}
+
+	.main-page {
+		padding: 190px 0 0 0;
+	}
+
+	.m-slider__title {
+		font-size: 33px;
+		line-height: 32px;
+	}
+}
+
+@media all and (max-width: 480px) {
+	.m-slider__title {
+		font-size: 28px;
+		line-height: 30px;
+	}
+}

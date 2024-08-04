@@ -1,0 +1,66 @@
+<?php
+\TAO::App()->SetTitle('Узнать болезнь по симптомам | «СМ-Стоматология»');
+\TAO::App()->SetPageProperty("description", "Узнать болезнь по симптомам «СМ-Стоматология». Записаться на прием к стоматологу или задать вопрос он-лайн");
+?>
+
+<?php $this->bundle()->useScript('search-disease.js') ?>
+<div class="b-heading">
+	<h1 class="b-heading__title">Узнать болезнь по симптомам</h1>
+	<a href="#" class="b-heading__link hidden-md-down"
+		data-toggle="modal" data-target="#modal-ask-question"
+	>
+		Есть вопросы?
+	</a>
+</div>
+<?php $id = (int) $_GET['symptom']; ?>
+
+<div class="b-form b-form--inline b-form--bg">
+	<form method="get" class="search-page-form">
+		<div class="row">
+			<div class="col-md-12 col-lg-12">
+				<div class="b-form__group b-form__group--m0">
+					<div class="b-form__select b-custom-select b-custom-select--style-2">
+						<select class="form-control b-form__control js-disease-search-select"
+							data-theme="select-theme-style2 b-disease-select"
+						>
+							<option>Выберите</option>
+							<?php foreach ($items as $item) { ?>
+								<option value="<?= $item->id() ?>"<?= ($item->id() == $id) ? ' selected' : '' ?>><?= $item->title() ?></option>
+							<?php } ?>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+<?php
+if($id > 0){
+	$diseaseList = \TAO::infoblock('disease')->getItems([
+		'filter' => ['PROPERTY_symptoms' => $id, 'ACTIVE' => 'Y' ]
+	]);
+}
+?>
+<div class="b-content-dd b-content-dd--js_init">
+	<div class="b-content-dd__links b-content-dd__links--block b-content-dd__items">
+		<?php $i = 1; ?>
+		<?php foreach($diseaseList as $disease) { ?>
+			<div>
+				<a class="b-content-dd-link" href="#disease-bb<?= $i ?>">
+					<span class="b-content-dd-link__txt"><?= $disease->title() ?></span>
+				</a>
+				<div class="b-content-dd-item" id="disease-bb<?= $i ?>">
+					<div>
+						<?= $disease['PREVIEW_TEXT'] ?>
+					</div>
+
+					<?= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render(); ?>
+					<a href="<?= $disease->url() ?>">Подробнее</a>
+					<br>
+					<br>
+				</div>
+			</div>
+			<?php $i++; ?>
+		<?php } ?>
+	</div>
+</div>

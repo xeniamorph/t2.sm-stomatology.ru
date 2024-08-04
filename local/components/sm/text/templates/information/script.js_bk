@@ -1,0 +1,21 @@
+var information_block_fixed = false;
+var information_block = $('.important-information-block');
+var information_fixed_line = 200;
+var information_block_height = $('.important-information-block').height();
+$('.important-information-block').css('height', information_block_height);
+$('#mobile-search-box').css('top', information_block_height);
+
+function information_block_check() {
+  var information_pos_scroll = $(document).scrollTop();
+    if((information_pos_scroll <= information_fixed_line) && information_block_fixed == true) {
+        information_block_fixed = false;
+        information_block.removeClass('fixed');
+    } else if (information_pos_scroll > information_fixed_line && information_block_fixed == false) {
+        information_block_fixed = true;
+        information_block.addClass('fixed');
+    }
+}
+information_block_check();
+$(document).scroll(function() {
+  information_block_check();
+});

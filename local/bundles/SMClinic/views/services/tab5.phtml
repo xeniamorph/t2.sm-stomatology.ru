@@ -1,0 +1,40 @@
+<?php
+$benefitList = $item['benefits']->valueData();
+?>
+
+<div class="b-content-dd">
+	<h2>Преимущества</h2>
+	<div class="b-content-dd__links b-content-dd__links--block b-content-dd__items">
+		<?php $i = 1; ?>
+		<?php foreach ($benefitList as $benefit) {?>
+			<?php if($benefit['DESCRIPTION']) { ?>
+				<div>
+					<a href="#tab5-bb<?= $i ?>"
+					   class="b-content-dd-link">
+						<span class="b-content-dd-link__txt"><?= $benefit['DESCRIPTION']?></span>
+					</a>
+					<div class="b-content-dd-item" id="tab5-bb<?= $i ?>">
+						<?= $benefit['VALUE']['TEXT'] ?>
+					<?//= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render(); ?>
+					</div>
+				</div>
+				<?php $i++; ?>
+			<?php } else { ?>
+				<a href="#tab5-bb"
+				   class="b-content-dd-link b-content-dd-link--not-desc">
+					<?= $benefit['VALUE']['TEXT'] ?>
+				</a>
+			<?php } ?>
+		<?php } ?>
+	</div>
+</div>
+
+<hr class="hr--light">
+
+<!-- <p class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</p>-->
+
+<?//= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+
+

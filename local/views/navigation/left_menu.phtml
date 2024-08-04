@@ -1,0 +1,23 @@
+<div class="b-aside-menu<?= $args['class'] ?>">
+	<ul class="b-aside-menu__list b-tree-list">
+		<?php foreach ($links as $link) {?>
+			<li class="b-aside-menu__item<?= ($link->sub ? '' : ' b-tree-list__item b-tree-list__item--empty') ?><?= ($link->isSelected() ? ' open' : '') ?>">
+				<a href="<?= $link->url ?>" class="b-aside-menu__link<?= ($link->isSelected() ? ' active' : '') ?>">
+					<?= $link->title ?>
+				</a>
+				<?php if($link->sub) { ?>
+					<ul class="b-aside-menu__list">
+						<?php foreach ($link->sub as $subLink) { ?>
+							<li class="b-aside-menu__item">
+								<a href="<?= $subLink->url ?>" class="b-aside-menu__link<?= ($subLink->isSelected() ? ' active' : '') ?>">
+									<?= $subLink->title ?>
+								</a>
+						<?php } ?>
+					</ul>
+				<?php } ?>
+			</li>
+		<?php } ?>
+	</ul>
+</div>
+
+<hr>

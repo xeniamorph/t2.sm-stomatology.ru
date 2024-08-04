@@ -1,0 +1,27 @@
+@import "../../../style/config";
+
+.owl-dots {
+	position: absolute;
+	bottom: -30px;
+	left: 0;
+	right: 0;
+	text-align: center;
+}
+
+.owl-dot {
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
+	background: @secondary-color;
+	transform: scale(0.4);
+	transition: transform 0.2s;
+	margin: 2px;
+
+	.dib;
+
+	&:hover,
+	&.active {
+		transform: scale(1);
+		background: @main-color;
+	}
+}

@@ -1,0 +1,17 @@
+<?php
+$section_url = explode('/',trim($_SERVER['REQUEST_URI'],'/'));
+$section_url = $section_url[1];
+?>
+<div class="b-aside-menu">
+	<ul class="b-aside-menu__list b-tree-list">
+		<?php foreach ($directionList as $direction) {?>
+			<li class="b-aside-menu__item b-tree-list__item b-tree-list__item--empty<?= ($direction['CODE'] == $section_url ? ' open' : '') ?>">
+				<a href="<?= $direction->url() ?>" class="b-aside-menu__link<?= ($direction['CODE'] == $section_url ? ' active' : '') ?>">
+					<?= $direction->title() ?>
+				</a>
+			</li>
+		<?php } ?>
+	</ul>
+</div>
+
+<hr>

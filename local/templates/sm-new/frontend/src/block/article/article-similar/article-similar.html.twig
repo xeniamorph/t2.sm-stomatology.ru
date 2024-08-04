@@ -1,0 +1,21 @@
+<div class="article-similar {{ class }}">
+	<div class="article-similar__wrap">
+		<div class="article-similar__slider">
+			{% for img in images %}
+				<div class="article-similar__slide">
+					<div class="article-similar__item">
+						<div class="article-similar__top">
+							<a class="article-similar__image js-fancybox" href="{{ img.max?:img }}" data-fancybox="gallery">
+								<img src="{{ img.resized?:img }}" loading="lazy" alt="{{ alt }}{{ loop.index }}" title="{{ title }}">
+							</a>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div class="article-similar__nav">
+			<div class="article-similar__prev"></div>
+			<div class="article-similar__next"></div>
+		</div>
+	</div>
+</div>

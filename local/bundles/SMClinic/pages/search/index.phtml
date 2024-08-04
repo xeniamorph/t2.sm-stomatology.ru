@@ -1,0 +1,14 @@
+<?php
+\TAO::App()->SetTitle('Поиск | «СМ-Стоматология»');
+\TAO::App()->SetPageProperty("description", "Поиск «СМ-Стоматология». Записаться на прием к стоматологу или задать вопрос он-лайн"); 
+?>
+<?php
+$perPage = 5;
+$search = \TAO::search()->pagerVar('page')->perPage($perPage)->query($_GET['q']);
+print $search->render([
+	'show_form' => true,
+	'show_count' => true,
+	'pager_var' => 'page',
+	'perPage' => $perPage
+]);
+?>

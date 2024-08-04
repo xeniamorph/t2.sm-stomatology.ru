@@ -1,0 +1,37 @@
+<?php
+\TAO::App()->SetTitle('Технологии и оборудование стоматологической клиники «СМ-Стоматология» | Лечение зубов в Москве');
+\TAO::app()->SetPageProperty("description", "Современное диагностическое оборудование и новейшие технологии в лечение зубов в клинике «СМ-Стоматология». Узнайте цены на стоматологические услуги в Москве на нашем сайте.");
+
+?>
+
+<div class="headline">
+	<div class="container">
+		<div class="headline__wrapper">
+			<div class="headline__title">
+				<h1>Технологии и оборудование</h1>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="lab-works">
+	<div class="container">
+		<div class="lab-works__items">
+			<?php foreach ($items as $item) { ?>
+				<?= $item->render() ?>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+<div class="b-text text">
+	<div class="container">
+		<div class="b-text__wrapper">
+			<?= $this->data['DESCRIPTION'] ?>
+		</div>
+	</div>
+</div>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

@@ -1,0 +1,43 @@
+<?php
+\TAO::App()->SetTitle('Информация для пациентов стоматологической клиники «СМ-Стоматология»');
+\TAO::App()->SetPageProperty("description", "Частые вопросы и важная информация для пациентов клиники: оформление документации, дисконтная программа, налоговый вычет и д.р. Записаться на прием или получить онлайн консультацию на сайте «СМ-Стоматология».");
+?>
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1>Пациентам</h1>
+		</div>
+	</div>
+</div>
+
+<?= TAO::frontend()->renderBlock('common/img-links', [
+	'items' => [
+		[
+			'link' => '/about/mery-bezopasnosti-v-klinikakh/',
+			'img' => SITE_TEMPLATE_PATH . '/img/health-icon.png',
+			'name' => 'Меры профилактики и защиты здоровья'
+		],
+		[
+			'link' => '/about/articles/',
+			'img' => SITE_TEMPLATE_PATH . '/img/articles-icon.png',
+			'name' => 'Статьи'
+		],
+		[
+			'link' => '/patients/diseases/',
+			'img' => SITE_TEMPLATE_PATH . '/img/disease-icon.png',
+			'name' => 'Заболевания'
+		],
+		[
+			'link' => '/patients/lechenie-zubov-v-rassrochku-i-v-kredit/',
+			'img' => SITE_TEMPLATE_PATH . '/img/serv-icon.png',
+			'name' => 'Услуги в кредит'
+		]
+	]
+]) ?>
+
+<? $APPLICATION->IncludeComponent("sm:text", "", ['IBLOCK_ID' => 23,'ELEMENT_ID' => 54078], false); ?>
+
+
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

@@ -1,0 +1,74 @@
+@import "../../../style/config";
+
+.b-footer-menu {
+	display: block;
+
+	.owl-dot {
+		background: #fff;
+
+		&.active {
+			background: @fourth-color;
+		}
+	}
+}
+
+.b-footer-menu-group {
+	&__title {
+		color: #fff;
+		border-bottom: 2px solid #919586;
+		padding: 0 0 20px;
+		margin-bottom: 20px;
+		width: 260px;
+		font: 30px "BlissProLight";
+	}
+
+	&__link {
+		display: block;
+		color: #d8d3ab;
+		margin-bottom: 3px;
+		font: 16px "BlissProLight";
+
+		&:active,
+		&:focus,
+		&:hover {
+			color: #fff;
+		}
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-footer-menu-group {
+		&__title {
+			width: 250px;
+			font-size: 28px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-footer-menu-group {
+		margin-bottom: 20px;
+
+		&__title {
+			font-size: 27px;
+
+			.ellipsis;
+		}
+	}
+}
+
+@media (max-width: @media-bs-sm) {
+	.b-footer-menu-group {
+		&__title {
+			font-size: 21px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-footer-menu-group {
+		&__title {
+			font-size: 27px;
+		}
+	}
+}

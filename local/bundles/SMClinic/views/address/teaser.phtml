@@ -1,0 +1,55 @@
+<?php
+$link_to_site = $this['link_to_site']->value();
+$url = ($link_to_site) ? $link_to_site : $this->url();
+$phone = $this['phone']->value()?:'+7 (495) 777-48-06';
+?>
+<div class="choice-addr__item blue-bg" itemscope itemtype="http://schema.org/MedicalOrganization">
+	<div class="choice-addr__img">
+		<a href="<?= $url ?>" <?= ($link_to_site ? 'target="_blank"' : '') ?> itemprop="image" itemscope itemtype="https://schema.org/ImageObject">
+			<img src="<?= $this->previewPicture()->resizedImage('284x162') ?>" alt="<?= $this->title() ?>" itemprop="contentUrl">
+			<meta itemprop="name" content="<?=$this->title()?>">
+		</a>
+	</div>
+	<div class="choice-addr__info">
+		<div class="choice-addr__info-title">
+			<a href="<?= $url ?>" <?= ($link_to_site ? 'target="_blank"' : '') ?>>
+				<span itemprop="name"><?= $this->title() ?></span>
+			</a>
+		</div>
+		<div class="choice-addr__info-items">
+			<div class="choice-addr__info-item">
+				<div class="choice-addr__info-item-wrapper">
+					<?php
+					$metroList = \TAO::infoblock('metro')->getItems([
+						'filter' => ['ID' => $this['metro']->value()]
+					]);
+					$metro = array_shift($metroList);
+					$metroColor = SMClinicHelper::getMetroColorById($metro->id());
+					?>
+					<img class="b-with-metro-icon-img" src="<?=SITE_TEMPLATE_PATH?>/svg/metro-icon-<?=$metroColor?>.svg">
+					<div class="choice-addr__info-label <?= $metroColor ?>">
+						<span><?= $metro->title() ?></span>
+						<div itemprop="address"><?= $this['address']->value()?></div>
+					</div>
+				</div>
+			</div>
+			<div class="choice-addr__info-item">
+				<div class="choice-addr__info-item-wrapper">
+					<img src="<?=SITE_TEMPLATE_PATH?>/svg/time-icon.svg" loading="lazy">
+
+					<div class="choice-addr__info-label-time">
+						<?= $this['time']->value()['TEXT'] ?>
+					</div>
+				</div>
+			</div>
+			<div class="choice-addr__info-item">
+				<div class="choice-addr__info-number">
+					<a href="tel:+<?=str_replace(['-',' ', '.', '(',')','+'],'',$phone)?>" itemprop="telephone"><?=$phone?></a>
+				</div>
+				<div class="choice-addr__info-item-wrapper">
+					<a class="n-header__button n-header__button_pink n-header__button--contacts  js-open-popup" href="#" data-target=".popup-form-feedback" data-analytics="OrderDoctor_Toolbar">Записаться на приём</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

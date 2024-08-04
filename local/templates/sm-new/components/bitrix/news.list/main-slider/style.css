@@ -1,0 +1,19 @@
+.m-slider__slide .erid {
+    position: absolute;
+    bottom: 10px;
+    left: 8px;
+    text-decoration: none;
+    color: #9bced6;
+    font-size: 12px;
+}
+@media all and (max-width:768px) {
+
+    .m-slider__slide .erid {
+        font-size: 9px;
+    }
+}
+@media all and (max-width:480px) {
+.m-slider__wrap .m-slider__nav {
+    bottom: 28px;
+    }
+}

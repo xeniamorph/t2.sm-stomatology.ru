@@ -1,0 +1,149 @@
+.doctors-slider {
+	position: relative;
+	margin: 0 auto 60px;
+
+	.slick-track {
+		display: -webkit-box !important;
+		display: -webkit-flex !important;
+		display: -moz-box !important;
+		display: -ms-flexbox !important;
+		display: flex !important;
+	}
+
+	.slick-slide {
+		height: inherit !important;
+	}
+
+	&__header {
+		margin: 0 auto 40px;
+		max-width: 1230px;
+		padding: 0 15px;
+	}
+
+	&__header * {
+		margin: 0;
+		padding: 0;
+	}
+
+	&__block {
+		margin: 50px 0;
+	}
+
+	&__title {
+		font-size: 42px;
+		font-weight: bold;
+		margin: 0 0 30px;
+		line-height: 48px;
+		text-align: center;
+	}
+
+	&__wrap {
+		position: relative;
+		padding: 30px 150px 30px;
+		margin: 0 auto;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+	}
+
+	&__slider {
+		white-space: nowrap;
+	}
+
+	&__slider.slick-slider {
+		white-space: normal;
+	}
+
+	&__slide {
+		display: inline-block;
+		padding: 0 10px 30px;
+	}
+
+	&__slide .doctor-card {
+		margin: 0 auto;
+		height: 430px;
+		width: auto;
+	}
+
+	&__dots {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 38px;
+		padding: 0 0 0;
+	}
+
+	&__dots ul {
+		text-align: center;
+	}
+
+	&__dots li {
+		display: inline-block;
+		margin: 0 8px;
+	}
+
+	&__dots li.slick-active button {
+		background: #ae3d8d;
+	}
+
+	&__dots button {
+		display: block;
+		font-size: 0;
+		border: 0;
+		height: 10px;
+		width: 10px;
+		padding: 0;
+		margin: 0;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		border-radius: 100%;
+		background: #389dac;
+		-webkit-transition: 0.2s;
+		-o-transition: 0.2s;
+		-moz-transition: 0.2s;
+		transition: 0.2s;
+	}
+
+	@media all and (max-width: 1400px) {
+		&__prev {
+			left: 10px;
+			width: 60px;
+			height: 60px;
+		}
+
+		&__next {
+			right: 10px;
+			width: 60px;
+			height: 60px;
+		}
+
+		&__wrap {
+			padding: 55px 50px 65px;
+		}
+
+		.container {
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&__wrap {
+			padding: 20px 0 40px;
+		}
+
+		.slick-list {
+			padding: 0 20% 0 0;
+		}
+
+		&__slide .doctor-card {
+			margin: 0;
+		}
+	}
+
+	@media all and (max-width: 480px) {
+		.slick-list {
+			padding: 0 15% 0 0;
+		}
+	}
+}

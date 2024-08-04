@@ -1,0 +1,16 @@
+function error_function(data, form, options){
+	var form = $('#tao-form-' + options.jsname);
+	form.find('.form-control').removeClass('b-form__control--error');
+	for(var field in data.errors){
+		form.find('.b-field-'+field).addClass('b-form__control--error');
+	}
+}
+
+function analitic() {
+	yaCounter42012629.reachGoal('FormSend');
+	if ($('.js-analytic-question').hasClass('header')) {
+		ga('send', 'event', 'Form', 'Send', 'AskQuestion_Toolbar');
+	} else {
+		ga('send', 'event', 'Form', 'Send', 'AskQuestion_H1');
+	}
+}

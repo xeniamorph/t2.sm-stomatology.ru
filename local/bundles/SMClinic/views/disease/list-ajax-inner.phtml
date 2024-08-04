@@ -1,0 +1,20 @@
+<?php $i = 1; ?>
+<?php foreach($items as $item) { ?>
+	<div>
+		<a class="b-content-dd-link" href="#disease-bb<?= $i ?>">
+			<span class="b-content-dd-link__txt"><?= $item->title() ?></span>
+		</a>
+		<div class="b-content-dd-item" id="disease-bb<?= $i ?>">
+			<div>
+				<?= $item['PREVIEW_TEXT'] ?>
+			</div>
+
+			<?= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render();?>
+
+			<a href="<?= $item->url() ?>">Подробнее</a>
+			<br>
+			<br>
+		</div>
+	</div>
+	<?php $i++; ?>
+<?php } ?>

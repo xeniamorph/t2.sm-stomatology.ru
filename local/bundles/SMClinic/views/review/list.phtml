@@ -1,0 +1,122 @@
+<?php
+if (str_contains($_SERVER["REDIRECT_URL"], "/reviews-site/")) {
+	\TAO::App()->SetTitle('Отзывы пациентов о клинике «СМ-Стоматология» | Сеть стоматологических клиник в Москве');
+	\TAO::App()->SetPageProperty("description", "Узнайте, какие отзывы оставляют пациенты «СМ-Стоматология» о врачах и услугах клиники через сайт. Посмотреть отзывы и написать собственный можно через форму обратной связи.");
+	\TAO::App()->SetPageProperty("keywords", "сайт отзыв онлайн клиника стоматологический см стоматология");
+} else {
+	\TAO::App()->SetTitle('Письменные отзывы о клинике «СМ-Стоматология» (с фото)');
+	\TAO::App()->SetPageProperty("description", "Узнайте, какие письменные отзывы оставляют пациенты «СМ-Стоматология» о врачах и услугах клиники. Посмотреть отзывы и написать собственный можно через форму обратной связи.");
+	\TAO::App()->SetPageProperty("keywords", "письменный фото отзыв клиника стоматологический см стоматология");
+}
+?>
+<div class="reviews-list">
+	<div class="container">
+		<div class="reviews-list__wrapper">
+			<h1 class="reviews-title">Отзывы</h1>
+			<div class="reviews-list__elements">
+				<div class="reviews-list__link">
+					<a href="#"  class="js-open-popup" data-toggle="modal" data-target=".modal-administration">Написать руководителю Службы клиентской поддержки</a>
+				</div>
+				<div>
+					<a class="reviews-list__btn" href="#review-form">Оставить отзыв</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="b-tabs">
+			<ul class="nav nav-tabs">
+				<a class="nav-item nav-item--review <?= (\TAO\Urls::isCurrent('/reviews-site/') ? ' active' : '' ); ?>" href="/reviews-site/"
+					<?= (preg_match('\'/reviews-site/page-[0-9]+/\'', $_SERVER['REDIRECT_URL']) ? 'rel= "canonical"' : '' ); ?>>
+					Отзывы с сайта
+				</a>
+				<a class="nav-item nav-item--review <?= (\TAO\Urls::isCurrent('/reviews-clinic/') ? ' active' : '' ); ?>" href="/reviews-clinic/"
+					<?= (preg_match('\'/reviews-clinic/page-[0-9]+/\'', $_SERVER['REDIRECT_URL']) ? 'rel= "canonical"' : '' ); ?>>
+					Отзывы из клиник
+				</a>
+			</ul>
+			<div class="tab-content">
+				<div class="tab-pane active">
+					<div class="b-reviews b-reviews--clinics">
+						<div class="reviews-list__items">
+							<?php foreach ($reviewList as $review) { ?>
+								<div class="reviews-list__item text" itemscope="" itemtype="https://schema.org/Review" id="<?=$review->id()?>">
+									<div class="reviews-list__header">
+										<div class="reviews-list__icon"></div>
+										<div class="reviews-list__label">
+											<div itemprop="itemReviewed" itemscope itemtype="https://schema.org/Organization">
+												<meta itemprop="name" content="«СМ-Стоматология»">
+											</div>
+											<span itemprop="author" itemscope itemtype="https://schema.org/Person">
+												<span itemprop="name"><?= $review->title() ?></span>
+											</span>
+											<link itemprop="url" href="https://<?=$_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI']?>#<?=$review->id()?>">
+											<div class="reviews-list__date">Отзыв от <b><?= $review['DATE_ACTIVE_FROM']?></b>
+												<meta itemprop="datePublished" content="<?= $review['DATE_ACTIVE_FROM']?>">
+											</div>
+										</div>
+									</div>
+									<div class="reviews-list__review">
+										<div class="reviews-list__review-title"></div>
+										<div class="reviews-list__review-wrap">
+											<div itemprop="reviewBody" class="reviews-list__review-text">
+												<p><?= nl2br($review['review']->value()['TEXT']) ?></p>
+											</div>
+											<div class="reviews-list__review-img">
+												<a href="<?=$review->previewPicture()->url()?>" class="js-fancybox">
+													<img src="<?= $review->previewPicture()->resizedImage('fit118x118') ?>" alt="">
+												</a>
+											</div>
+										</div>
+									</div>
+
+									<?php if($review['answer']->value()) { ?>
+										<div class="reviews-list__answer">
+											<div class="reviews-answer">
+												<div class="reviews-answer__left">
+													<div class="reviews-answer__logo">
+														<?php if($review->detailPicture()->id){ ?>
+															<img src="<?= $review->detailPicture()->resizedImage('fit100x100') ?>" alt="">
+														<?php } else { ?>
+															<img src="<?=SITE_TEMPLATE_PATH?>/svg/min_logo_sm.svg" alt="">
+														<?php } ?>
+													</div>
+												</div>
+												<div class="reviews-answer__right">
+													<div class="reviews-answer__right-title">Ответ клиники</div>
+													<p><?= nl2br($review['answer']->value()['TEXT']) ?></p>
+												</div>
+											</div>
+										</div>
+									<?php } ?>
+								</div>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php print $pagination->render( $_GET['page'] ? $_GET['page'] : 1, $numPage ); ?>
+<?=\TAO::Form('Review')->setOption('layout', 'review-in-text')->render();?>
+
+<div class="b-text text">
+	<div class="container">
+		<div class="b-text__wrapper b-text__disc">
+			<p>Ваши персональные данные не будут использованы для спамовой рассылки и не попадут в открытый
+				доступ и не будут переданы третьим лицам.</p>
+			<p>
+				Уважаемые посетители, большая просьба при написании отзыва, заполнять все поля формы и указывать
+				адрес электронной почты для связи.
+			</p>
+			<p>
+				В противном случае администрация клиники не сможет отреагировать на оставленную информацию и
+				связаться с вами для решения возникших вопросов.
+			</p>
+		</div>
+	</div>
+</div>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

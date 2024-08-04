@@ -1,0 +1,28 @@
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1><?= $this->title() ?></h1>
+		</div>
+	</div>
+</div>
+
+<div class="pinc-privilege">
+	<div class="container">
+		<?php if($this['DETAIL_TEXT']) {?>
+			<div class="pinc-privilege__wrapper">
+				<?= $this['DETAIL_TEXT'] ?>
+			</div>
+		<?php }?>
+
+		<?php if($this['PREVIEW_TEXT']) {?>
+			<div class="pinc-privilege__img">
+				<div class="pinc-privilege__image">
+					<?= $this['PREVIEW_TEXT'] ?>
+				</div>
+			</div>
+		<?php }?>
+	</div>
+</div>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

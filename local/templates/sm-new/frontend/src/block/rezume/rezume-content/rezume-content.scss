@@ -1,0 +1,255 @@
+.rezume-content {
+	margin: 30px 0 0;
+
+	&__cols {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-flex-wrap: wrap;
+		-ms-flex-wrap: wrap;
+		flex-wrap: wrap;
+		margin-left: -1.5%;
+		margin-right: -1.5%;
+	}
+
+	&__cols &__box {
+		margin-bottom: 0;
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		-moz-box-flex: 1;
+		-ms-flex-positive: 1;
+		flex-grow: 1;
+	}
+
+	&__col {
+		margin: 0 1.5%;
+		width: 47%;
+		background: #f6f8f7;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+	}
+
+	&__box {
+		background: #f3f7f8;
+		padding: 30px 20px;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+		margin-bottom: 30px;
+	}
+
+	.blue_back {
+		background: #e3f1f4;
+		margin: 30px 0 20px;
+	}
+
+	&__header {
+		position: relative;
+		padding: 0 0 0 70px;
+	}
+
+	&__body {
+		padding: 30px 30px 0 70px;
+	}
+
+	&__title {
+		position: relative;
+		padding: 0 0 20px;
+	}
+
+	&__title h2 {
+		font-size: 28px;
+		font-weight: bold;
+		margin: 0 0 30px;
+		line-height: 48px;
+	}
+
+	&__title > *,
+	&__title h2,
+	&__title h3 {
+		margin: 0;
+	}
+
+	&__title::before {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		height: 1px;
+		-webkit-border-radius: 2px;
+		-moz-border-radius: 2px;
+		border-radius: 2px;
+		background: #b2b2b2;
+		content: '';
+	}
+
+	&__icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 46px;
+		height: 46px;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		-moz-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-moz-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-border-radius: 100%;
+		-moz-border-radius: 100%;
+		border-radius: 100%;
+	}
+
+	&__icon img {
+		display: block;
+	}
+
+	&__hidden {
+		display: none;
+	}
+
+	&__hidden.active {
+		display: block;
+	}
+
+	&__readmore {
+		margin: 30px 0 0;
+	}
+
+	.text ul {
+		padding-left: 15px;
+	}
+
+	.text ul li {
+		padding: 0 0 0 10px;
+		line-height: 23px;
+		list-style-type: disc;
+	}
+
+	.text ul li::before {
+		display: none;
+	}
+
+	a.rezume-btn,
+	.rezume-btn {
+		cursor: pointer;
+		display: -webkit-inline-box;
+		display: -webkit-inline-flex;
+		display: -moz-inline-box;
+		display: -ms-inline-flexbox;
+		display: inline-flex;
+		background: #953478;
+		-webkit-border-radius: 12px;
+		-moz-border-radius: 12px;
+		border-radius: 12px;
+		color: #fff;
+		text-decoration: none;
+		-webkit-box-pack: center;
+		-webkit-justify-content: center;
+		-moz-box-pack: center;
+		-ms-flex-pack: center;
+		justify-content: center;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		-moz-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+		height: 44px;
+		padding: 8px 28px;
+		-webkit-box-shadow: 0 2px 4px rgba(22, 84, 69, 0.15);
+		-moz-box-shadow: 0 2px 4px rgba(22, 84, 69, 0.15);
+		box-shadow: 0 2px 4px rgba(22, 84, 69, 0.15);
+		font-size: 17px;
+		letter-spacing: 0.25px;
+		line-height: 27px;
+		font-weight: 400;
+	}
+
+	a.rezume-btn,
+	.rezume-btn:hover {
+		background: #389dac;
+	}
+
+	a.rezume-btn span,
+	.rezume-btn span {
+		display: block;
+		margin: 0 20px;
+	}
+
+	a.rezume-btn_dots::after,
+	.rezume-btn_dots::after {
+		display: block;
+		width: 25px;
+		height: 25px;
+		background: url("/local/templates/sm-new/svg/ets_img.svg") 50% 50% no-repeat;
+		content: '';
+	}
+
+	@media all and (max-width: 768px) {
+		margin: 15px 0 0;
+
+		&__box {
+			margin-bottom: 15px;
+		}
+
+		&__body {
+			padding: 20px 0 0;
+		}
+
+		&__header {
+			padding: 0;
+		}
+
+		&__icon {
+			display: none;
+		}
+
+		&__title {
+			padding: 0 0 10px;
+		}
+
+		&__col + &__col {
+			margin: 15px 0 0;
+		}
+
+		&__col {
+			width: 100%;
+			margin: 0;
+		}
+
+		&__cols {
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		& a.rezume-btn,
+		.rezume-btn {
+			font-size: 18px;
+		}
+	}
+
+	@media all and (max-width: 567px) {
+		a.rezume-btn,
+		.rezume-btn {
+			font-size: 14px;
+		}
+
+		&__title h2 {
+			font-size: 25px;
+			margin: 0 0 10px;
+			line-height: 33px;
+		}
+	}
+}

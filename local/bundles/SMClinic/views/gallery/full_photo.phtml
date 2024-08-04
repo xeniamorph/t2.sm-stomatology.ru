@@ -1,0 +1,38 @@
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1><?= $this->title() ?></h1>
+		</div>
+	</div>
+</div>
+
+<?php if($this['PREVIEW_TEXT']) {?>
+	<div class="bg-white__block">
+		<div class="container">
+			<div class="bg-white__block-wrapper">
+				<?= $this['PREVIEW_TEXT'] ?>
+			</div>
+		</div>
+	</div>
+<?php }?>
+
+<?php if(count($galleryList) > 0) {?>
+	<div class="photogallery-grid">
+		<div class="container">
+			<div  class="photogallery-grid__items">
+				<?php foreach (array_values($galleryList) as $key => $photo) {
+					$img = new \TAO\File($photo['VALUE']);
+					$imgResize = $img->resizedImage('crop257x257');
+					?>
+					<a href="<?=$img?>" class="js-fancybox" data-fancybox="gallery">
+						<img src="<?=$imgResize?>" alt="<?=$this->title()?> фото <?=$key+1?>">
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+<?php }?>
+
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

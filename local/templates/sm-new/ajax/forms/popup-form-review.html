@@ -1,0 +1,46 @@
+<div class="popup-form popup-form-review">
+	<div class="popup-form__wrap">
+		<form class="popup-form__form js-feedback-submit" method="POST" action="">
+			<div class="popup-form__header">
+				<div class="popup-form__title">Оставить отзыв</div>
+				<div class="popup-form__close js-popup-close">
+					<div></div>
+				</div>
+			</div>
+			<div class="popup-form__body">
+				<div class="popup-form__box">
+					<div class="popup-form__row">
+						<input class="popup-form__input _name" name="fio" value="">
+						<label class="popup-form__label">Ваше имя <span>*</span></label>
+					</div>
+					<div class="popup-form__row">
+						<input class="popup-form__input" name="email" value="">
+						<label class="popup-form__label">E-mail для ответа <span>*</span></label>
+					</div>
+					<div class="popup-form__row">
+						<input class="popup-form__input" name="number_cart" value="">
+						<label class="popup-form__label">Номер карты</label>
+					</div>
+					<div class="popup-form__row">
+						<textarea class="popup-form__textarea" name="review" value=""></textarea>
+						<label class="popup-form__label">Отзыв <span>*</span></label>
+					</div>
+				</div>
+			</div>
+			<div class="popup-form__footer">
+				<div class="popup-form__submit">
+					<button class="popup-form__button" type="submit">
+						<div class="btn btn_dark">Отправить</div>
+					</button>
+					<input type="hidden" name="doctors" value="">
+					<input type="hidden" name="formtype" value="review">
+					<input type="hidden" name="analytics" value="review">
+				</div>
+				<div class="popup-form__private">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+			</div>
+			<div class="form__loading">
+				<div class="form__loading-bg">Отправка<br>данных...</div>
+			</div>
+		</form>
+	</div>
+</div>

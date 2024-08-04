@@ -1,0 +1,63 @@
+@import "../../../style/config";
+
+.b-content-slider {
+	margin: 20px 0;
+	padding-top: 100px;
+
+	&__item {
+		&-title {
+			text-align: center;
+			color: @main-color;
+			font: 30px/37px "WaldorfLightItalic";
+			margin-bottom: 20px;
+		}
+
+		p {
+			margin-bottom: 20px;
+		}
+	}
+
+	.owl-dots {
+		counter-reset: dots;
+		position: absolute;
+		top: 0 !important;
+		bottom: auto;
+		left: 0 !important;
+		right: 0 !important;
+		text-align: center;
+	}
+
+	.owl-dot {
+		background: none !important;
+		transform: none !important;
+		display: inline-block;
+		font: 40px "WaldorfItalic";
+		width: 50px !important;
+		position: relative;
+		color: #1b83a0;
+
+		&.active {
+			color: @main-color;
+
+			&::after {
+				position: absolute;
+				top: -4px;
+				left: -5px;
+				content: "";
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				border: 1px solid @third-color;
+			}
+		}
+
+		&:hover {
+			color: @main-color;
+		}
+	}
+
+	.owl-dot::before {
+		counter-increment: dots;
+		content: counter(dots);
+	}
+}

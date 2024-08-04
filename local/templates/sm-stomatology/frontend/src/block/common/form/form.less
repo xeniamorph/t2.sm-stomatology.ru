@@ -1,0 +1,272 @@
+@import "../../../style/config";
+@import "--inline";
+@import "--bg";
+
+.b-form {
+	display: block;
+
+	&__control.form-control {
+		border-radius: 0;
+		background: none;
+		border: none;
+		border-bottom: 1px solid #cfceb9;
+		padding-left: 0 !important;
+		padding-right: 0 !important;
+
+		&.b-form__control--error {
+			border-color: red !important;
+			animation: bs-error 1s infinite;
+
+			& + label {
+				&::before {
+					content: "\f071";
+					font-family: "FontAwesome";
+					color: #c64e31;
+					left: -18px;
+					top: 4px;
+					font-size: 12px;
+
+					.pa;
+				}
+			}
+		}
+
+		&.b-form__control--correct {
+			border-color: #93bd34 !important;
+			box-shadow: 0 2px 0 rgba(0, 255, 0, 0.1) !important;
+
+			& + label {
+				&::before {
+					content: "\f058";
+					font-family: "FontAwesome";
+					color: #93bd34;
+					left: -18px;
+					top: 4px;
+					font-size: 12px;
+
+					.pa;
+				}
+			}
+		}
+	}
+
+	textarea.form-control {
+		border: none;
+		background-color: transparent !important;
+		background-image: url(~common/textarea-bg.png) !important;
+		background-position: center 30px !important;
+		height: 90px !important;
+		line-height: 30px;
+		padding: 0 !important;
+	}
+
+	&__group {
+		margin-bottom: 30px;
+
+		label {
+			font-size: 16px;
+			color: #626365;
+		}
+
+		&--m0 {
+			margin-bottom: 0;
+			margin-top: 9px;
+		}
+
+		&--required {
+			.b-form__control.form-control {
+				border-color: #ca9197;
+			}
+		}
+
+		&--float-label {
+			position: relative;
+
+			label {
+				position: absolute;
+				top: -15px;
+				left: 0;
+				z-index: 1;
+				font-size: 13px;
+				transition: top 0.3s, font-size 0.3s, color 0.3s;
+				color: #bbb;
+			}
+
+			.b-form__control {
+				z-index: 10;
+				position: relative;
+
+				&--empty {
+					& + label {
+						top: 10px;
+						font-size: 16px;
+						color: #626365;
+					}
+
+					&:focus {
+						& + label {
+							top: -15px;
+							font-size: 13px;
+							color: #bbb;
+						}
+					}
+				}
+			}
+		}
+
+		&--date {
+			position: relative;
+			border-bottom: 1px solid #ddd;
+			height: 36px;
+			padding-right: 100px;
+
+			label {
+				position: relative;
+				z-index: 0;
+				top: 6px;
+				display: block;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+			}
+
+			.pickmeup {
+				left: -65px !important;
+				position: absolute !important;
+				right: -65px !important;
+				display: none;
+				margin-top: -40px;
+				background: #fff;
+				border-radius: 0;
+				padding: 50px 60px 80px;
+				width: auto;
+
+				.pmu-instance {
+					width: 19em !important;
+
+					.pmu-day-of-week div,
+					.pmu-days .pmu-button {
+						width: 2.5em !important;
+						height: 2.5em !important;
+						line-height: 2.5em;
+					}
+
+					.pmu-days .pmu-button {
+						color: #1a849e;
+					}
+
+					.pmu-today {
+						background: #fae6df !important;
+						color: #3b576f !important;
+					}
+
+					.pmu-not-in-month {
+						visibility: hidden;
+					}
+
+					.pmu-selected,
+					.pmu-days .pmu-button:hover {
+						background: #fff1f4;
+					}
+
+					.pmu-month {
+						color: #636365;
+						width: 14.5em !important;
+						font-size: 18px;
+					}
+
+					.pmu-prev,
+					.pmu-next {
+						&::before {
+							font-family: "FontAwesome";
+							font-size: 16px;
+							color: #c42027;
+						}
+					}
+
+					.pmu-years .pmu-button,
+					.pmu-months .pmu-button {
+						color: #333;
+					}
+
+					.pmu-next {
+						&::before {
+							content: "\f105";
+						}
+					}
+
+					.pmu-prev {
+						&::before {
+							content: "\f104";
+						}
+					}
+				}
+
+				&--open {
+					display: block;
+				}
+			}
+
+			&::after {
+				content: "";
+				display: block;
+				position: absolute;
+				right: 75px;
+				top: 6px;
+				width: 20px;
+				height: 22px;
+				background-image: url(~common/i_calendar.png);
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+				z-index: 0;
+			}
+
+			.b-form__control {
+				&--date {
+					padding-left: 0 !important;
+					padding-right: 0 !important;
+					width: 70px;
+					position: absolute;
+					top: 0;
+					right: 0;
+					border: none !important;
+					color: #aaa !important;
+					z-index: 2001;
+				}
+			}
+		}
+	}
+
+	&__note {
+		text-align: center;
+		color: #636365;
+		font-size: 0.9em;
+	}
+
+	.required {
+		color: #b06062;
+		margin-left: 4px;
+	}
+}
+
+@keyframes bs-error {
+	0% {
+		box-shadow: 0 0 0 rgba(255, 0, 0, 0.1);
+	}
+
+	50% {
+		box-shadow: 0 3px 1px rgba(255, 0, 0, 0.1);
+	}
+
+	100% {
+		box-shadow: 0 0 0 rgba(255, 0, 0, 0.1);
+	}
+}
+
+@media (max-width: @media-bs-xxs) {
+	.b-form__group--date .pickmeup {
+		padding: 50px 10px 80px;
+		text-align: center;
+	}
+}

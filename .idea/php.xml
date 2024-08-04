@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MessDetectorOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCSFixerOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PHPCodeSnifferOptionsConfiguration">
+    <option name="highlightLevel" value="WARNING" />
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PhpIncludePathManager">
+    <include_path>
+      <path value="$PROJECT_DIR$/local/vendor/psr/log" />
+      <path value="$PROJECT_DIR$/local/vendor/techart/bitrix.tao" />
+      <path value="$PROJECT_DIR$/local/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/local/vendor/psr/simple-cache" />
+      <path value="$PROJECT_DIR$/local/vendor/techart/frontend-api" />
+      <path value="$PROJECT_DIR$/local/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/local/vendor/illuminate/support" />
+      <path value="$PROJECT_DIR$/local/vendor/twig/twig" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/deprecation-contracts" />
+      <path value="$PROJECT_DIR$/local/vendor/nilportugues/sitemap-component" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/translation-contracts" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/polyfill-ctype" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/polyfill-mbstring" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/finder" />
+      <path value="$PROJECT_DIR$/local/vendor/illuminate/events" />
+      <path value="$PROJECT_DIR$/local/vendor/illuminate/container" />
+      <path value="$PROJECT_DIR$/local/vendor/illuminate/contracts" />
+      <path value="$PROJECT_DIR$/local/vendor/illuminate/filesystem" />
+      <path value="$PROJECT_DIR$/local/vendor/illuminate/view" />
+      <path value="$PROJECT_DIR$/local/vendor/doctrine/inflector" />
+      <path value="$PROJECT_DIR$/local/vendor/rosell-dk/webp-convert" />
+      <path value="$PROJECT_DIR$/local/vendor/rosell-dk/image-mime-type-guesser" />
+      <path value="$PROJECT_DIR$/local/vendor/composer" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/polyfill-php80" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/debug" />
+      <path value="$PROJECT_DIR$/local/vendor/symfony/translation" />
+    </include_path>
+  </component>
+  <component name="PhpProjectSharedConfiguration" php_language_level="8.0">
+    <option name="suggestChangeDefaultLanguageLevel" value="false" />
+  </component>
+  <component name="PhpStanOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+  <component name="PsalmOptionsConfiguration">
+    <option name="transferred" value="true" />
+  </component>
+</project>

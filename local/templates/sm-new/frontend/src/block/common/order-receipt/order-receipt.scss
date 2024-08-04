@@ -1,0 +1,79 @@
+.order-receipt {
+	margin: 50px 0;
+
+	&__item {
+		display: flex;
+		background: white;
+		padding: 30px 20px 10px 20px;
+		margin: 20px 0;
+		border-radius: 10px;
+	}
+
+	&__item a {
+		text-decoration: none;
+		color: #000;
+	}
+
+	&__item a:hover {
+		color: #ad3d8c;
+	}
+
+	&__img-wrapp {
+		width: 180px;
+	}
+
+	&__text {
+		width: 80%;
+	}
+
+	&__text {
+		margin-left: 30px;
+	}
+
+	&__text p {
+		margin-bottom: 20px;
+		margin-top: 0;
+		font-size: 16px;
+		line-height: 20px;
+		font-weight: 400;
+	}
+
+	&__wrapper {
+		background: #ecf6f7;
+		padding: 30px;
+		border-radius: 20px;
+	}
+
+	&__title {
+		color: black;
+		font-size: 28px;
+		margin-bottom: 30px;
+		font-weight: bold;
+	}
+
+	@media all and (max-width: 768px) {
+		&__item {
+			flex-direction: column;
+		}
+
+		&__text {
+			margin-left: 0;
+		}
+
+		&__img-wrapp img {
+			margin-bottom: 20px;
+		}
+
+		&__text {
+			width: 100%;
+		}
+	}
+
+	@media all and (max-width: 480px) {
+		&__wrapper {
+			background: #ecf6f7;
+			padding: 20px 10px;
+			border-radius: 20px;
+		}
+	}
+}

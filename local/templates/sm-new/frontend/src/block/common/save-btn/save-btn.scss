@@ -1,0 +1,33 @@
+.save-btn {
+	font-size: 16px;
+	font-weight: 400;
+	background: #389dac;
+	border-radius: 30px;
+	padding: 10px 60px;
+	margin: 0 20px;
+	color: #fff;
+	text-decoration: none;
+
+	&:hover {
+		background: #ad3d8c;
+		color: #fff;
+	}
+
+	&.bot-btn {
+		margin: 0;
+	}
+
+	&.bot-btn {
+		margin-bottom: 30px;
+	}
+
+	&__wrapper {
+		padding: 30px 0;
+	}
+
+	@media all and (max-width: 480px) {
+		margin: 0;
+		font-size: 14px;
+		padding: 10px 20px;
+	}
+}

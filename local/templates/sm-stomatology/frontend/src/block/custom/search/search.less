@@ -1,0 +1,158 @@
+@import "../../../style/config";
+
+.b-search {
+	&--header {
+		right: 15px;
+		top: 38px;
+		width: 22px;
+		height: 22px;
+		margin-top: -11px;
+
+		.pa;
+
+		.b-search__toggle {
+			font-size: 23px;
+			color: #7e7e7e;
+			cursor: pointer;
+
+			&:hover,
+			&:focus,
+			&:active {
+				color: #666;
+			}
+
+			&--open {
+				display: none;
+			}
+		}
+
+		.b-search {
+			&__form {
+				display: none;
+			}
+
+			&__input {
+				top: -15px;
+				right: 0;
+				z-index: 100;
+
+				.pa;
+
+				input {
+					background: #f0f1eb;
+					border: none;
+					border-radius: 0;
+					padding: 0 40px;
+					text-align: left;
+					font-size: 18px;
+					line-height: 50px;
+					font-weight: 100;
+					color: #7e7e7e;
+					width: 900px;
+					height: 50px;
+
+					.db;
+				}
+			}
+
+			&__btn {
+				font-size: 23px;
+				color: #7e7e7e;
+				top: 13px;
+				left: 10px;
+				cursor: pointer;
+				padding: 0;
+				margin: 0;
+				border: none;
+				background: none;
+				appearance: none;
+
+				.pa;
+			}
+
+			&__btn-close {
+				width: 22px;
+				height: 23px;
+				right: 10px;
+				top: 14px;
+				background-image: url(~img/common/i_close_red.png);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				opacity: 0.5;
+				cursor: pointer;
+
+				.pa;
+
+				&:hover {
+					opacity: 1;
+				}
+			}
+		}
+	}
+
+	&--open.b-search--header {
+		.b-search {
+			&__form {
+				display: block;
+			}
+		}
+	}
+}
+
+@media (max-width: 1250px) {
+	.b-search--header {
+		right: 45px;
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-search--header {
+		right: 15px;
+	}
+
+	.b-search--header .b-search__input {
+		top: -27px;
+
+		input {
+			width: 1020px !important;
+			max-width: 100% !important;
+			height: 80px;
+			padding-left: 70px;
+		}
+
+		.b-search__btn {
+			top: 27px;
+			left: 23px;
+		}
+
+		.b-search__btn-close {
+			top: 29px;
+			right: 23px;
+		}
+	}
+}
+
+@media (max-width: 1040px) {
+	.b-search--header .b-search__input {
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+
+		input {
+			width: 100% !important;
+			height: 85px;
+		}
+
+		.b-search__btn {
+			top: 30px;
+			left: 23px;
+		}
+
+		.b-search__btn-close {
+			top: 31px;
+			right: 23px;
+		}
+	}
+}

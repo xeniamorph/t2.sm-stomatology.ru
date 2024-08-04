@@ -1,0 +1,15 @@
+<div class="b-news">
+	<p class="b-news__title b-heading--secondary">
+		Новости
+	</p>
+	<a href="/about/news/" class="b-news__link b-link b-link--1">
+		читать все
+	</a>
+	<div class="b-news__list b-news-list owl-carousel">
+		<?php $first = true; ?>
+		<?php foreach($items as $item){ ?>
+			<?=$item->render(['mode' => $listMode, 'first' => $first]); ?>
+			<?php $first = false; ?>
+		<?php } ?>
+	</div>
+</div>

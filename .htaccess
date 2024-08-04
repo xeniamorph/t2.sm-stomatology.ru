@@ -1,0 +1,176 @@
+Options -Indexes 
+ErrorDocument 404 /404.php
+
+#Header set Content-Security-Policy "script-src 'self' https://*.yandex.ru/ https://*.yandex.net/ https://yastatic.net/ https://www.google-analytics.com/ https://*.calltouch.ru/ 'unsafe-eval' 'unsafe-inline' https://google-analytics.bi.owox.com/;"
+
+AuthType Basic
+AuthName "Private zone. Only for administrator!"
+AuthUserFile  /home/user/.htpasswd
+require valid-user
+
+<IfModule mod_rewrite.c>
+  Options +FollowSymLinks
+  RewriteEngine On
+  RewriteBase /
+
+  #RewriteRule ^(.*)(png|jpg|jpeg)\.webp$ /include/webp.php?img=$1$2 [NC,L]
+
+  # RewriteCond %{REQUEST_FILENAME} !-f
+  # RewriteCond %{REQUEST_FILENAME} !-l
+  # RewriteCond %{REQUEST_FILENAME} !-d
+  # RewriteCond %{REQUEST_FILENAME} !/bitrix/urlrewrite.php$
+  # RewriteRule ^(.*)$ /bitrix/urlrewrite.php [L]
+  # RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+
+  RewriteCond %{REQUEST_URI} /index\.php$
+  RewriteRule (.*)index\.php$ /$1 [R=301,L]
+  
+  #RewriteCond %{HTTP_REFERER} moscowtop100plus\.ru [NC]
+  #RewriteRule .* - [F]
+
+
+
+  RewriteRule ^services/protezirovanie-ortopediya/konsultatsiya-gnatologa/$ /services/protezirovanie-ortopediya/ [R=301,L]
+  RewriteRule ^services/diagnostika/diagnostika-sostoyaniya-sustava-vnchs/$ /services/diagnostika/  [R=301,L]
+
+  RewriteRule ^services/protezirovanie-ortopediya/redirect/$ /services/esteticheskaya-stomatologiya/ustanovka-vinirov/ [R=301,L]
+  
+  RewriteRule ^doctors/stomatologi-khirurgi/chernova-svetlana-lvovna/$ /doctors/chernova-svetlana-lvovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-khirurgi/galushko-andrey-vasilevich/$ /doctors/galushko-andrey-vasilevich/  [R=301,L]
+  RewriteRule ^doctors/stomatologi-khirurgi/sagatilov-arsen-vladislavovich/$ /doctors/sagatilov-arsen-vladislavovich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortodonty/berulava-margarita-georgievna/$ /doctors/berulava-margarita-georgievna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortodonty/aksenova-irina-anatolevna/$ /doctors/aksenova-irina-anatolevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortodonty/ponomareva-lyudmila-vladimirovna/$ /doctors/ponomareva-lyudmila-vladimirovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortodonty/semyenova-oksana-sergeevna/$ /doctors/semyenova-oksana-sergeevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortopedy/chernyshova-nataliya-yurevna/$ /doctors/chernyshova-nataliya-yurevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortopedy/dedkov-dmitriy-nikolaevich/$ /doctors/dedkov-dmitriy-nikolaevich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortopedy/katsevman-igor-borisovich/$ /doctors/katsevman-igor-borisovich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortopedy/ronzhin-sergey-yurevich/$ /doctors/ronzhin-sergey-yurevich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortopedy/shishkina-olga-yurevna/$ /doctors/shishkina-olga-yurevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/berezina-lyudmila-sergeevna/$ /doctors/berezina-lyudmila-sergeevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/bryukhatov-aleksandr-nikolaevich/$ /doctors/bryukhatov-aleksandr-nikolaevich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/cherkashina-garusova-galina-aleksandrovna/$ /doctors/cherkashina-garusova-galina-aleksandrovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-ortopedy/chernova-irina-konstantinovna/$ /doctors/chernova-irina-konstantinovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/kadieva-niyat-mukailovna/$ /doctors/kadieva-niyat-mukailovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/kazakov-sergey-yurevich/$ /doctors/kazakov-sergey-yurevich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/kolobaev-kirill-aleksandrovich/$ /doctors/kolobaev-kirill-aleksandrovich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/kolobkov-igor-alekseevich/$ /doctors/kolobkov-igor-alekseevich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/krzhizhanovskaya-yuliya-aleksandrovna/$ /doctors/krzhizhanovskaya-yuliya-aleksandrovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/kuzhanova-anneta-magametovna/$ /doctors/kuzhanova-anneta-magametovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/makaenkova-natalya-andreevna/$ /doctors/makaenkova-natalya-andreevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/martynova-elena-yurevna/$ /doctors/martynova-elena-yurevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/medvedeva-evgeniya-vladimirovna/$ /doctors/medvedeva-evgeniya-vladimirovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/romanova-elizaveta-aleksandrovna/$ /doctors/romanova-elizaveta-aleksandrovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/rostovenko-inna-ivanovna/$ /doctors/rostovenko-inna-ivanovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/shuvalov-yuriy-mikhaylovich/$ /doctors/shuvalov-yuriy-mikhaylovich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/tamaeva-zarina-valerevna/$ /doctors/tamaeva-zarina-valerevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/tyurin-sergey-vyacheslavovich/$ /doctors/tyurin-sergey-vyacheslavovich/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/tyuryakova-natalya-aleksandrovna/$ /doctors/tyuryakova-natalya-aleksandrovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/vorontsova-elena-valerevna/$ /doctors/vorontsova-elena-valerevna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/vyshlova-anastasiya-vladimirovna/$ /doctors/vyshlova-anastasiya-vladimirovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/yurchenko-natalya-viktorovna/$ /doctors/yurchenko-natalya-viktorovna/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-terapevty/zhukova-irina-petrovna/$ /doctors/zhukova-irina-petrovna/ [R=301,L]
+  RewriteRule ^settings/ / [R=301,L]
+  #RewriteRule ^services/detskaya-stomatologiya/ https://www.smdoctor.ru/child-stomatology/ [R=301,L]
+  RewriteRule ^services/diagnostika/rentgen-zuba-dentalnyy-snimok/ /services/diagnostika/rentgen-zubov-radioviziografiya/ [R=301,L]
+  RewriteRule ^services/diagnostika/radioviziografiya/ /services/diagnostika/rentgen-zubov-radioviziografiya/ [R=301,L]
+  RewriteRule ^stock/aktsiya-predlozhenie-goda-ot-sm-stomatologiya/ http://implant.smclinic.ru/ [R=301,L]
+  RewriteRule ^doctors/stomatologi-gnatologi/ /doctors/stomatologi-ortopedy/ [R=301,L]
+  RewriteRule ^contacts/sm-stomatologiya-na-staropetrovskom-proezde/ /contacts/sm-stomatologiya-v-staropetrovskom-proezde/ [R=301,L]
+  RewriteRule ^contacts/sm-stomatologiya-na-ul-kosmonavta-volkova/ /contacts/sm-stomatologiya-v-staropetrovskom-proezde/ [R=301,L]
+  RewriteRule ^tours/sm-stomatologiya-v-staropetrovskom-proezde/ http://www.smclinic.ru/press-centr/tours/SMSTstaropetrovskomproezde/ [R=301,L]
+  RewriteRule ^contacts/detskaya-stomatologiya-na-kosmonavta-volkova/ https://www.sm-stomatology.ru/contacts/detskaya-stomatologiya-na-ul-klary-tsetkin/ [R=301,L]
+  RewriteRule ^contacts/detskaya-stomatologiya-v-marinoy-roshche-m-marina-roshcha/ https://www.smdoctor.ru/clinics/klinika-dlya-detey-i-podrostkov-sm-doktor-v-marinoy-roshche/ [R=301,L]
+  RewriteRule ^about/onlayn-dokumenty/ https://www.sm-stomatology.ru/patients/onlayn-dokumenty/ [R=301,L]
+  RewriteRule ^services/anesteziya/ /services/lechenie-bez-boli/ [R=301,L]
+  RewriteRule ^about/news/vazhnaya-informatsiya-poseshchenie-vracha-vo-vremya-rezhima-samoizolyatsii/ https://www.sm-stomatology.ru/about/mery-bezopasnosti-v-klinikakh/ [R=301,L]
+  RewriteRule ^contacts/sm-stomatologiya-na-ul-klary-tsetkin/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-ul-senezhskaya/ [R=301,L]
+
+  RewriteRule ^services/esteticheskaya-stomatologiya/otbelivanie-zubov/otbelivanie-zubov-sistemoy-zoom3/	https://www.sm-stomatology.ru/services/esteticheskaya-stomatologiya/otbelivanie-zubov/otbelivanie-zubov-sistemoy-zoom4/ [R=301,L]
+  RewriteRule ^services/esteticheskaya-stomatologiya/otbelivanie-zubov/otbelivanie-zubov-sistemoy-blanche-brillante-shveytsariya/	https://www.sm-stomatology.ru/services/esteticheskaya-stomatologiya/otbelivanie-zubov/otbelivanie-zubov-sistemoy-zoom4/ [R=301,L]
+  RewriteRule ^services/implantatsiya/(.*)/ https://www.sm-stomatology.ru/services/implantaciya-zubov/$1/ [R=301,L]
+  RewriteRule ^services/implantatsiya/ https://www.sm-stomatology.ru/services/implantaciya-zubov/ [R=301,L]
+  RewriteRule ^services/diagnostika/ekspertnaya-rasshifrovka-dentalnykh-snimkov-diagnocat/ https://www.sm-stomatology.ru/services/diagnostika/ [R=301,L]
+
+  RewriteRule ^map-volgogradskii$ https://yandex.ru/maps/-/CCU4yGgC2C [R=301,L]
+  RewriteRule ^map-yartsevskaya$ https://yandex.ru/maps/-/CCU4yGD43C [R=301,L]
+  RewriteRule ^map-yaroslavskaya$ https://yandex.ru/maps/-/CCU4yGDtGC [R=301,L]
+  RewriteRule ^map-klary-tsetkin$ https://yandex.ru/maps/-/CCU4yGTasB [R=301,L]
+  RewriteRule ^map-marina-roshcha$ https://yandex.ru/maps/-/CCU4yGTP8A [R=301,L]
+  RewriteRule ^map-kosmonavta-volkova$ https://yandex.ru/maps/-/CCU4yGXTkC [R=301,L]
+  RewriteRule ^map-staropetrovskii$ https://yandex.ru/maps/-/CCU4yGdSLB [R=301,L]
+
+  # короткие ссылки
+  RewriteRule ^stoks/ https://www.sm-stomatology.ru/stock/ [R=301,L]
+  RewriteRule ^18 https://www.sm-stomatology.ru/stock/aktsiya-sm-stomatologiya-ostavaytes-s-nami/?utm_source=sms&utm_medium=email&utm_campaign=ostavaytes_s_nami [R=301,L]
+  RewriteRule ^implant/ https://www.sm-stomatology.ru/stock/aktsiya-nedelya-implantatsii/?utm_source=sms&utm_medium=email&utm_campaign=nedelya_implantatsii [R=301,L]
+  RewriteRule ^free/	https://www.sm-stomatology.ru/stock/aktsiya-dobro-pozhalovat/?utm_source=sms&utm_medium=email&utm_campaign=welcome_stomatology [R=301,L]
+  RewriteRule ^move/	https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-ul-senezhskaya/?utm_source=sms&utm_medium=email&utm_campaign=stm_senezhskaya [R=301,L]
+  RewriteRule ^son$ https://www.sm-stomatology.ru/services/detskaya-stomatologiya/detskaya-terapevticheskaya-stomatologiya/lechenie-zubov-pod-obshchim-narkozom/?utm_source=sms&utm_medium=email&utm_campaign=lechenie_zubov_pod_obshchim_narkozom [R=301,L]
+
+  RewriteRule ^mr/ https://www.sm-stomatology.ru/contacts/detskaya-stomatologiya-v-marinoy-roshche-m-marinaroshcha/ [R=301,L]
+  RewriteRule ^yarc/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-ul-yartsevskaya/ [R=301,L]
+  RewriteRule ^nch/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-ul-novocheremushkinskaya-m-novye-cheremushki/ [R=301,L]
+  RewriteRule ^yarsl/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-ul-yaroslavskaya/ [R=301,L]
+  RewriteRule ^stp/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-v-staropetrovskom-proezde/ [R=301,L]
+  RewriteRule ^sen/	https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-ul-senezhskaya/ [R=301,L]
+  RewriteRule ^kts/ https://www.sm-stomatology.ru/contacts/detskaya-stomatologiya-na-ul-klary-tsetkin/ [R=301,L]
+  RewriteRule ^ts/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-volgogradskom-prospekte-vzroslaya/ [R=301,L]
+  RewriteRule ^detyar/ https://www.sm-stomatology.ru/contacts/detskaya-stomatologiya-na-ul-yartsevskaya/ [R=301,L]
+  RewriteRule ^detts/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-na-volgogradskom-prospekte/ [R=301,L]
+  RewriteRule ^gigiena/	https://www.sm-stomatology.ru/services/profilaktika/professionalnaya-chistka-zubov/?utm_source=sms&utm_medium=email&utm_campaign=chistka_zubov [R=301,L]
+  RewriteRule ^implantaciya/ https://www.sm-stomatology.ru/services/implantaciya-zubov/?utm_source=sms&utm_medium=email&utm_campaign=promo_implantaciya_zubov [R=301,L]
+  RewriteRule ^gigiena-deti/ https://www.sm-stomatology.ru/services/detskaya-stomatologiya/detskaya-terapevticheskaya-stomatologiya/professionalnaya-gigiena-polosti-rta/?utm_source=sms&utm_medium=email&utm_campaign=chistka_zubov_detyam [R=301,L]
+  RewriteRule ^map-klary-tsetkin/ https://yandex.ru/maps/-/CCUNnYE42A [R=301,L]
+  RewriteRule ^map-cheremushki/ https://yandex.ru/maps/-/CCUNnUt-dD [R=301,L]
+  RewriteRule ^orto/ https://www.sm-stomatology.ru/stock/ispravlenie-prikusa-dlya-schastlivoy-detskoy-ulybki/?utm_source=sms&utm_medium=email&utm_campaign=ispravlenie_prikusa_detiam [R=301,L]
+  RewriteRule ^karies/ https://www.sm-stomatology.ru/stock/luchshaya-profilaktika-kariesa-po-vygodnoy-tsene/?utm_source=sms&utm_medium=email&utm_campaign=profilaktika_kariesa_skidka [R=301,L]
+  RewriteRule ^stm/ https://www.sm-stomatology.ru/services/?utm_source=sms&utm_medium=email&utm_campaign=dlya_privlecheniya_pacientov_v_stm [R=301,L]
+  RewriteRule ^st-sret/ https://www.sm-stomatology.ru/contacts/sm-stomatologiya-v-sretenskom-tupike/ [R=301,L]
+  RewriteRule ^map-sretenka/ https://yandex.ru/maps/-/CCUc5BhaXB [R=301,L]
+  RewriteRule ^srt/ https://www.sm-stomatology.ru/stock/dobro-pozhalovat-sretenka/?utm_source=sms&utm_medium=email&utm_campaign=besplatnaya_konsulitaciya_stomatologa_sretenka [R=301,L]
+  RewriteRule ^clean/ https://www.sm-stomatology.ru/services/profilaktika/professionalnaya-chistka-zubov/?utm_source=sms&utm_medium=email&utm_campaign=promo_professionalnaya_chistka_zubov [R=301,L]
+  RewriteRule ^smile/ https://www.sm-stomatology.ru/services/ispravlenie-prikusa-ortodontiya/kappy-3d-smile/?utm_source=sms&utm_medium=email&utm_campaign=mesyac_krasivoj_ulybki [R=301,L]
+  RewriteRule ^30/ https://www.sm-stomatology.ru/stock/luchshaya-profilaktika-kariesa-po-vygodnoy-tsene/?utm_source=sms&utm_medium=email&utm_campaign=stm_skidka30 [R=301,L]
+  RewriteRule ^impl/ https://www.sm-stomatology.ru/services/implantaciya-zubov/?utm_source=sms&utm_medium=email&utm_campaign=stm_imp [R=301,L]
+  RewriteRule ^prot/ https://www.sm-stomatology.ru/services/protezirovanie-ortopediya/?utm_source=sms&utm_medium=email&utm_campaign=stm_prot [R=301,L]
+  RewriteRule ^vosne/ https://www.sm-stomatology.ru/stock/lechenie-zubov-vo-sne-konsultatsiya-detskogo-stomatologa-besplatno/?utm_source=sms&utm_medium=email&utm_campaign=vosne [R=301,L]
+
+  
+  #RewriteCond %{HTTP_HOST}   !^$
+  #RewriteCond %{HTTP_HOST}   !^www\.          [NC]
+  #RewriteCond %{HTTP_HOST}   (.+)$
+  #RewriteRule ^(.*)          https://www.%1/$1 [L,R=301]
+
+  #RewriteCond %{HTTPS} off
+  #RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  #RewriteRule ^(.*)$ https://www.sm-stomatology.ru%{REQUEST_URI} [L,R=301]
+
+  #RewriteCond %{HTTP_HOST} ^sm-stomatology.ru
+  #RewriteRule (.*) https://www.sm-stomatology.ru/$1 [R=301,L]
+
+  #RewriteCond %{REQUEST_FILENAME} !-f
+  #RewriteCond %{REQUEST_URI} !\..+$
+  #RewriteCond %{REQUEST_URI} !/$
+  #RewriteRule (.*) https://www.sm-stomatology.ru/$1/ [R=301,L]
+
+  RewriteCond %{REQUEST_FILENAME} !/local/vendor/techart/bitrix.tao/urlrewrite.php$
+  RewriteRule !\.(js|ico|gif|jpg|jpeg|JPG|png|css|chm|doc|xls|zip|rar|pdf|txt|avi|eot|ttf|woff|woff2|svg|otf|xml)$ /local/vendor/techart/bitrix.tao/urlrewrite.php
+  #RewriteCond %{REQUEST_FILENAME} !-f
+  #RewriteCond %{REQUEST_FILENAME} !-l
+  #RewriteCond %{REQUEST_FILENAME} !-d
+  #RewriteCond %{REQUEST_FILENAME} !/local/vendor/techart/bitrix.tao/urlrewrite.php$
+  #RewriteRule ^(.*)$ /local/vendor/techart/bitrix.tao/urlrewrite.php [L]
+  #RewriteRule .* - [E=REMOTE_USER:%{HTTP:Authorization}]
+
+</IfModule>
+
+<IfModule mod_dir.c>
+  DirectoryIndex index.php index.html
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive on
+  ExpiresByType image/jpeg "access plus 3 day"
+  ExpiresByType image/gif "access plus 3 day"
+</IfModule>

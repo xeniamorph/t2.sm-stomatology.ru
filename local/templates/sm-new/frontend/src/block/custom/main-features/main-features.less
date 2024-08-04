@@ -1,0 +1,143 @@
+@import "../../../style/config";
+
+.b-main-features {
+	margin: 60px 0 20px 50px;
+	padding-bottom: 70px;
+
+	.pr;
+
+	&::after {
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 2px;
+		background: @third-color;
+		content: "";
+
+		.db;
+
+		.pa;
+	}
+
+	&__title {
+		margin-bottom: 35px;
+	}
+
+	.owl-dots {
+		counter-reset: dots;
+		position: absolute;
+		top: 0 !important;
+		bottom: auto;
+		left: 50% !important;
+		margin-left: 35px !important;
+		text-align: left;
+	}
+
+	.owl-dot {
+		background: none !important;
+		transform: none !important;
+		display: inline-block;
+		font: 40px "WaldorfItalic";
+		width: 50px !important;
+		position: relative;
+
+		&.active {
+			color: @main-color;
+
+			&::after {
+				position: absolute;
+				top: -4px;
+				left: -19px;
+				content: "";
+				width: 60px;
+				height: 60px;
+				border-radius: 50%;
+				border: 1px solid @third-color;
+			}
+		}
+
+		&:hover {
+			color: @main-color;
+		}
+	}
+
+	.owl-dot::before {
+		counter-increment: dots;
+		content: counter(dots);
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-main-features {
+		&__title {
+			margin-left: 38px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-main-features {
+		margin: 60px 0 20px;
+
+		.owl-dots {
+			counter-reset: dots;
+			position: absolute;
+			top: 0 !important;
+			bottom: auto;
+			left: 50% !important;
+			margin-left: 35px !important;
+			text-align: left;
+		}
+
+		.owl-dot {
+			font: 30px "WaldorfItalic";
+			width: 20px;
+
+			&.active::after {
+				top: -2px;
+				left: -13px;
+				width: 41px;
+				height: 41px;
+			}
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-main-features {
+		padding-bottom: 30px;
+
+		&::after {
+			left: 10px;
+			right: 10px;
+		}
+
+		&__title {
+			margin-bottom: 35px;
+			text-align: center;
+			font: 26px "BlissProLight";
+		}
+
+		.owl-dots {
+			top: auto !important;
+			bottom: 60px !important;
+			left: 0 !important;
+			margin-left: 35px !important;
+			text-align: left;
+		}
+
+		.owl-dot {
+			font-size: 20px;
+			width: 28px !important;
+
+			&.active {
+				&::after {
+					top: -8px;
+					left: -16px;
+					width: 41px;
+					height: 41px;
+				}
+			}
+		}
+	}
+}

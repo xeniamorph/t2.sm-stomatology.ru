@@ -1,0 +1,35 @@
+@import "../../../style/config";
+
+.b-links-block {
+	border-top: 2px solid @third-color;
+	border-bottom: 2px solid #e6e7dc;
+	margin: 10px 0 20px;
+	padding: 25px 0;
+
+	&__link {
+		color: @secondary-color;
+		font: 21px "WaldorfLightItalic";
+		padding: 0 20px 0 0;
+		text-decoration: none;
+
+		span {
+			display: inline;
+			text-decoration: underline;
+			vertical-align: middle;
+		}
+
+		.fa {
+			font-size: 14px;
+			color: @main-color !important;
+			display: inline-block;
+			text-decoration: none !important;
+			vertical-align: middle;
+			margin-left: 4px;
+		}
+
+		&:hover {
+			color: @main-color;
+			text-decoration: none;
+		}
+	}
+}

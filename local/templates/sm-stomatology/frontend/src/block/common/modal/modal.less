@@ -1,0 +1,88 @@
+.modal {
+	background: rgba(100, 100, 100, 0.8) !important;
+	z-index: 9999;
+
+	.close {
+		position: absolute;
+		top: -40px;
+		right: -40px;
+		width: 25px;
+		height: 26px;
+		background: url(~common/i_close.png);
+		background-position: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		opacity: 1 !important;
+	}
+
+	.modal-dialog {
+		margin-top: 120px;
+		max-width: 400px;
+	}
+
+	.modal-header {
+		border-bottom: none;
+		text-align: center;
+		position: relative;
+	}
+
+	.modal-title {
+		font: 28px "BlissProLight";
+		color: #000;
+	}
+
+	.modal-footer {
+		border-top: none;
+
+		.btn {
+			display: block;
+			margin: 0 0 10px;
+			float: none;
+			width: 100%;
+		}
+	}
+
+	.modal-content {
+		border-radius: 0;
+		padding-left: 50px;
+		padding-right: 50px;
+		padding-bottom: 1px;
+		background: #f3f3f1;
+		border: 2px solid #a03339 !important;
+	}
+
+	&--equipment {
+		.modal-dialog {
+			margin-top: 120px;
+			max-width: 550px;
+		}
+
+		.modal-content {
+			background: #fff;
+			text-align: left;
+		}
+
+		.modal-content {
+			padding-left: 20px;
+			padding-right: 20px;
+		}
+
+		.modal-title {
+			color: #7e7e7e;
+			font-size: 30px;
+			margin-bottom: 25px;
+		}
+	}
+
+	&--lg {
+		.modal-dialog {
+			margin-top: 120px;
+			max-width: 800px;
+		}
+
+		.modal-content {
+			padding: 40px 50px;
+			height: auto;
+		}
+	}
+}

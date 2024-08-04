@@ -1,0 +1,32 @@
+.b-action-desc {
+	background: #f6f8f7;
+	padding: 40px 0 30px;
+
+	&__title {
+		font-size: 28px;
+		margin: 0 0 20px;
+	}
+
+	&__text ul {
+		padding: 0 0 10px 20px;
+	}
+
+	&__text ul li {
+		position: relative;
+		padding: 0 20px 0 25px;
+		margin: 0 0 20px;
+		-webkit-column-break-inside: avoid;
+		page-break-inside: avoid;
+		-moz-column-break-inside: avoid;
+		break-inside: avoid;
+		break-inside: avoid-column;
+	}
+
+	@media all and (max-width: 768px) {
+		padding: 30px 0 20px;
+
+		&__title {
+			font-size: 20px;
+		}
+	}
+}

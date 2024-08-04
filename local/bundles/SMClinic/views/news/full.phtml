@@ -1,0 +1,89 @@
+<?php
+\TAO::navigation()->flag('news');
+\TAO::navigation()->route()->add(['url' => $this->url(), 'title' => $this->title()]);
+$this->preparePage();
+?>
+
+<div itemscope itemtype="https://schema.org/NewsArticle">
+	<div class="article-headline">
+		<div class="container">
+			<div class="article-headline__title">
+				<h1 itemprop="name"><?=$this->title()?></h1>
+			</div>
+		</div>
+	</div>
+
+	<div class="article-tools">
+		<div class="container">
+			<div class="article-tools__box">
+				<div class="article-tools__left">
+					<a class="article-tools__back" href="/about/news/">Вернуться к новостям</a>
+					<div class="article-tools__date"> Дата:&nbsp; <span itemprop="datePublished"> <?=$this->dateFrom('d.m.Y')?></span></div>
+				</div>
+				<div class="article-tools__right">
+					<div class="article-socials">
+						<div class="article-socials__caption">Поделиться в социальных сетях:</div>
+						<div class="article-socials__items">
+							<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+							<script src="//yastatic.net/share2/share.js"></script>
+							<div class="ya-share2"
+								 data-services="collections,vkontakte,odnoklassniki,moimir"
+								 data-counter=""></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="article-content">
+		<div class="container">
+			<div class="article-content__wrap">
+				<div class="article-content__content text">
+					<div class="article-content__image" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+						<img src="<?=$this->detailPicture()->url()?$this->detailPicture()->resizedImage('fit266x267'):$this->previewPicture()->resizedImage('fit266x267')?>" itemprop="contentUrl" loading="lazy">
+						<meta itemprop="name" content="<?=$this->title()?>">
+					</div>
+					<div class="article-content__text" itemprop="articleBody">
+						<?=$this['DETAIL_TEXT']?>
+					</div>
+
+					<?php $galleryImg = [];
+					if($this['GALLERY']->value()) {
+						foreach ($this['GALLERY']->valueData() as $key=>$data) {
+							$img = new \TAO\File($data['VALUE']);
+							$galleryImg[$key] = [
+								'resized' => $img->resizedImage('crop257x257'),
+								'max' => $img
+							];
+						}
+
+						$alt = "Стоматологическая клиника ".$this->title()." фото ";
+
+						print TAO::frontend()->renderBlock('article/article-similar', [
+							'alt' => $alt,
+							'images' => $galleryImg,
+							'class' => 'white-bg-slider'
+						]);
+					}?>
+
+					<div class="article-switch__nav">
+						<?php if ($this->prev()) { ?>
+							<a href="<?=$this->prev()->url()?>" class="article-switch__prev">
+								Предыдущая новость
+							</a>
+						<?php } ?>
+						<?php if ($this->next()) { ?>
+							<a href="<?=$this->next()->url()?>" class="article-switch__next">
+								Следующая новость
+							</a>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

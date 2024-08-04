@@ -1,0 +1,19 @@
+<a href="{{ url }} " class="news-card">
+	<div class="news-card__cell">
+		<div class="news-card__left" itemscope itemtype="http://schema.org/ImageObject">
+			<img class="news-card__image" src="{{ img }}" itemprop="contentUrl" alt="{{ title }} фото" title="{{ title }}">
+			<meta itemprop="name" content="{{ title }}">
+		</div>
+		<div class="news-card__date-label">
+			{{ date }}
+		</div>
+	</div>
+	<div class="news-card__cell-text">
+		<div class="news-card__title">
+			{{ title }}
+		</div>
+		<div class="news-card__desc">
+			{{ desc }}
+		</div>
+	</div>
+</a>

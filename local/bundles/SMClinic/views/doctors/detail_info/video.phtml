@@ -1,0 +1,30 @@
+<div class="video-block">
+	<div class="container">
+		<div class="video-block__title">
+			<h2 class="page-title-3">Видео по теме</h2>
+		</div>
+		<div class="video-block__wrap">
+			<div class="video-block__slider">
+				<?php foreach ($videoList as $video){?>
+					<div class="video-block__slide">
+						<a class="video-block__card js-fancybox" href="https://www.youtube.com/embed/<?=$video['code']?>" data-rel="media">
+							<div class="video-block__image">
+								<img src="<?=\CFile::GetPath($video['image']['VALUE'])?:'//img.youtube.com/vi/' . $video['code'] .'/hqdefault.jpg'?>">
+								<div class="video-block__play"></div>
+							</div>
+							<span class="video-block__date-relise">
+									<?=FormatDate("d.m.Y", MakeTimeStamp($video['date'], "YYYY-MM-DD"))?>
+								</span>
+							<div class="video-block__desc">
+								<?=$video['text']?>
+							</div>
+						</a>
+					</div>
+				<?php }?>
+			</div>
+			<div class="video-block__prev"></div>
+			<div class="video-block__dots"></div>
+			<div class="video-block__next"></div>
+		</div>
+	</div>
+</div>

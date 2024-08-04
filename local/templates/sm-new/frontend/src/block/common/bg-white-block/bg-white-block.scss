@@ -1,0 +1,21 @@
+.bg-white__block {
+	background-image: url(/local/templates/sm-new/img/main_bg_image.jpg);
+	padding: 50px 0;
+	background-size: cover;
+	margin-bottom: 40px;
+
+	&-wrapper {
+		background: #fff;
+		padding: 30px 30px 30px 60px;
+		border-radius: 20px;
+		line-height: 20px;
+		color: black;
+	}
+
+	@media all and (max-width: 1024px) {
+		&-wrapper {
+			padding: 20px;
+			line-height: 19px;
+		}
+	}
+}

@@ -1,0 +1,165 @@
+.b-element-link-detail {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	background-color: #e5e5e5;
+	padding: 25px 20px;
+	justify-content: left;
+	margin-top: 20px;
+}
+
+.b-element-link-detail__text-layout {
+	max-width: 80%;
+}
+
+.b-element-link-detail__element {
+	width: 33.33%;
+	display: flex;
+	align-items: baseline;
+	margin-bottom: 10px;
+}
+
+@media (max-width: 992px) {
+	.b-element-link-detail__element {
+		width: 50%;
+	}
+}
+
+@media (max-width: 575px) {
+	.b-element-link-detail__element {
+		width: 100%;
+	}
+}
+
+.b-element-link-detail__img {
+	height: 33px;
+}
+
+.b-element-link-detail__link {
+	font-style: normal;
+	font-weight: normal;
+	font-size: 18px;
+	line-height: 23px;
+	text-decoration-line: underline;
+	color: #1b5773;
+}
+
+.b-element-link-detail__element {
+	display: flex;
+	flex-direction: row;
+	align-items: self-start;
+}
+
+.b-element-link-detail__img-layout {
+	min-width: 40px;
+}
+
+.b-tabs .nav-links {
+    border-radius: 0!important;
+    font-size: 18px;
+	color: #388da7;
+	text-decoration: underline;
+}
+.b-tabs .nav-links:hover {
+	opacity: 0.7 !important;
+}
+.nav-tabs .nav-links {
+    display: block;
+    padding: .5em 1em;
+    border: 1px solid transparent;
+    border-top-right-radius: .25rem;
+    border-top-left-radius: .25rem;
+}
+
+@media (max-width: 575px) {
+	.b-tabs .nav-links {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		max-width: 100%;
+		display: inline-block;
+		font-size: 18px;
+		text-align: center;
+		display: block;
+	}
+}
+
+@media (max-width: 992px) {
+	.b-tabs .nav-links {
+	    font-size: 14px;
+	    padding-left: 6px;
+	    padding-right: 6px;
+	}
+}
+
+@media (max-width: 1199px) {
+	.b-tabs .nav-links {
+	    font-size: 16px;
+	}
+}
+
+.anchor-hided {
+	top: -190px;
+    position: relative;
+}
+
+@media (max-width: 480px) {
+	.anchor-hided {
+		top: -55px;
+		position: relative;
+	}
+}
+
+
+.b-card__btn-panel {
+	height: 60px !important;
+}
+
+h2.desease-prices-title {
+	margin-bottom: -15px;
+	padding: 0 !important;
+}
+
+.implant-title {
+	color: #7e7e7e;
+	font-size: 24px;
+	text-transform: uppercase;
+	text-align: left;
+	padding: 0 0 30px 0;
+	overflow: hidden;
+	clear: both;
+	line-height: normal;
+	opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+	.implant-title {
+		font-size: 20px;
+	}
+}
+input#search:not([value=""])+label {
+    top: -15px !important;
+    font-size: 13px !important;
+    color: #bbb !important;
+}
+
+.container{
+	max-width: 1430px!important;
+}
+
+.image-block {
+	display: grid;
+	grid-template-columns: repeat(2, calc(50% - 10px));
+	grid-row: auto;
+	gap: 20px;
+}
+
+.image-block img {
+	max-width: 100%;
+}
+
+@media all and (max-width: 768px) {
+    .image-block {
+		grid-template-columns: 100%;
+	}
+}

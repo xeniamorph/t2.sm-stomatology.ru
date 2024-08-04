@@ -1,0 +1,38 @@
+<div class="tao-form tao-form-<?= $name ?>">
+	<h3>Написать руководителю Службы клиентской поддержки СМ-Клиника</h3>
+    <ul class="tao-form-errors"<?= (count($this->errors)>0? '' : ' style="display: none;"') ?>>
+        <?php foreach($this->errors as $field => $error) if (strlen($error)>1) { ?>
+            <li data-field="<?= $field ?>" class="error-field-<?= $field ?>"><?= $error ?></li>
+        <?php } ?>
+    </ul>
+	<form id="tao-form-<?= $name ?>" method="post" action="<?= $action ?>" class="tao-form tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+		<input type="text" name="<?= $fields['name']['code'] ?>" placeholder="<?= $fields['name']['NAME'] ?>"><br>
+		<input type="text" name="<?= $fields['lastname']['code'] ?>" placeholder="<?= $fields['lastname']['NAME'] ?>"><br>
+		<input type="text" name="<?= $fields['email']['code'] ?>" placeholder="<?= $fields['email']['NAME'] ?>"><br>
+		<textarea name="<?= $fields['review']['code'] ?>" placeholder="<?= $fields['review']['NAME'] ?>"></textarea><br>
+		<input type="hidden" name="taoform" value="<?= $name ?>">
+		<input class="recaptchaForm"
+			   id="administration-from"
+			   type="submit"
+			   value="<?= $this->option('submit_text') ?>"
+			   data-method="onRecaptchaAdministrationForm">
+		<input type="hidden" name="user_email" value="">
+		<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+		<input type="hidden" name="formtype" value="administration">
+		<input type="hidden" name="analytics" value="">
+		<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+	</form>
+	<?php if ($this->ajax()) { ?>
+		<script>
+			var onRecaptchaAdministrationForm = function(token) {
+				captchaFormProcess('<?= $name ?>', 'administration-from', <?= json_encode($this->options) ?>);
+			};
+		</script>
+	<?php } else { ?>
+		<script>
+			var onRecaptchaAdministrationForm = function (token) {
+				captchaFormSubmit('<?= $name ?>');
+			};
+		</script>
+	<?php } ?>
+</div>

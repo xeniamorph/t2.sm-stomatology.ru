@@ -1,0 +1,97 @@
+<?php
+$this->preparePage();
+//\TAO::navigation()->flag('diseases');
+?>
+
+<div class="headline__wrapper">
+	<div class="headline">
+		<div class="container">
+			<div class="headline__title">
+				<h1><?= $this->title() ?></h1>
+			</div>
+		</div>
+	</div>
+</div>
+<?php
+if($this['nav'] ->value()) {
+	$navList = $this['nav']->valueData();?>
+	<div class="page-nav-sticky__wrapper">
+		<div class="container">
+			<div class="page-nav-sticky">
+				<div class="page-nav-sticky__wrap">
+					<div class="page-nav-sticky__buttons four-columns">
+						<?php foreach ($navList as $nav) {?>
+							<div itemscope itemtype="http://schema.org/SiteNavigationElement" class="page-nav-sticky__item">
+								<a href="#<?=$nav['DESCRIPTION']?>" class="page-nav-sticky__button" itemprop="url"><span itemprop="name"><?=$nav['VALUE']?></span></a>
+							</div>
+						<?php }?>
+					</div>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+<div class="top-color__block">
+	<div class="container">
+		<div class="top-color__box">
+			<div class="top-color__content">
+				<?= $this['PREVIEW_TEXT'] ?>
+			</div>
+			<div class="top-color__photo">
+				<img src="<?= $this->detailPicture()->resizedImage('fit446x220') ?>" loading="lazy"></div>
+		</div>
+	</div>
+</div>
+
+<?php
+if($this['services']->value()) {
+	$serviceList = \TAO::infoblock('services')->getItems([
+		'filter' => ['ACTIVE' => 'Y', 'ID' => $this['services']->value()]
+	]);
+}
+
+$text = explode('<!-- {form} -->', $this['DETAIL_TEXT']);
+print $text[0];
+if(isset($text[1])) {
+	print \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render();
+	print $text[1];
+}
+
+$infoblockArray = (array)$this->infoblock;
+$servTitleId = $infoblockArray["\0*\0currentProperties"]["services_title"]["ID"];
+$servTitleItem = array_shift($this->propertiesData[$servTitleId]);
+?>
+<?php if ($serviceList) {?>
+	<div class="b-diseases-list">
+		<div class="container">
+			<div class="b-diseases-list__box">
+				<div class="anchor" id="diseases"></div>
+				<h2 class="page-title-3"><?=$servTitleItem["VALUE"] ? : 'Услуги'?></h2>
+				<div class="b-diseases-list__items">
+					<?php foreach ($serviceList as $service) {?>
+						<a href="<?= $service->url() ?>">
+							<?= $service->title() ?>
+						</a>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+
+<?php
+$doctorID = $this['doctors']->value();
+?>
+<div class="m-doctors">
+	<div class="container">
+		<h2 class="page-title-3">Наши врачи</h2>
+		<?php require \TAO::infoblock('doctors')->viewPath('search-form.phtml'); ?>
+		<?php require \TAO::infoblock('doctors')->viewPath('filter-list.phtml'); ?>
+	</div>
+</div>
+
+<?php require dirname(__FILE__).'/price.phtml'; ?>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

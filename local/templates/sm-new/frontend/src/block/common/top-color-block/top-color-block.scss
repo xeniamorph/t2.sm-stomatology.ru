@@ -1,0 +1,41 @@
+.top-color {
+	&__block {
+		background-image: url(/local/templates/sm-new/img/back_doc.jpg);
+		padding: 30px 0;
+		background-size: cover;
+	}
+
+	&__box {
+		display: flex;
+		align-items: center;
+	}
+
+	&__content {
+		color: white;
+		font-size: 16px;
+		font-weight: 400;
+		line-height: 20px;
+		letter-spacing: 0.25px;
+	}
+
+	&__content div {
+		font-weight: bold;
+		margin-bottom: 30px;
+	}
+
+	&__photo img {
+		border-radius: 20px;
+		margin-left: 30px;
+	}
+
+	@media all and (max-width: 991px) {
+		&__box {
+			flex-direction: column-reverse;
+		}
+
+		&__photo img {
+			margin: 0 0 20px 0;
+			width: 100%;
+		}
+	}
+}

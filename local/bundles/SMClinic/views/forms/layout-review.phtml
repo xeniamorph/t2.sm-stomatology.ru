@@ -1,0 +1,37 @@
+<div class="tao-form tao-form-<?= $name ?>">
+    <ul class="tao-form-errors"<?= (count($this->errors)>0? '' : ' style="display: none;"') ?>>
+        <?php foreach($this->errors as $field => $error) if (strlen($error)>1) { ?>
+            <li data-field="<?= $field ?>" class="error-field-<?= $field ?>"><?= $error ?></li>
+        <?php } ?>
+    </ul>
+	<form id="tao-form-<?= $name ?>" method="post" action="<?= $action ?>" class="tao-form tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+		<input type="text" name="<?= $fields['fio']['code'] ?>" placeholder="<?= $fields['fio']['NAME'] ?>"><br>
+		<input type="text" name="<?= $fields['email']['code'] ?>" placeholder="<?= $fields['email']['NAME'] ?>"><br>
+		<input type="text" name="<?= $fields['number_cart']['code'] ?>" placeholder="<?= $fields['number_cart']['NAME'] ?>"><br>
+		<textarea name="<?= $fields['review']['code'] ?>" placeholder="<?= $fields['review']['NAME'] ?>"></textarea><br>
+		<input type="hidden" name="taoform" value="<?= $name ?>">
+		<input class="recaptchaForm"
+			   id="review"
+			   type="submit" value="<?= $this->option('submit_text') ?>"
+			   data-method="onRecaptchaReview">
+		<input type="hidden" name="doctors" value="">
+		<input type="hidden" name="user_email" value="">
+		<input type="hidden" name="formtype" value="review">
+		<input type="hidden" name="analytics" value="review">
+		<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+		<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+	</form>
+	<?php/* if ($this->ajax()) { ?>
+		<script>
+			var onRecaptchaReview = function(token) {
+				captchaFormProcess('<?= $uniqName ?>', 'review', <?= json_encode($this->options) ?>);
+			};
+		</script>
+	<?php } else { ?>
+		<script>
+			var onRecaptchaReview = function (token) {
+				captchaFormSubmit('<?= $name ?>');
+			};
+		</script>
+	<?php } */?>
+</div>

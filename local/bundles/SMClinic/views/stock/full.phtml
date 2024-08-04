@@ -1,0 +1,293 @@
+<?php
+$isActicveStock = true;
+if ($this->dateTo() >= time()) {
+    $routeSection = ['url' => '/stock/', 'title' => 'Акции'];
+} else {
+    $routeSection = ['url' => '/stock/archive/', 'title' => 'Архив акций'];
+    $isActicveStock = false;
+}
+
+\TAO::navigation()->route()->addArray([
+    $routeSection,
+    ['url' => $this->url(), 'title' => $this->title()]
+]);
+
+$this->preparePage();
+\TAO::app()->setTitle($this->title() . ' | "СМ-Стоматология"');
+\TAO::app()->SetPageProperty("description", HTMLToTxt($this['PREVIEW_TEXT']) . " Подробнее о специальном предложении можно узнать на сайте клиники.");
+
+?>
+<div class="b-action-intro">
+	<div class="container">
+		<div class="b-action-intro__box">
+			<div class="b-action-intro__left">
+				<div class="b-action-intro__image" itemscope itemtype="http://schema.org/ImageObject">
+					<img src="<?=$this->detailPicture()->resizedImage('fit550x550')?>" alt="<?=$this->title()?>" itemprop="contentUrl">
+					<meta itemprop="name" content="<?=$this->title()?>">
+				</div>
+			</div>
+			<div class="b-action-intro__right">
+				<div class="b-action-intro__top">
+					<div class="b-action-intro__mark">
+						<?=!$isActicveStock || $this->property('archive')->value() ? 'Акция закончилась' : 'Акция'?>
+					</div>
+					<div class="b-action-intro__date">
+							<?php if ($isActicveStock && !$this->property('archive')->value()) { ?>
+								<?php if ($this->property("PERIOD")->value()){ ?>
+									<?=$this->property("PERIOD")->value()?>
+								<?php } else { ?>
+									Акция проводится  <span>c <?=$this->dateFrom('d.m.y')?> по <?=$this->dateTo('d.m.y')?><span>
+								<?php } ?>
+							<?php } ?>
+						</span>
+					</div>
+				</div>
+				<div class="b-action-intro__mid">
+					<h1 class="b-action-intro__title"><?=$this->title()?></h1>
+					<div class="b-action-intro__text">
+						<?=$this['PREVIEW_TEXT']?>
+					</div>
+				</div>
+				<div class="b-action-intro__btn-wrapper">
+					<?php if (!$this->property('archive')->value()) { ?>
+						<div class="b-action-intro__bot">
+							<a href="#action-form" class="b-action-intro__button white_btn">
+								Записаться
+							</a>
+						</div>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php
+$dateActive = $this->property('date_active')->value();
+$benefit = $this->property('benefit')->value();
+$cost = $this->property('cost')->value();
+if($dateActive || $benefit || $cost) {
+	require dirname(__FILE__).'/detail_info/icons.phtml';
+}?>
+
+<div class="c-action-text">
+	<div class="container">
+		<div class="c-action-content__box">
+			<div class="c-action-content__right">
+				<div class="c-action-content__text">
+					<?=$this['DETAIL_TEXT']?>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<?php
+if($this->property('text_with_img')->value()) {
+	print $this->property('text_with_img')->value()['TEXT'];
+}
+?>
+
+<?php $galleryImg = [];
+if($this['gallery']->value()) {
+	require dirname(__FILE__).'/detail_info/gallery.phtml';
+}?>
+
+<?php
+$priceIdList = $this['prices']->value();
+if(count($priceIdList)>0) {
+	require dirname(__FILE__).'/detail_info/prices.phtml';
+} ?>
+
+<div id="action-form">
+	<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+</div>
+
+<?php if($this['text_form']->value()['TEXT']) {?>
+	<div class="b-text text">
+		<div class="container">
+			<div class="b-text__wrapper b-text__disc">
+				<?=$this['text_form']->value()['TEXT']?>
+			</div>
+		</div>
+	</div>
+<?php }?>
+
+<?php /*
+<div class="b-sale b-sale--card">
+
+	<?php if (!empty($clinicsId = $this->property('clinics')->value())):?>
+		<div class="b-sale__clinics">
+			<p class="b-heading--secondary b-heading--black">
+				Филиалы, где действует акция:
+			</p>
+			<div class="b-sale__clinics-wrap">
+				<?php foreach ($clinicsId as $id) {
+					$clinic = TAO::infoblock('address')->loadItem($id);?>
+					<a class="b-sale__clinic" href="<?=$clinic['DETAIL_PAGE_URL'] ?>">
+						<?=$clinic->title()?>
+					</a>
+				<?php
+				}
+				?>
+			</div>
+		</div>
+	<?php endif ?>
+	<?php if ($conditions = $this->property('conditions')->value()['TEXT']):?>
+		<div class="b-sale__conditions">
+			<?=$conditions?>
+		</div>
+	<?php endif ?>
+	<?php if (!$this->property('archive')->value()) { ?>
+		<div class="b-sale__form-wrap" id="scroll_form">
+			<p class="b-heading--secondary b-heading--white">
+				Записаться по акции
+			</p>
+
+			<?=\TAO::Form('Appointment')->setOption('layout', 'appointment-in-text')->render()?>
+		</div>
+
+	<?php } ?>
+
+
+	<?php if ($servicesId = $this->property('services')->value()):?>
+		<p class="b-heading--secondary b-heading--black">
+			Услуги, оказываемые в рамках акции:
+		</p>
+	<div class="b-sale__service-wrap">
+		<?php foreach ($servicesId as $id) {
+			$clinic = TAO::infoblock('services')->loadItem($id);
+			$picId = $clinic->property('menu_ico')->value()->id;?>
+			<div class="b-sale__service">
+				<?if ($picId):?>
+					<img src="<?= CFile::GetPath($picId) ?>">
+				<?php else: ?>
+					<img src="/images/service-img.png">
+				<?endif?>
+				<a href="<?=$clinic['DETAIL_PAGE_URL']?>">
+					<?=$clinic->title()?>
+				</a>
+			</div>
+			<?php
+		}
+		?>
+	</div>
+	<?php endif ?>
+
+
+
+	<?php
+	//global $USER;
+	//if ($USER->IsAdmin()):
+	if ($this['show_form']->value() == '42b7da9f7fe310d0339f17ea4bbcd80b'):
+		?>
+		<hr class="hr--light">
+		<div class="b-form b-form--inline b-form--bg" style="background: #e1e1e1;">
+			<h3 class="b-heading--secondary b-heading--black"><?=$this['title_form']->value();?></h3>
+
+			<div class="stock-form">
+				<div class="accept-message ok-message" style="display: none">Спасибо за оставленную заявку.<br /> Наш оператор свяжется с вами с 8:00 до 22:00<br /><br /> Заявки, поступившие после 22:00, будут обработаны на следующий день.
+				</div>
+				<form method="post" action="" class="tao-form">
+					<div class="row">
+						<div class="col-md-6 col-lg-4">
+							<div class="b-form__group b-form__group--float-label">
+								<input class="form-control b-form__control b-field-name form-name" name="name"
+									   type="text">
+								<label for="">Имя</label>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg-4">
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<input class="form-control b-form__control b-field-phone b-form__phone form-phone"
+									   name="phone" type="text">
+								<label for="">Телефон<span class="required">*</span></label>
+							</div>
+						</div>
+						<?php if (!empty($this['time_form']->value())): ?>
+						<div class="col-md-6 col-lg-4">
+							<div class="b-form__group">
+								<div class="b-form__select b-custom-select b-custom-select--style-2">
+									<select name="time" class="form-control b-form__control form-time">
+										<option value="" selected="selected" disabled="disabled">Желаемое время</option>
+										<?php foreach ($this['time_form']->value() as $value): ?>
+											<option value="<?=$value;?>"><?=$value;?></option>
+										<?php endforeach; ?>
+									</select>
+								</div>
+							</div>
+						</div>
+
+					</div>
+					<div class="row">
+						<?php endif; ?>
+						<div class="col-md-12 col-lg-4">
+							<div class="b-form__group b-form__buttons">
+								<input name="taoform" value="stock_form" type="hidden">
+								<input class="btn btn-primary btn-lg btn-submit" value="Отправить заявку" type="submit">
+								<div class="agreement" style="text-align: left;">Нажимая на кнопку, вы даете
+									согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку
+										своих персональных данных</a></div>
+							</div>
+						</div>
+					</div>
+					<div class="b-form__group b-form__note">
+						Запись через сайт является предварительной. Наш сотрудник свяжется с вами в ближайшее время для
+						подтверждения записи на прием.
+					</div>
+				</form>
+			</div>
+		</div>
+
+	<? //= $this['email_form']->value();
+	?>
+	<?=$this['text_form']->value()['TEXT'];?>
+		<script>
+			(function ($) {
+				$(document).ready(function () {
+					var send_stock_form = true;
+					$('.stock-form form').submit(function () {
+						$(".stock-form input").removeClass("b-form__control--error");
+						var go = true;
+						var name = $('.stock-form .form-name').val();
+						var phone = $('.stock-form .form-phone').val();
+						<?php if(!empty($this['time_form']->value())): ?>
+						var time = $('.stock-form .form-time').val();
+						<?php else: ?>
+						var time = '';
+						<?php endif; ?>
+
+						if (phone == '') {
+							$(".stock-form .form-phone").addClass("b-form__control--error").focus();
+							go = false;
+						}
+
+						if (go && send_stock_form) {
+							$('.stock-form input[type="submit"]').prop('disabled', true);
+							send_stock_form = false;
+							$('.stock-form .btn-submit input').hide();
+							$('.stock-form .btn-submit .progress').show();
+							$.ajax({
+								url: "/include/forms/offers_static_ajax.php",
+								type: "POST",
+								data: {name: name, phone: phone, time: time, id: <?= $this->id(); ?>},
+								dataType: "html",
+								success: function (jsondata) {
+									$(".stock-form form").hide();
+									$(".stock-form .accept-message").show();
+								},
+							});
+						}
+						return false;
+					});
+				});
+			}(jQuery));
+		</script>
+
+	<?php endif; ?>
+	<?php //endif; ?>
+</div>*/?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

@@ -1,0 +1,14 @@
+<div class="img-links">
+	<div class="container">
+		<div class="img-links__items">
+			{% for item in items %}
+				<a class="img-links__item" href="{{ item['link'] }}">
+					<div class="img-links__text">{{ item['name'] }}</div>
+					<div class="img-links__image">
+						<img src="{{ item['img'] }}">
+					</div>
+				</a>
+			{% endfor %}
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div class="b-aside-menu">
+	<?php foreach($metroList as $metro) {?>
+		<?php
+		$clinicList = \TAO::infoblock('address')->getItems([
+			'filter' => ['ACTIVE' => 'Y', 'PROPERTY_metro' => $metro->id()]
+		]);
+		if (count($clinicList) == 0) {
+			continue;
+		}
+		?>
+		<div class="b-aside-menu__heading">
+			<?= $metro->title() ?>
+			<img src="<?= $metro->previewPicture()->url() ?>" alt=""
+				 class="b-aside-menu__heading-metro-icon">
+		</div>
+		<ul class="b-aside-menu__list b-tree-list">
+			<?php foreach ($clinicList as $clinic) { ?>
+				<?php
+				$link_to_site = $clinic['link_to_site']->value();
+				$url = ($link_to_site) ? $link_to_site : $clinic->url();
+				?>
+				<li class="b-aside-menu__item b-tree-list__item b-tree-list__item--empty">
+					<a href="<?= $url ?>" <?= ($link_to_site ? 'target="_blank"' : '' ) ?> class="b-aside-menu__link<?= (\TAO\Urls::isCurrent($url) ? ' active' : '') ?>">
+						<?= $clinic->title() ?>
+					</a>
+				</li>
+			<?php } ?>
+		</ul>
+	<?php } ?>
+</div>
+
+<hr>

@@ -1,0 +1,162 @@
+@import "../../../style/config";
+
+.l-header {
+	height: 80px;
+}
+
+.b-header {
+	padding: 0;
+	height: 80px;
+	position: fixed;
+	top: 0;
+	background: #fff;
+	z-index: 9999;
+	box-shadow: 1000px 0 0 #fff, -1000px 0 0 #fff;
+
+	.b-text-line {
+		margin-top: 24px;
+		margin-bottom: 3px;
+		color: #6c6c6c;
+		font: 12px/12px "BlissPro";
+	}
+}
+
+.b-header-buttons {
+	height: 80px;
+	vertical-align: middle;
+	display: table-cell;
+
+	.b-btn {
+		&--ask-question {
+			margin-right: 21px;
+		}
+	}
+}
+
+.b-header-buttons {
+	position: relative;
+
+	&-btn-feedback {
+		display: none;
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-header-buttons {
+		&-btn-feedback {
+			display: inline-block;
+		}
+
+		&__panel {
+			background: rgba(27, 87, 115, 0.9);
+			position: absolute;
+			display: none;
+			top: 64px;
+			height: 152px;
+			text-align: center;
+			width: 222px;
+			left: 50%;
+			transform: translateX(-50%);
+			padding: 10px;
+			border-radius: 5px;
+
+			.btn {
+				margin: 0 0 10px;
+			}
+
+			&.active {
+				display: block;
+			}
+		}
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-header {
+		.b-text-line {
+			top: 10px;
+			left: 30px;
+			margin: 0;
+
+			.pa;
+		}
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-header {
+		.b-text-line {
+			top: 18px;
+			left: 15px;
+		}
+
+		&-col {
+			&--2 {
+				padding-left: 0;
+				padding-right: 0;
+			}
+
+			&--3 {
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		.btn {
+			font-size: 15px;
+
+			.fa {
+				font-size: 13px;
+			}
+		}
+	}
+}
+
+@media (max-width: @media-bs-sm) {
+	.l-header {
+		height: 245px;
+	}
+
+	.b-header {
+		height: 145px;
+		border-bottom: 2px solid @third-color;
+		position: static !important;
+
+		&-col {
+			position: static;
+
+			&--1 {
+				top: 160px;
+				left: 0;
+				right: 0;
+				padding: 0;
+
+				.pa;
+
+				img {
+					margin: 0 auto;
+				}
+			}
+
+			&--2 {
+				position: static;
+			}
+
+			&--3 {
+				text-align: center;
+			}
+		}
+
+		.b-text-line {
+			position: static;
+		}
+
+		&-buttons {
+			text-align: center;
+			margin-top: 15px;
+			height: auto;
+
+			.db;
+		}
+	}
+}

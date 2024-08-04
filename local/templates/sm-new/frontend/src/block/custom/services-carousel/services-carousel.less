@@ -1,0 +1,85 @@
+@import "../../../style/config";
+
+.b-services-carousel {
+	margin: 20px 0;
+
+	&__item {
+		padding: 0;
+
+		i {
+			font: 16px/21px "WaldorfLightItalic";
+			font-style: normal;
+			text-align: center;
+			display: block;
+			color: @secondary-color;
+		}
+
+		img {
+			height: 128px !important;
+			width: 128px !important;
+			display: block;
+			margin: 0 auto 10px;
+		}
+	}
+
+	.owl-stage {
+		white-space: nowrap;
+	}
+
+	.owl-item {
+		display: inline-block;
+		float: none;
+		vertical-align: top;
+		white-space: normal;
+	}
+
+	.owl-dots {
+		display: none;
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-services-carousel {
+		padding: 0 50px;
+
+		.owl-prev,
+		.owl-next {
+			&::before {
+				font: 45px "FontAwesome";
+				position: absolute;
+				top: 24%;
+				color: @third-color;
+			}
+
+			&:hover::before {
+				color: darken(@third-color, 10%);
+			}
+		}
+
+		.owl-next {
+			&::before {
+				content: "\f105";
+				right: 0;
+			}
+		}
+
+		.owl-prev {
+			&::before {
+				content: "\f104";
+				left: 0;
+			}
+		}
+	}
+}
+
+.owl-carousel .owl-item .b-services-carousel__item img {
+	-webkit-transform-style: flat;
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-services-carousel {
+		padding: 0;
+		margin-bottom: 50px;
+	}
+}
+

@@ -1,0 +1,116 @@
+.page-nav-sticky {
+	position: relative;
+	background: #fff;
+	margin: 20px 0;
+	-webkit-transition: 0.2s -webkit-transform;
+	-o-transition: 0.2s transform;
+	-moz-transition: 0.2s transform, 0.2s -moz-transform;
+	transition: 0.2s transform, 0.2s -webkit-transform, 0.2s -moz-transform;
+
+	&__wrapper {
+		margin: 20px 0;
+	}
+
+	&__items {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		padding: 10px 0;
+		-webkit-transition: 0.2s;
+		-o-transition: 0.2s;
+		-moz-transition: 0.2s;
+		transition: 0.2s;
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		-moz-box-flex: 1;
+		-ms-flex-positive: 1;
+		flex-grow: 1;
+	}
+
+	&__buttons {
+		display: grid;
+		gap: 20px;
+		grid-template-columns: repeat(5, 1fr);
+		grid-template-rows: auto;
+		margin-bottom: 30px;
+	}
+
+	&__buttons.four-columns {
+		display: grid;
+		gap: 20px;
+		grid-template-columns: repeat(4, 1fr);
+		grid-template-rows: auto;
+		margin-bottom: 30px;
+	}
+
+	&__button {
+		background: #f3f7f8;
+		color: #389dac;
+		-webkit-border-radius: 20px;
+		-moz-border-radius: 20px;
+		border-radius: 20px;
+		line-height: 40px;
+		height: 42px;
+		width: 100%;
+		text-align: center;
+		-webkit-transition: 0.2s;
+		-o-transition: 0.2s;
+		-moz-transition: 0.2s;
+		transition: 0.2s;
+		text-decoration: none;
+		font-size: 16px;
+		border: 1px solid #389dac;
+	}
+
+	&__item {
+		display: flex;
+	}
+
+	&__button:hover,
+	&__button.active {
+		background: #389dac;
+		color: #fff;
+	}
+
+	@media all and (max-width: 1400px) {
+		&__buttons.four-columns {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		&__buttons {
+			grid-template-columns: repeat(4, 1fr);
+		}
+	}
+
+	@media all and (max-width: 1024px) {
+		&__buttons {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.container {
+			padding: 0;
+		}
+
+		&__items {
+			display: block;
+			white-space: nowrap;
+			overflow-x: scroll;
+		}
+
+		&__buttons.four-columns {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media all and (max-width: 650px) {
+		&__buttons.four-columns {
+			grid-template-columns: repeat(1, 1fr);
+		}
+
+		&__buttons {
+			grid-template-columns: repeat(1, 1fr);
+		}
+	}
+}

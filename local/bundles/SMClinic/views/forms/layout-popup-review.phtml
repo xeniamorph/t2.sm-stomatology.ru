@@ -1,0 +1,110 @@
+<?php
+$uniqName = uniqid($name);
+?>
+
+
+<div class="modal fade modal--hidden" id="modal-review">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+<!-- -->
+
+			<div class="modal-header">
+				<div class="close" data-dismiss="modal"></div>
+				<p class="modal-title">
+					Оставить отзыв
+				</p>
+			</div>
+
+			<div class="tao-form tao-form-<?= $name ?> tao-form-<?= $uniqName ?>">
+
+				<form id="tao-form-<?= $uniqName ?>" method="post" action="<?= $action ?>" class="js-analytic-review tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+
+
+					<div class="modal-body">
+						<div class="b-form">
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text"
+									class="form-control b-form__control b-field-<?= $fields['fio']['code'] ?>"
+									name="<?= $fields['fio']['code'] ?>"
+								>
+								<label for="">Имя<span class="required">*</span></label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text"
+									class="form-control b-form__control b-field-<?= $fields['email']['code'] ?>"
+									name="<?= $fields['email']['code'] ?>"
+								>
+								<label for="">Email для ответа<span class="required">*</span></label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text"
+									class="form-control b-form__control b-field-<?= $fields['number_cart']['code'] ?>"
+									name="<?= $fields['number_cart']['code'] ?>"
+								>
+								<label for="">Номер карты</label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<textarea
+									type="text"
+									name="<?= $fields['review']['code'] ?>"
+									class="form-control b-form__control b-field-<?= $fields['review']['code'] ?>"
+									style="height: 120px !important;"></textarea>
+								<label for="">Отзыв<span class="required">*</span></label>
+							</div>
+							<div class="b-form__group--float-label">
+								Этот сайт защищен reCAPTCHA и применяются
+								<a target="_blank" href="https://policies.google.com/privacy">Политика конфиденциальности</a> и
+								<a target="_blank" href="https://policies.google.com/terms">Условия обслуживания Google</a>.
+							</div>
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<input type="hidden" name="taoform" value="<?= $name ?>">
+							<button class="btn btn-primary recaptchaForm"
+								id="popup-review-from"
+								type="submit"
+								value="<?= $this->option('submit_text') ?>"
+								data-method="onRecaptchaPopupReviewForm">
+							Отправить
+						</button>
+					</div>
+					<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+					<input type="hidden" name="doctors" value="">
+					<input type="hidden" name="user_email" value="">
+					<input type="hidden" name="formtype" value="review">
+					<input type="hidden" name="analytics" value="review">
+					<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+				</form>
+
+				<?php/* if ($this->ajax()) { ?>
+					<?php $this->options['jsname'] = $uniqName ?>
+					<script>
+						var onRecaptchaPopupReviewForm = function(token) {
+							captchaFormProcess('<?= $uniqName ?>', 'popup-review-from', <?= json_encode($this->options) ?>);
+						};
+					</script>
+				<?php } else { ?>
+					<script>
+						var onRecaptchaPopupReviewForm = function (token) {
+							captchaFormSubmit('<?= $uniqName ?>');
+						};
+					</script>
+				<?php } */?>
+
+
+			</div>
+
+<!-- -->
+		</div>
+	</div>
+</div>

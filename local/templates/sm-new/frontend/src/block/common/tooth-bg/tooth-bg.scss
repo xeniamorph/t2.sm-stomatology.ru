@@ -1,0 +1,30 @@
+.tooth-bg {
+	background-image: url(/local/templates/sm-new/img/back_doc.jpg);
+	background-size: cover;
+	margin: 20px 0;
+
+	&__box {
+		display: flex;
+		align-items: center;
+	}
+
+	&__content {
+		color: white;
+		line-height: 20px;
+		font-size: 16px;
+	}
+
+	@media all and (max-width: 768px) {
+		padding: 20px 0;
+	}
+
+	@media all and (max-width: 590px) {
+		&__box {
+			flex-direction: column;
+		}
+
+		&__photo img {
+			width: 100%;
+		}
+	}
+}

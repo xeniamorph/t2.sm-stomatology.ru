@@ -1,0 +1,18 @@
+<?php
+\TAO::load('File');
+$photoList = $photoGallery->getItems();
+?>
+
+<div id="content-1">
+	<div class="gallery-tabs__items">
+		<?php foreach ($photoList as $photo) {?>
+			<a class="gallery-tabs__item" href="<?= $photo->url() ?>">
+				<div class="gallery-tabs__image">
+					<img src="<?= $photo->previewPicture()->resizedImage('crop680x300') ?>" alt="<?=$photo->title()?> фото" title="<?=$photo->title()?>"></div>
+				<div class="gallery-tabs__desc">
+					<div class="gallery-tabs__caption"><?= $photo->title() ?></div>
+				</div>
+			</a>
+		<?php } ?>
+	</div>
+</div>

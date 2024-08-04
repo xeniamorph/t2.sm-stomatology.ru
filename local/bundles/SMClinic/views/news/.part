@@ -1,0 +1,26 @@
+<?php
+\TAO::App()->SetTitle('Новости | «СМ-Стоматология»');
+\TAO::app()->SetPageProperty("description", "Новости | Сеть стоматологических клиник в Москве - «СМ-Стоматология»"); 
+?>
+<h1 class="b-heading">
+	Новости
+	<a href="#" class="b-heading__link hidden-md-down"
+		data-toggle="modal" data-target="#modal-ask-question"
+	>
+		Есть вопросы?
+	</a>
+</h1>
+<div class="b-sales b-sales--archive">
+	<?php foreach ($items as $item) { ?>
+		<?= $item->render() ?>
+	<?php } ?>
+</div>
+
+<?= $this->renderPageNavigator($page, $numPages, $pagerVar) ?>
+
+
+<h3 class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</h3>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>

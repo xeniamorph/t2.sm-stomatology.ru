@@ -1,0 +1,16 @@
+<?php
+\TAO::navigation()->route()->add(['url' => '/about/', 'title' => 'О нас']);
+\TAO::navigation()->route()->add(['url' => $this['LIST_PAGE_URL'], 'title' => $this['IBLOCK_NAME']]);
+\TAO::navigation()->route()->add(['url' => $this->url(), 'title' => $this->title()]);
+
+$this->preparePage();
+
+if($this['gallery']->value()) {
+	$galleryList = $this['gallery']->valueData();
+	require dirname(__FILE__).'/full_photo.phtml';
+} else {
+	require dirname(__FILE__).'/full_video.phtml';
+}
+\TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]); ?>

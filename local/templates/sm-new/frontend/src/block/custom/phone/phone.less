@@ -1,0 +1,57 @@
+@import "../../../style/config";
+
+.b-phone {
+	&--header {
+		font: 31px/80px "BlissProLight";
+		color: #000;
+		float: left;
+		margin-right: 20px;
+		margin-left: -40px;
+	}
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-phone {
+		&--header {
+			font: 28px/75px "BlissProLight";
+			margin-left: 0;
+		}
+	}
+}
+
+@media screen and (max-width: 1250px) {
+	.b-phone {
+		&--header {
+			margin-left: -80px;
+		}
+	}
+}
+
+@media screen and (max-width: 1200px) {
+	.b-phone {
+		&--header {
+			margin-left: -40px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-phone {
+		&--header {
+			font: 22px/75px "BlissProLight";
+			margin-top: 10px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-sm) {
+	.b-phone {
+		&--header {
+			text-align: center;
+			float: none;
+			font: 26px/40px "BlissProLight";
+			margin-top: 15px;
+			margin-right: 0;
+		}
+	}
+}

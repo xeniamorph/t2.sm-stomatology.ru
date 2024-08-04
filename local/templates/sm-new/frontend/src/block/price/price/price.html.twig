@@ -1,0 +1,94 @@
+<div class="price">
+	<div class="container">
+		{% if title %}
+			<h2 class="page-title-2">{{ title }}</h2>
+		{% endif %}
+		{% if text %}
+			<div class="b-text text">
+				<div class="b-text__wrapper">
+					{{ text }}
+				</div>
+			</div>
+		{% endif %}
+		<div class="page-title__bg">
+			<div class="price__headers">
+				<div class="price__row">
+					<div class="price__header">
+						<div class="price__toggles">
+							{% for key,tab in typeName %}
+								{% if  priceList[key] is defined %}
+									{% set k = k + 1 %}
+									<div class="price__toggle {{ k==1 ?'active':'' }}">{{ tab }}</div>
+								{% endif %}
+							{% endfor %}
+						</div>
+					</div>
+					<div class="price__header price-label">Цены</div>
+				</div>
+			</div>
+			<div class="price__tabs">
+				{% for priceTab in priceList %}
+					{% set j = j + 1 %}
+					<div class="price__tab {{ j==1 ?'active':'' }}">
+						<table>
+							{% for price in priceTab %}
+								{% set i = i + 1 %}
+								<tr class="{{ price.property('special_offer').value() ?'price__promo':'' }} {{ i>5 ?'hide additional':'' }}">
+									<td><div>{{ price.title() }} </div></td>
+									<td><span>{{ price.property('sum').value() }}</span> руб.</td>
+								</tr>
+								<script type="application/ld+json">
+									{
+										"@context": "http://schema.org",
+										"@type": "Offer",
+										"availability": "http://schema.org/InStock",
+										"itemOffered": "Service",
+										"name": "{{ price.title() }}",
+										"url": "{{ url }}",
+										"priceCurrency": "RUB",
+										"price": "{{ price.property('sum').value() }}"
+									}
+								</script>
+							{% endfor %}
+						</table>
+						{% if priceTab|length >  5 %}
+						<div class="price__btn-wrapp">
+							<div class="price-btn">
+								<span class="show">Показать весь список</span>
+								<span class="hide">Скрыть весь список</span>
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				{% endfor %}
+			</div>
+
+			<div class="price__footnote">
+				<p>С полным прайс-листом можно ознакомиться в регистратуре
+					или задать вопрос по телефону <a href="tel:+74962638687">+7 (4962) 63-86-87</a></p>
+				<p>* Администрация клиники принимает все меры по своевременному обновлению
+					размещенного на сайте прайс-листа, однако во избежание возможных недоразумений,
+					советуем уточнять стоимость услуг в регистратуре
+					или в контакт-центре по телефону <a href="tel:+74962638687">+7 (4962) 63-86-87</a>.
+				</p>
+				<p>Размещенный прайс не является офертой.
+					Медицинские услуги оказываются на основании договора.</p>
+			</div>
+
+			<div class="price__pay-wrapp">
+				<div class="price__pay-item">
+					<img src="/local/templates/sm-new/svg/visa.svg" alt="">
+				</div>
+				<div class="price__pay-item">
+					<img src="/local/templates/sm-new/svg/visa_e.svg" alt="">
+				</div>
+				<div class="price__pay-item">
+					<img src="/local/templates/sm-new/svg/maestro.svg" alt="">
+				</div>
+				<div class="price__pay-item">
+					<img src="/local/templates/sm-new/svg/master.svg" alt="">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

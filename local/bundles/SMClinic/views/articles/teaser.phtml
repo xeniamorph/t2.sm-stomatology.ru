@@ -1,0 +1,15 @@
+<a href="<?= $this->url() ?>" class="articles-list-item">
+	<div class="articles-list-item__cell">
+		<div class="articles-list-item__left">
+			<img class="articles-list-item__image" src="<?= $this->previewPicture()->resizedImage('fit200x200') ?>" alt="<?=$this->title()?> фото" title="<?=$this->title()?>">
+		</div>
+	</div>
+	<div class="articles-list-item__cell-text">
+		<div class="articles-list-item__title">
+			<?= $this->title() ?>
+		</div>
+		<div class="articles-list-item__desc">
+			<?= $this['PREVIEW_TEXT'] ?>
+		</div>
+	</div>
+</a>

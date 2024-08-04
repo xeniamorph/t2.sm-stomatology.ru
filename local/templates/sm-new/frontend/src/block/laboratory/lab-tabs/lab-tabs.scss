@@ -1,0 +1,11 @@
+.lab-tabs {
+	&__content {
+		&:not(.active) {
+			display: none;
+		}
+
+		.price__tabs tr {
+			border-bottom: none;
+		}
+	}
+}

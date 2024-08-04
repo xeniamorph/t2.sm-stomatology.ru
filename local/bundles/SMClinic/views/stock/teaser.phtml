@@ -1,0 +1,15 @@
+<a class="action-cards__item" href="<?=$this->url()?>">
+	<div class="action-cards__image">
+		<img src="<?=$this->previewPicture()->resizedImage('fit327x382')?>" alt="<?=$this->title()?>"></div>
+	<div class="action-cards__desc">
+		<div class="action-cards__date">
+			<?php if ($this->property("PERIOD")->value()): ?>
+				<?=$this->property("PERIOD")->value()?>
+			<?php else: ?>
+				С <?=$this->dateFrom('d.m.Y')?> по <?=$this->dateTo('d.m.Y')?>
+			<?php endif; ?>
+		</div>
+		<div class="action-cards__caption"><?=$this->title()?></div>
+		<div class="action-cards__text"><?=$this['PREVIEW_TEXT']?></div>
+	</div>
+</a>

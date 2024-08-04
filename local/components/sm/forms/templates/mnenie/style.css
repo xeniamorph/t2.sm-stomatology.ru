@@ -1,0 +1,95 @@
+.mainform-box {
+	text-align: center;
+	max-width: 360px;
+	overflow: hidden;
+	background-color: #fff;
+	padding: 0 30px 30px;
+}
+.mainform-box .form-notice, .mainform-box .form-notice a {
+	color: #c3c3a9;
+	font-size: 12px;
+	padding-top: 10px;
+	text-align: center;
+}
+#mainform {
+	margin: 0 auto;
+	text-align: center;
+}
+.mainform-box-msg {
+    display: none;
+    font-size: 20px;
+}
+.mainform-box-text-big {
+	padding: 14px 0;
+}
+.mainform-box-text-big a {
+    color: #1b5773;
+}
+.mainform-box-title {
+	color: #1b5773;
+	font-size: 21px;
+	line-height: 1em;
+	margin-bottom: 24px;
+	padding-top: 35px;
+	font-family: "ALSSchlangesans-Bold";
+}
+.mainform-box-title > span {
+    font-size: 0.8em;
+    line-height: 0.8em;
+}
+.mainform-box-free-list {
+	text-align: left;
+	margin-bottom: 30px;
+	font-size: 16px;
+}
+.mainform-box-free-list > div {
+	color: red;
+}
+.mainform-box-phone, .mainform-box-name {
+	font-size: 16px;
+	height: 39px;
+	margin: 0 0 15px;
+	padding: 0 14px;
+	width: 90%;
+	border: 2px solid #a03339;
+	background: #fff;
+	border-radius: 3px;
+}
+.mainform-box .btn.btn--green {
+	font-size: 16px;
+	height: 54px;
+	margin: 0 0 15px;
+	padding: 0 14px;
+	width: 240px;
+	background-color: #a03339;
+	border: 0;
+	color: #fff;
+	font-family: "ALSSchlangesans-Bold";
+	cursor: pointer;
+	text-transform: uppercase;
+}
+.btn.btn--green:hover {
+	opacity: 0.9;
+}
+.mainform-box-phone:focus {
+    outline: none;
+}
+.mainform-box .not-valid {
+	color: red;
+    border: 2px solid red;
+}
+.fancybox-skin {
+	-webkit-border-radius: 0;
+	-moz-border-radius: 0;
+	border-radius: 0;
+	border: 2px solid #a03339;
+	background: #f3f3f1;
+}
+.fancybox-item.fancybox-close {
+	background: url("/images/btn_close.png") no-repeat scroll 0 0;
+	height: 15px;
+	width: 15px;
+	right: 10px;
+	top: 10px;
+}
+

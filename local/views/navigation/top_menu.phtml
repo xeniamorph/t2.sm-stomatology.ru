@@ -1,0 +1,94 @@
+<?php
+\TAO::load('file');
+$stockList = \TAO::infoblock('stock')->getItems([
+	'filter' => ['ACTIVE' => 'Y', '!PROPERTY_in_menu' => false],
+	'page' => 1,
+	'order' => ['active_from' => 'DESC'],
+	'per_page' => 1
+]);
+$stock = array_shift($stockList);
+
+if($stock) {
+	$stockImg =  new \TAO\File($stock['menu_img']->value());
+}
+?>
+
+<div class="b-nav-toggler">
+	<i class="fa fa-bars"></i>
+</div>
+
+<div class="b-nav b-nav--top">
+	<ul class="nav nav-pills">
+	<?php foreach ($links as $link) { ?>
+		<li class="nav-item<?= ($link->sub) ? ' dropdown' : '' ?>">
+			<?php if (!$link->sub) {?>
+				<a class="nav-link<?= ($link->isSelected() ? ' active' : '') ?>" href="<?= $link->url ?>"><?= $link->title ?></a>
+			<?php } else { ?>
+				<a class="nav-link dropdown-toggle" href="<?= $link->url ?>">
+					<?= $link->title ?>
+					<i class="nav-link__dropdown-icon fa fa-angle-down"></i>
+				</a>
+				<div class="dropdown-menu">
+					<div class="menu-cols  menu-cols--with-banner">
+						<?php
+							$action_url = '';
+							try {
+								$action_url = $stock->url();
+							} catch (Exception $e) {
+							}
+						?>
+						<a href="<?= $action_url ?>" class="menu-cols__banner menu-banner db">
+							<div class="menu-banner__img"
+								style="background-image:url(<?= $stockImg->resizedImage('fitx300x160'); ?>">
+
+							</div>
+							<div class="menu-banner__text">
+								<!-- Тут, по идее, из WYSIWYG прямо контент -->
+								<?= $stock['menu_text'] ?>
+								<!-- /Тут, по идее, из WYSIWYG прямо контент -->
+							</div>
+						</a>
+
+						<div class="menu-cols__col menu-col">
+							<?php if(count($link->sub) > 8) { ?>
+								<?php $i = 0;?>
+								<?php foreach ($link->sub as $subLink) { ?>
+									<?php if($subLink->data['ico']) { ?>
+										<?php /*if ($subLink->title == 'Детская стоматология') { ?>
+											<a href="//www.smdoctor.ru/child-stomatology/" target="_blank" class="menu-col__link menu-col__link--with-img">
+												<span><?= $subLink->title ?></span>
+												<img class="menu-col__img" src="<?= $subLink->data['ico'] ?>">
+											</a>
+										<?php } else {*/ ?>
+											<a href="<?= $subLink->url ?>" class="menu-col__link menu-col__link--with-img">
+												<span><?= $subLink->title ?></span>
+												<img class="menu-col__img" src="<?= $subLink->data['ico'] ?>">
+											</a>
+										<?php //} ?>
+									<?php } else { ?>
+										<a href="<?= $subLink->url ?>" class="menu-col__link">
+											<span><?= $subLink->title ?></span>
+											<?= count($link->sub) ?>
+										</a>
+									<?php } ?>
+									<?php $i++; ?>
+									<?php if ($i % 4 == 0) { ?>
+										</div>
+										<div class="menu-cols__col menu-col">
+									<?php } ?>
+								<?php } ?>
+							<?php } else { ?>
+								<?php foreach($link->sub as $subLink) { ?>
+									<a href="<?= $subLink->url ?>" class="menu-col__link">
+										<span><?= $subLink->title ?></span>
+									</a>
+								<?php } ?>
+							<?php } ?>
+						</div>
+					</div>
+				</div>
+			<?php } ?>
+		</li>
+	<?php } ?>
+	</ul>
+</div>

@@ -1,0 +1,13 @@
+<?php
+\TAO::navigation()->route()->addArray($route);
+//$item->preparePage('full');
+?>
+<?
+$element_code = preg_split('/\//', $route[count($route)-1]['url'], 0, PREG_SPLIT_NO_EMPTY);
+$code = $element_code[count($element_code)-1];
+
+$_REQUEST['ELEMENT_CODE'] = $code;//$element_code;
+//$_REQUEST['ELEMENT_CODE2'] = $element_code;
+?>
+
+<? require ($_SERVER['DOCUMENT_ROOT'].$route[count($route)-1]['url'].'landing.php') ?>

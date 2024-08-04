@@ -1,0 +1,301 @@
+<?php
+\TAO::navigation()->route()->addArray($route);
+$item->preparePage();
+$iconLink = false;
+if ($userField["UF_SECTION_ICON"]["VALUE"]) {
+	$iconLink = CFile::GetPath($userField["UF_SECTION_ICON"]["VALUE"]);
+}
+?>
+<?= TAO::frontend()->renderBlock('common/heading-btn', [
+	'title' => $item->title()
+]); ?>
+
+<?php if (!empty($userField["UF_TEXT_TOP"]["VALUE"])) { ?>
+	<div class="tooth-bg">
+		<div class="container">
+			<div class="tooth-bg__box">
+				<div class="tooth-bg__photo"><img src="<?= $iconLink ?: '/local/templates/sm-new/img/banner_tooth.png' ?>" loading="lazy"></div>
+
+				<div class="tooth-bg__content">
+					<?= $userField["UF_TEXT_TOP"]["VALUE"] ?>
+				</div>
+
+			</div>
+		</div>
+	</div>
+<?php }
+
+$sectionList = \TAO::infoblock('services')->getSections([
+	'filter' => [
+		'ACTIVE' => 'Y',
+		'SECTION_ID' => $item->id()
+	]
+]);
+
+$elementList = \TAO::infoblock('services')->getItems([
+	'filter' => [
+		'ACTIVE' => 'Y',
+		'SECTION_ID' => $item->id(),
+		'HIDE_IN_MENU' => false
+	]
+]);
+
+Global $APPLICATION;
+
+$APPLICATION->IncludeComponent("bitrix:main.include", ".default", array(
+		"AREA_FILE_SHOW" => "file",
+		"PATH" => "/include/page_banner.php",
+		"EDIT_TEMPLATE" => "standard.php"
+	),
+	false
+);
+
+$itemNew = \TAO::infoblock('services')->loadItem('professionalnaya-chistka-zubov');
+
+if ($item["SECTION_PAGE_URL"] === '/services/implantaciya-zubov/') { ?>
+	<?php if (count($sectionList) > 0) { ?>
+		<div class="consultation-card">
+			<div class="container">
+				<div class="consultation__items">
+					<?php foreach ($sectionList as $section) { ?>
+						<a class="consultation__item" href="<?= $section->url() ?>">
+							<div class="consultation__item-img" itemscope itemtype="http://schema.org/ImageObject">
+								<img src="<?= $section->picture()->resizedImage('crop404x204') ?>" alt="<?= $section->title() ?> фото" title="<?= $section->title() ?>" itemprop="contentUrl" loading="lazy">
+							</div>
+							<div class="consultation__item-title">
+								<div itemprop="name"><?= $section->title() ?></div>
+							</div>
+							<div class="consultation__item-price">
+								<div class="consultation__button">Цена от <?= $section->getMinSum() ?> руб.</div>
+							</div>
+						</a>
+					<?php } ?>
+				</div>
+			</div>
+		</div>
+	<?php } ?>
+	<div class="brands-links">
+		<div class="container">
+			<?php
+			$hasBrandsSection = false;
+			$hasTypesSection = false;
+			foreach ($elementList as $element) {
+				$db_props = CIBlockElement::GetProperty(11, $element["ID"], array("sort" => "asc"), array("CODE" => "INNER_SECTION"));
+				if ($ar_props = $db_props->Fetch()) {
+					$innerSection = $ar_props["VALUE_XML_ID"];
+				} else {
+					$innerSection = false;
+				}
+				if ($innerSection === 'BRANDS_SECTION')
+					$hasBrandsSection = true;
+				if ($innerSection === 'TYPES_SECTION')
+					$hasTypesSection = true;
+			}
+			if ($hasBrandsSection == true) { ?>
+				<h2 class="page-title-2">Бренды зубных имплантов</h2>
+				<div class="brands-links__items">
+					<?php foreach ($elementList as $element) {
+						$db_props = CIBlockElement::GetProperty(11, $element["ID"], array("sort" => "asc"), array("CODE" => "INNER_SECTION"));
+						if ($ar_props = $db_props->Fetch()) {
+							$innerSection = $ar_props["VALUE_XML_ID"];
+						} else {
+							$innerSection = false;
+						}
+						if ($innerSection === 'BRANDS_SECTION') { ?>
+							<a class="brands-links__element" href="<?= $element->url() ?>">
+								<div class="brands-links__img" itemscope itemtype="http://schema.org/ImageObject">
+									<img src="<?= $element->previewPicture()->resizedImage('crop280x195') ?>" alt="<?= $element->title() ?> фото" title="<?= $element->title() ?>" itemprop="contentUrl">
+								</div>
+								<div class="brands-links__title">
+									<div itemprop="name"><?= $element->title() ?></div>
+								</div>
+								<div class="brands-links__price">
+									<div>Цена от <span><?= $element->getMinSum() ?></span> руб.</div>
+								</div>
+							</a>
+						<?php } ?>
+					<?php } ?>
+				</div>
+			<?php }
+			if ($hasTypesSection == true) { ?>
+				<h2 class="page-title-2">Виды имплантации зубов</h2>
+				<div class="brands-links__items">
+					<?php foreach ($elementList as $element) {
+						$db_props = CIBlockElement::GetProperty(11, $element["ID"], array("sort" => "asc"), array("CODE" => "INNER_SECTION"));
+						if ($ar_props = $db_props->Fetch()) {
+							$innerSection = $ar_props["VALUE_XML_ID"];
+						} else {
+							$innerSection = false;
+						}
+						if ($innerSection === 'TYPES_SECTION') { ?>
+							<a class="brands-links__element" href="<?= $element->url() ?>">
+								<div class="brands-links__img" itemscope itemtype="http://schema.org/ImageObject">
+									<img src="<?= $element->previewPicture()->resizedImage('crop280x195') ?>" alt="<?= $element->title() ?> фото" title="<?= $element->title() ?>" itemprop="contentUrl">
+								</div>
+								<div class="brands-links__title">
+									<div itemprop="name"><?= $element->title() ?></div>
+								</div>
+								<div class="brands-links__price">
+									<div href="<?= $element->url() ?>">Цена от <span><?= $element->getMinSum() ?></span> руб.</div>
+								</div>
+							</a>
+						<?php } ?>
+					<?php } ?>
+				</div>
+			<?php } ?>
+		</div>
+	</div>
+<?php } else { ?>
+	<div class="consultation-card">
+		<div class="container">
+			<div class="consultation__items">
+				<?php foreach ($sectionList as $section) { ?>
+					<a class="consultation__item" href="<?= $section->url() ?>">
+						<div class="consultation__item-img" itemscope itemtype="http://schema.org/ImageObject">
+							<img src="<?= $section->picture()->resizedImage('crop404x204') ?>" loading="lazy" alt="<?= $section->title() ?> фото" title="<?= $section->title() ?>" itemprop="contentUrl">
+						</div>
+						<div class="consultation__item-title">
+							<div itemprop="name"><?= $section->title() ?></div>
+						</div>
+						<div class="consultation__item-price">
+							<div class="consultation__button">Цена от <span><?= $section->getMinSum() ?></span> руб.</div>
+						</div>
+					</a>
+				<?php } ?>
+				<?php foreach ($elementList as $element) { ?>
+					<a class="consultation__item" href="<?= $element->url() ?>">
+						<div class="consultation__item-img" itemscope itemtype="http://schema.org/ImageObject">
+							<img src="<?= $element->previewPicture()->resizedImage('crop404x204') ?>" alt="<?= $element->title() ?> фото" title="<?= $element->title() ?>" itemprop="contentUrl" loading="lazy">
+						</div>
+						<meta itemprop="name" content="<?= $element->title() ?>">
+						<div class="consultation__item-title">
+							<div itemprop="name"><?= $element->title() ?></div>
+						</div>
+						<div class="consultation__item-price">
+							<div class="consultation__button">Цена от <span><?= $element->getMinSum() ?></span> руб.</div>
+						</div>
+					</a>
+				<?php } ?>
+				<?php if ($item->url() == '/services/esteticheskaya-stomatologiya/') { ?>
+					<a class="consultation__item" href="<?= $itemNew->url() ?>">
+						<div class="consultation__item-img" itemscope itemtype="http://schema.org/ImageObject">
+							<img src="<?= $itemNew->previewPicture()->resizedImage('crop404x204') ?>" alt="<?= $itemNew->title() ?> фото" title="<?= $itemNew->title() ?>" itemprop="contentUrl" loading="lazy">
+						</div>
+						<meta itemprop="name" content="<?= $itemNew->title() ?>">
+						<div class="consultation__item-title">
+							<div itemprop="name"><?= $itemNew->title() ?></div>
+						</div>
+						<div class="consultation__item-price">
+							<div class="consultation__button">Цена от <span><?= $itemNew->getMinSum() ?></span> руб.</div>
+						</div>
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+<?php } ?>
+<?php
+$detailText = explode('<!-- {form} -->', $item['DESCRIPTION']);
+print $detailText[0];
+if (isset($detailText[1])) {
+	print \TAO::Form('Callback')->setOption('layout', 'callback-in-text')->render();
+	print $detailText[1];
+}
+?>
+<?
+function addItemToArray(&$array, $index, $item)
+{
+	if ($array[$index]) {
+		addItemToArray($array, $index + 1, $item);
+	} else {
+		$array[$index] = $item;
+	}
+}
+
+if (!empty($userField["UF_SORT_PRICES"]["VALUE"])) {
+	$priceIdList = $userField['UF_SORT_PRICES']['VALUE'];
+	$priceList = [];
+	foreach ($priceIdList as $priceId) {
+		$price = \TAO::infoblock('prices')->getItems([
+			'filter' => [
+				'ID' => $priceId,
+				'ACTIVE' => 'Y'
+			]
+		]);
+		if (!empty($price)) {
+			$type = $price[0]->property('type')->value();
+			if ($type) {
+				addItemToArray($priceList[$type], $priceId['sort'], $price[0]);
+			} else {
+				addItemToArray($priceList['consultations'], $priceId['sort'], $price[0]);
+			}
+		}
+	}
+
+	ksort($priceList);
+	foreach ($priceList as $tabs) {
+		ksort($tabs);
+	}
+
+	echo TAO::frontend()->renderBlock('price/price', [
+		'title' => 'Цены',
+		'text' => !empty($userField["UF_PRICE_TEXT"]["VALUE"]) ? $userField["UF_PRICE_TEXT"]["VALUE"] : false,
+		'priceList' => $priceList,
+		'url' => $_SERVER['HTTP_REFERER'],
+		'typeName' => [
+			'consultations' => 'Консультации',
+			'diagnostics' => 'Диагностика',
+			'services' => 'Услуги'
+		]
+	]);
+}
+?>
+<?
+if (!empty($userField["UF_DOCTORS"]["VALUE"])) {
+	$doctorID = $userField['UF_DOCTORS']['VALUE'];
+?>
+	<div class="m-doctors">
+		<div class="container">
+			<h2 class="page-title-3">Наши врачи</h2>
+			<?php require \TAO::infoblock('doctors')->viewPath('search-form.phtml'); ?>
+			<?php require \TAO::infoblock('doctors')->viewPath('filter-list.phtml'); ?>
+		</div>
+	</div>
+<? } ?>
+<?
+if (!empty($userField["UF_SERVICES"]["VALUE"])) {
+	$anotherElementList = \TAO::infoblock('services')->getItems([
+		'filter' => [
+			'ACTIVE' => 'Y',
+			'ID' => $userField["UF_SERVICES"]["VALUE"],
+		]
+	]);
+
+?>
+	<div class="consultation-card">
+		<div class="container">
+			<div class="page-title-2">Другие услуги</div>
+			<div class="consultation__items">
+				<?php foreach ($anotherElementList as $element) { ?>
+					<a class="consultation__item" href="<?= $element->url() ?>">
+						<div class="consultation__item-img">
+							<img src="<?= $element->previewPicture()->resizedImage('crop404x204') ?>" alt="<?= $element->title() ?> фото" title="<?= $element->title() ?>" loading="lazy">
+						</div>
+						<meta itemprop="name" content="<?= $element->title() ?>">
+						<div class="consultation__item-title">
+							<div itemprop="name"><?= $element->title() ?></div>
+						</div>
+						<div class="consultation__item-price">
+							<div class="consultation__button">Цена от <span><?= $element->getMinSum() ?></span> руб.</div>
+						</div>
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+<? } ?>
+
+<?= \TAO::Form('Appointment')->setOption('layout', 'appointment-in-text')->render() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]); ?>

@@ -1,0 +1,9 @@
+
+#RewriteRule ^ https://www.sm-stomatology.ru/
+
+#RewriteCond %{HTTP_HOST} ^sm-stomatology.ru
+#RewriteRule (.*) https://www.sm-stomatology.ru/$1 [R=301,L]
+
+RewriteCond %{HTTP_HOST} ^sm-stomatology.ru
+RewriteRule ^(.*)$ https://www.sm-stomatology.ru/$ [R=302,L]
+

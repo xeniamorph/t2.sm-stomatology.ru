@@ -1,0 +1,129 @@
+.article-tools {
+	margin: 0 0 30px;
+
+	a {
+		color: #fff;
+	}
+
+	&__box {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		background: #e3f1f4;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		padding: 20px 50px;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+	}
+
+	&__left {
+		padding: 0 30px 0 0;
+	}
+
+	&__back {
+		display: inline-block;
+		position: relative;
+		background: #389dac;
+		height: 42px;
+		text-decoration: none;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+		line-height: 40px;
+		padding: 0 40px 0 70px;
+		font-size: 14px;
+		-webkit-transition: 0.2s;
+		-o-transition: 0.2s;
+		-moz-transition: 0.2s;
+		transition: 0.2s;
+		white-space: nowrap;
+	}
+
+	&__back::before {
+		position: absolute;
+		top: 50%;
+		left: 10px;
+		margin: -7px 0 0 0;
+		border-top: 7px solid transparent;
+		border-left: 10px solid transparent;
+		border-right: 10px solid #fff;
+		border-bottom: 7px solid transparent;
+		content: '';
+	}
+
+	&__back:hover {
+		background: #ad3d8c;
+	}
+
+	&__date {
+		margin-left: 30px;
+		background: #fff;
+		padding: 12px 20px;
+		border-radius: 5px;
+		color: black;
+		font-weight: 400;
+		font-size: 13px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	&__date span {
+		font-weight: 700;
+		font-size: 16px;
+		color: #389dac;
+	}
+
+	.article-author + & &__box {
+		-webkit-border-radius: 0 0 10px 10px;
+		-moz-border-radius: 0 0 10px 10px;
+		border-radius: 0 0 10px 10px;
+	}
+
+	&__left {
+		display: flex;
+		align-items: center;
+	}
+
+	@media all and (max-width: 1100px) {
+		&__left {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		&__date {
+			margin: 20px 0 0 0;
+		}
+	}
+
+	@media all and (max-width: 1024px) {
+		&__box {
+			padding: 15px 15px;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&__back {
+			margin: 0 0 10px;
+		}
+	}
+
+	@media all and (max-width: 550px) {
+		&__box {
+			display: flex;
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		&__left {
+			margin-bottom: 20px;
+		}
+	}
+}

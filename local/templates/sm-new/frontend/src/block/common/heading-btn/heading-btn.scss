@@ -1,0 +1,99 @@
+.heading-btn {
+	position: relative;
+	background: #fff;
+	margin: 10px 0;
+	-webkit-transition: 0.2s -webkit-transform;
+	-o-transition: 0.2s transform;
+	-moz-transition: 0.2s transform, 0.2s -moz-transform;
+	transition: 0.2s transform, 0.2s -webkit-transform, 0.2s -moz-transform;
+
+	&__wrap {
+		max-width: 1430px;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		-webkit-box-align: start;
+		-webkit-align-items: flex-start;
+		-moz-box-align: center;
+		-ms-flex-align: center;
+		align-items: center;
+	}
+
+	&__btn-wrapp {
+		display: grid;
+		gap: 20px;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+	}
+
+	&__title {
+		> * {
+			font-size: 36px;
+			font-weight: bold;
+		}
+	}
+
+	@media all and (max-width: 1024px) {
+		&__wrap {
+			display: block;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		margin: 0 0 20px;
+
+		&__title > * {
+			font-size: 28px;
+		}
+	}
+
+	@media all and (max-width: 590px) {
+		&__btn-wrapp {
+			grid-template-columns: repeat(1, 1fr);
+		}
+
+		&__title > * {
+			font-size: 25px;
+		}
+	}
+}
+
+.one-button {
+	grid-template-columns: repeat(1, 1fr);
+}
+
+.btn-appointment {
+	text-decoration: none;
+	background: #ecf6f7;
+	color: #1b5773;
+	border-radius: 30px;
+	padding: 10px 40px;
+	font-size: 15px;
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.btn-appointment:hover {
+	background: #ad3d8c;
+	color: #fff;
+}
+
+.btn-appointment {
+	&.question {
+		background: #ae3d8d;
+		color: #fff;
+
+		&:hover {
+			background: #389ead;
+		}
+	}
+}

@@ -1,0 +1,42 @@
+<?php
+if($item['diseases']->value()){
+	$diseaseList = \TAO::infoblock('disease')->getItems([
+		'filter' => ['ACTIVE' => 'Y', 'ID' => $item['diseases']->value()]
+	]);
+
+	$alphabet = [];
+	$lastLetter = '';
+	$sortDiseaseList = [];
+	foreach($diseaseList as $disease) {
+		$letter = mb_strtoupper(mb_substr($disease->title(),0,1, 'UTF-8'), 'UTF-8');
+		if($letter != $lastLetter) {
+			$alphabet[] = $letter;
+			$lastLetter = $letter;
+		}
+		$sortDiseaseList[count($alphabet) -1][$disease->id()] = $disease;
+	}?>
+
+	<div class="alphabet-list" >
+		<div class="container">
+			<h2 class="alphabet-list__title">
+				Заболевания
+			</h2>
+			<div class="alphabet-list__wrapper">
+				<?php foreach ($sortDiseaseList as $letterId => $diseaseList) {	?>
+					<div class="alphabet-list__item">
+						<div class="alphabet-list__letter">
+							<?=$alphabet[$letterId]?>
+						</div>
+						<div class="alphabet-list__disease">
+							<?php foreach($diseaseList as $disease) {?>
+								<a href="<?= $disease->url() ?>"><?= $disease->title() ?></a>
+							<?php } ?>
+						</div>
+					</div>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+<?php }?>
+
+

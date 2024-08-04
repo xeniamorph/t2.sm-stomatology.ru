@@ -1,0 +1,60 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"О нас", 
+		"/about/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Услуги и цены", 
+		"/services/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Наши врачи", 
+		"/doctors/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Акции", 
+		"/stock/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Отзывы", 
+		"/reviews-site/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"лаборатория «SMD LAB»", 
+		"/zubotekhnicheskaya-laboratoriya/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+        Array(
+		"ПАЦИЕНТАМ", 
+		"/patients/",
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Контакты", 
+		"/contacts/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

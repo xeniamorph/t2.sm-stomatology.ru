@@ -1,0 +1,108 @@
+<?php
+$serviceList = \TAO::infoblock('services')->getSections([
+	'filter' => ['ACTIVE' => 'Y', 'DEPTH_LEVEL' => 1]
+]);
+
+$elementList = \TAO::Infoblock('services')->getItems([
+	'filter' => ['ACTIVE' => 'Y', 'SECTION_ID' => false],
+]);
+
+$section_url = explode('/',trim($_SERVER['REQUEST_URI'],'/'));
+
+$itemNew = \TAO::infoblock('services')->loadItem('professionalnaya-chistka-zubov');
+?>
+<div class="b-aside-menu">
+	<ul class="b-aside-menu__list b-tree-list">
+		<?php foreach ($serviceList as $service) {?>
+			<?php $itemList = $service->getItems() ?>
+			<?php $class = ''; ?>
+			<?php if(!$service->sub() && count($itemList) == 0) {
+				$class = ' b-tree-list__item b-tree-list__item--empty';
+			}?>
+			<li class="b-aside-menu__item<?= ($service['CODE'] == $section_url[1] ? ' open' : '') ?><?= $class ?>">
+				<?php /*if ($service->title() == 'Детская стоматология') { ?>
+					<a href="//www.smdoctor.ru/child-stomatology/" target="_blank" class="b-aside-menu__link<?= ($service['CODE'] == $section_url[1] ? ' active' : '') ?>">
+						<?= $service->title() ?>
+					</a>
+				<?php } else {*/ ?>
+					<a href="<?= $service->url() ?>" class="b-aside-menu__link<?= ($service['CODE'] == $section_url[1] ? ' active' : '') ?>">
+						<?= $service->title() ?>
+					</a>
+				<?php //} ?>
+				<?php if($service->sub()) { ?>
+					<ul class="b-aside-menu__list">
+					<?php foreach ($service->sub(['ACTIVE' => 'Y']) as $subService) { ?>
+						<li class="b-aside-menu__item">
+							<a href="<?= $subService->url() ?>" class="b-aside-menu__link<?= (\TAO\Urls::isCurrent($subService->url()) || $subService['CODE'] == $section_url[2] ? ' active' : '') ?>">
+								<?= $subService->title() ?>
+							</a>
+							<?php $itemListSub = $subService->getItems() ?>
+							<ul class="b-aside-menu__list">
+								<?php foreach ($itemListSub as $itemSub) { ?>
+									<?php
+									$visible = true;
+									foreach ($itemSub as $itemFirstLvl) {
+										foreach ($itemFirstLvl as $item) {?>
+											<?php
+											$itemFirst = array_shift($item);
+											if($itemFirst['CODE'] == "HIDE_IN_MENU") {
+												if($itemFirst['VALUE_ENUM'] == "YES") {
+													$visible = false;
+												};
+											}
+											?>
+										<?
+										}
+									}
+									?>
+									<?php if($visible) {?>
+										<li class="b-aside-menu__item">
+											<a href="<?= $itemSub->url() ?>" class="b-aside-menu__link<?= (\TAO\Urls::isCurrent($itemSub->url()) ? ' active' : '') ?>">
+												<?= $itemSub->title() ?>
+											</a>
+										</li>
+									<?}else {
+
+									}?>
+								<?php } ?>
+							<?php if($service->url() == '/services/esteticheskaya-stomatologiya/') { ?>
+								<li class="b-aside-menu__item">
+								<a href="<?= $itemNew->url() ?>" class="b-aside-menu__link<?= (\TAO\Urls::isCurrent($itemNew->url()) ? ' active' : '') ?>">
+										<?= $itemNew->title() ?>
+								</a>
+								</li>
+							<?php } ?>
+							</ul>
+						</li>
+					<?php } ?>
+					</ul>
+				<?php } ?>
+				<ul class="b-aside-menu__list">
+					<?php foreach ($itemList as $item) {
+						$db_props = CIBlockElement::GetProperty(11, $item["ID"], array("sort" => "asc"), Array("CODE"=>"HIDE_IN_LEFT_MENU"));
+						if($ar_props = $db_props->Fetch()) {
+							$hideInLeftMenu = $ar_props["VALUE_ENUM"];
+						} else {
+							$hideInLeftMenu = false;
+						}
+						if($hideInLeftMenu === 'Y') { ?>
+						<? } else { ?>
+							<li class="b-aside-menu__item">
+								<a href="<?= $item->url() ?>" class="b-aside-menu__link<?= (\TAO\Urls::isCurrent($item->url()) ? ' active' : '') ?>">
+									<?= $item->title() ?>
+								</a>
+							</li>
+						<? }
+					} ?>
+				</ul>
+			</li>
+		<?php } ?>
+		<?php foreach ($elementList as $service) {?>
+			<li class="b-aside-menu__item  b-tree-list__item b-tree-list__item--empty<?= ($service['CODE'] == $section_url ? ' open' : '') ?>">
+				<a href="<?= $service->url() ?>" class="b-aside-menu__link<?= ($service['CODE'] == $section_url ? ' active' : '') ?>">
+					<?= $service->title() ?>
+				</a>
+			</li>
+		<?php } ?>
+	</ul>
+</div>

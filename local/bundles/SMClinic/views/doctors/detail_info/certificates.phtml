@@ -1,0 +1,35 @@
+<?php
+\TAO::load('file');
+?>
+<div class="certificates">
+	<div class="container">
+		<div class="rezume-content__header">
+			<div class="rezume-content__icon">
+				<img src="<?=SITE_TEMPLATE_PATH?>/svg/sertificate_doc.svg" loading="lazy"></div>
+			<div class="rezume-content__title">
+				<h2 class="page-title-3">Сертификаты врача</h2>
+			</div>
+		</div>
+
+		<div class="certificates__wrap blue_back">
+			<div class="certificates__slider">
+				<?php foreach($certificates as $idImg) { ?>
+					<?php $img = new \TAO\File($idImg);?>
+					<div class="certificates__slide">
+						<a class="certificates__card js-fancybox" href="<?= $img->url() ?>" data-fancybox="licenses">
+							<div class="certificates__image">
+								<picture><img src="<?= $img->resizedImage('fit400x')?>"></picture>
+								<div class="certificates__lupe"></div>
+							</div>
+						</a>
+					</div>
+				<?php } ?>
+			</div>
+			<div class="certificates__prev"></div>
+			<div class="certificates__dots"></div>
+			<div class="certificates__next"></div>
+		</div>
+	</div>
+</div>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>

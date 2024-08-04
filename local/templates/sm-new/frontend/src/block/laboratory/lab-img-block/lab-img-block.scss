@@ -1,0 +1,10 @@
+.lab__img-block {
+	background-image: url(/local/templates/sm-new/img/main_bg_image.jpg);
+	padding: 30px 0;
+	background-size: cover;
+
+	&__photo img {
+		border-radius: 20px;
+		width: 100%;
+	}
+}

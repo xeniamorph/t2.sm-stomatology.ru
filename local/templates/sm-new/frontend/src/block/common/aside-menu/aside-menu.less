@@ -1,0 +1,98 @@
+@import "../../../style/config";
+
+.b-aside-menu {
+	&__heading {
+		margin: 0 0 -5px 20px;
+		position: relative;
+		font: 17px "BlissPro-Bold";
+
+		&-metro-icon {
+			position: absolute;
+			top: 5px;
+			left: -24px;
+		}
+	}
+
+	& + .b-aside-menu {
+		.b-aside-menu__heading {
+			margin-top: -10px;
+		}
+	}
+
+	&__link {
+		color: #1b5773;
+		padding: 3px 0;
+
+		.db;
+
+		&.active {
+			color: #000;
+			background: #e6e7dc;
+			box-shadow: -10px 0 0 0 #e6e7dc;
+		}
+	}
+
+	&__list {
+		.b-aside-menu__list {
+			.b-aside-menu__link {
+				color: #388da7;
+				padding: 4px 10px;
+
+				.db;
+
+				&.active {
+					color: #000;
+					background: #e6e7dc;
+					box-shadow: -10px 0 0 #e6e7dc;
+				}
+			}
+
+			.b-aside-menu__list {
+				margin-top: -2px;
+
+				.b-aside-menu__link {
+					font-size: 15px;
+					padding: 4px 10px 4px 20px !important;
+
+					.db;
+
+					&.active {
+						text-decoration: underline;
+						background: none;
+						box-shadow: none;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	.b-aside-menu {
+		width: 190px;
+	}
+}
+
+@media (max-width: 767px) {
+	.b-aside-menu {
+		display: none;
+
+		&__link {
+			padding: 0 12px 0 0;
+		}
+	}
+
+	.b-aside-menu.visible {
+		display: block;
+		width: auto;
+
+		.b-tree-list {
+			text-align: center;
+		}
+
+		.b-tree-list > li {
+			display: inline-block;
+			margin: 2px 4px;
+		}
+	}
+}

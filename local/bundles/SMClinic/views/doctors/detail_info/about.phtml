@@ -1,0 +1,153 @@
+<div itemprop="description">
+	<div class="rezume-content">
+		<div class="container">
+			<div class="rezume-content__cols">
+				<?php if($this->property('achievements')->value()) {?>
+					<div class="rezume-content__col">
+						<div class="rezume-content__box">
+							<div class="rezume-content__header">
+								<div class="rezume-content__icon"><img src="<?=SITE_TEMPLATE_PATH?>/svg/record.svg" loading="lazy"></div>
+								<div class="rezume-content__title">
+									<h2>Достижения</h2>
+								</div>
+							</div>
+							<div class="rezume-content__body text">
+								<div class="rezume-content__content">
+									<?=$this->property('achievements')->value()['TEXT']?>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php }?>
+
+				<?php if($this->property('certificates_list')->value()) {?>
+					<div class="rezume-content__col">
+						<div class="rezume-content__box">
+							<div class="rezume-content__header">
+								<div class="rezume-content__icon"><img src="<?=SITE_TEMPLATE_PATH?>/svg/sert.svg" loading="lazy"></div>
+								<div class="rezume-content__title">
+									<h2>Сертификаты</h2>
+								</div>
+							</div>
+							<div class="rezume-content__body text">
+								<div class="rezume-content__content">
+									<ul>
+										<?php foreach ($this->property('certificates_list')->value() as $cert) {?>
+											<li><?=$cert?></li>
+										<?php }?>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				<?php }?>
+			</div>
+		</div>
+	</div>
+
+	<?php if($this->property('doctors_specialization')->value()) {?>
+		<div class="rezume-content">
+			<div class="container">
+				<div class="rezume-content__box blue_back">
+					<div class="rezume-content__header">
+						<div class="rezume-content__icon"><img src="<?=SITE_TEMPLATE_PATH?>/svg/spetia.svg" loading="lazy"></div>
+						<div class="rezume-content__title">
+							<h2>Специализация врача</h2>
+						</div>
+					</div>
+					<div class="rezume-content__body text">
+						<div class="rezume-content__content">
+							<?=$this->property('doctors_specialization')->value()['TEXT']?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php }?>
+
+	<?php if($this->property('education')->value()) {?>
+		<div class="rezume-content">
+			<div class="container">
+				<div class="rezume-content__box">
+					<div class="rezume-content__header">
+						<div class="rezume-content__icon"><img src="<?=SITE_TEMPLATE_PATH?>/svg/spetia.svg" loading="lazy"></div>
+						<div class="rezume-content__title">
+							<h2>Образование</h2>
+						</div>
+					</div>
+					<div class="rezume-content__body text">
+						<div class="rezume-content__content">
+							<?=$this->property('education')->value()['TEXT']?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php }?>
+
+	<?php if($this->property('work_experience')->value()) {?>
+		<div class="rezume-content">
+			<div class="container">
+				<div class="rezume-content__box blue_back">
+					<div class="rezume-content__header">
+						<div class="rezume-content__icon"><img src="<?=SITE_TEMPLATE_PATH?>/svg/practice.svg" loading="lazy"></div>
+						<div class="rezume-content__title">
+							<h2>Опыт работы</h2>
+						</div>
+					</div>
+					<div class="rezume-content__body text">
+						<div class="rezume-content__content">
+							<?=$this->property('work_experience')->value()['TEXT']?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php }?>
+
+	<?php if($this->property('professional_skills')->value()) {?>
+		<div class="rezume-content">
+			<div class="container">
+				<div class="rezume-content__box">
+					<div class="rezume-content__header">
+						<div class="rezume-content__icon"><img src="<?=SITE_TEMPLATE_PATH?>/svg/profi.svg" loading="lazy"></div>
+						<div class="rezume-content__title">
+							<h2 class="page-title-3">Профессиональные навыки</h2>
+						</div>
+					</div>
+					<div class="rezume-content__body text">
+						<div class="rezume-content__content">
+							<?=$this->property('professional_skills')->value()['TEXT']?>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	<?php }?>
+
+	<?php
+	$description = explode('<!-- {form} -->', $this['DETAIL_TEXT']);
+	if($description) {?>
+		<?php if(isset($description[0]) && $description[0]!== '') {?>
+			<div class="b-text text">
+				<div class="container">
+					<div class="b-text__wrapper">
+						<?=print $description[0];?>
+					</div>
+				</div>
+			</div>
+		<?php }?>
+		<?php if(isset($description[1]) && $description[1]!== '') {
+			print \TAO::Form('Callback')->setOption('layout','callback-in-text')->render();?>
+			<div class="b-text text">
+				<div class="container">
+					<div class="b-text__wrapper">
+						<?=print $description[1];?>
+					</div>
+				</div>
+			</div>
+		<?php }
+	}?>
+</div>
+
+

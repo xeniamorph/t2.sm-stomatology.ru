@@ -1,0 +1,235 @@
+.feedback {
+	&-action {
+		position: relative;
+		background: url("/local/templates/sm-new/img/main_bg_image.jpg");
+		background-size: cover;
+		padding: 50px 20px 0 35px;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+		color: #fff;
+		margin: 0 0 40px;
+		overflow: hidden;
+	}
+
+	&-form {
+		margin: 60px 0 60px;
+	}
+
+	&-action__form {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+	}
+
+	&-action__form form {
+		padding: 0 70px 0 5px;
+		-webkit-box-flex: 1;
+		-webkit-flex-grow: 1;
+		-moz-box-flex: 1;
+		-ms-flex-positive: 1;
+		flex-grow: 1;
+	}
+
+	&-action__subtitle {
+		font-size: 28px;
+		font-weight: bold;
+		margin: 0 0 10px;
+	}
+
+	&-action__submit {
+		position: relative;
+		cursor: pointer;
+		display: block;
+		font-size: 16px;
+		-webkit-border-radius: 30px;
+		-moz-border-radius: 30px;
+		border-radius: 30px;
+		line-height: 54px;
+		height: 56px;
+		font-family: inherit;
+		width: 100%;
+		border: 0;
+		background: #db59b5;
+		color: #fff;
+		font-weight: bold;
+		padding: 0 30px 0 30px;
+		text-align: center;
+	}
+
+	&-action__submit:hover {
+		background: #6e1e57;
+		-webkit-box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		-moz-box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		color: #fff;
+	}
+
+	&-action__submit:hover::before {
+		border-left: 12px solid #fff;
+	}
+
+	&-action__row {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: space-between;
+		margin: 0 0 30px;
+	}
+
+	&-form__border {
+		border-top: 1px solid #6ab5c1;
+		border-bottom: 1px solid #6ab5c1;
+		padding: 20px 0 10px 0;
+		margin: 0 0 20px 0;
+	}
+
+	&-action__cell {
+		width: 30%;
+	}
+
+	&-action__cell:last-child {
+		width: 30%;
+	}
+
+	&-action__image {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: end;
+		-webkit-align-items: flex-end;
+		-moz-box-align: end;
+		-ms-flex-align: end;
+		align-items: flex-end;
+	}
+
+	&-action__image img {
+		display: block;
+		max-width: 315px;
+	}
+
+	&-action__read {
+		font-size: 14px;
+		line-height: 18px;
+		font-style: italic;
+	}
+
+	&-action__read-bot {
+		font-size: 13px;
+		line-height: 18px;
+		margin-bottom: 30px;
+	}
+
+	&-action__read a {
+		font-weight: bold;
+	}
+
+	&-action__footer {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: center;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: center;
+		padding: 0 0 15px;
+	}
+
+	&-action__footer div,
+	&-action__footer a {
+		color: #fff;
+		text-align: center;
+	}
+
+	@media all and (max-width: 1150px) {
+		&-action {
+			padding: 30px 20px;
+		}
+
+		&-action__form {
+			margin-right: 0;
+		}
+
+		&-action__form form {
+			padding: 0;
+		}
+
+		&-action__cell {
+			width: 30%;
+		}
+
+		&-action__cell:last-child {
+			width: 30%;
+		}
+
+		&-action__image {
+			display: none;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&-action {
+			margin: 0 0 30px;
+		}
+
+		&-action__subtitle {
+			font-size: 18px;
+		}
+
+		&-action__row {
+			margin: 0 0 10px;
+			display: block;
+		}
+
+		&-action__cell {
+			width: 100%;
+			margin: 0 0 10px;
+		}
+
+		&-action__cell:last-child {
+			width: 100%;
+		}
+
+		&-action__footer {
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-webkit-flex-direction: column;
+			-moz-box-orient: vertical;
+			-moz-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			padding-top: 20px;
+			padding-bottom: 0;
+		}
+
+		&-action__read {
+			margin: 0 0 20px;
+			font-size: 14px;
+		}
+
+		&-action__submit {
+			width: 100%;
+			line-height: 46px;
+			height: 56px;
+		}
+	}
+
+	@media all and (max-width: 321px) {
+		&-action__read {
+			font-size: 12px;
+		}
+	}
+}

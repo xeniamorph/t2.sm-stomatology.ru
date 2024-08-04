@@ -1,0 +1,173 @@
+.map-block {
+	margin: 30px 0;
+	padding: 20px 0;
+	background-size: cover;
+	position: relative;
+	overflow: hidden;
+
+	&__map {
+		position: absolute;
+		top: -40px;
+		width: 100%;
+		z-index: 1;
+
+		@media all and (max-width: 768px) {
+			max-height: 300px;
+			margin-bottom: 30px;
+			position: relative;
+			top: auto;
+		}
+	}
+
+	&__content {
+		display: flex;
+	}
+
+	&__adress-card {
+		background: #f3f7f8;
+		border-radius: 20px;
+		padding: 25px;
+		width: 24%;
+		z-index: 2;
+		-webkit-box-shadow: 1px 1px 26px 4px rgba(56, 157, 172, 0.25);
+		-moz-box-shadow: 1px 1px 26px 4px rgba(56, 157, 172, 0.25);
+		box-shadow: 1px 1px 26px 4px rgba(56, 157, 172, 0.25);
+	}
+
+	&__img img {
+		border-radius: 20px;
+		width: 100%;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		margin: 20px 0;
+	}
+
+	&__item img {
+		margin-right: 20px;
+	}
+
+	&__btn {
+		text-decoration: none;
+		background: #ae3d8d;
+		color: #fff;
+		font-weight: 400;
+		border-radius: 10px;
+		padding: 10px 30px;
+	}
+
+	&__btn:hover {
+		background: #389ead;
+	}
+
+	&__btn-wrapp {
+		display: flex;
+		justify-content: center;
+	}
+
+	&__label {
+		font-size: 14px;
+		line-height: 20px;
+		font-weight: 400;
+
+		span {
+			color: #5bc607;
+			font-weight: 700;
+		}
+
+		&.blue span {
+			color: #1679c0;
+		}
+
+		&.violet span {
+			color: #843bb1;
+		}
+
+		&.orange span {
+			color: #eb9b00;
+		}
+
+		&.green span {
+			color: #22a36c;
+		}
+
+		&.lime span {
+			color: #50d62f;
+		}
+
+		&.pink span {
+			color: #ffa8af;
+		}
+	}
+
+	&__label-time {
+		font-size: 14px;
+	}
+
+	&__tabs {
+		.map-block {
+			display: none;
+
+			&.js-active {
+				display: block;
+				width: 100%;
+			}
+		}
+	}
+
+	&__tab-item {
+		display: inline-block;
+		text-align: center;
+		vertical-align: middle;
+		user-select: none;
+		background-color: #f3f7f8;
+		color: #000;
+		min-width: 450px;
+		border: 1px solid transparent;
+		padding: 20px;
+		font-size: 16px;
+		line-height: 1.5;
+		border-radius: 20px;
+		transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+		margin-right: 20px;
+		cursor: pointer;
+		margin-bottom: 10px;
+		font-weight: 700;
+
+		&.js-active {
+			background-color: #389dac;
+			color: #fff;
+		}
+
+		@media (max-width: 600px) {
+			min-width: auto;
+			width: 100%;
+			padding: 20px 5px;
+			margin: 10px 0;
+		}
+	}
+
+	@media all and (max-width: 1250px) {
+		&__adress-card {
+			width: 40%;
+		}
+	}
+
+	@media all and (max-width: 991px) {
+		&__adress-card {
+			width: 50%;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&__adress-card {
+			width: 100%;
+		}
+
+		&__btn-wrapp {
+			margin: 20px 0 0 0;
+		}
+	}
+}

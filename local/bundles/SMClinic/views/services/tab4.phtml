@@ -1,0 +1,121 @@
+<?php /*search form start*/?>
+
+<?php
+if($item['doctors']->value()){
+	foreach ($item['doctors']->value() as $doctorID) {
+		$doctorList_tmp = \TAO::infoblock('doctors')->getItems([
+			'filter' => ['ACTIVE' => 'Y', 'ID' => $doctorID],
+			'fields' => ['ID','NAME','DETAIL_PAGE_URL','PROPERTY_clinics','PROPERTY_specialization']
+		]);
+		$doc = array_shift($doctorList_tmp);
+		if ($doc) {
+			$doctorList[$doc->id()] = $doc;
+		}
+	}
+	$addressListId = [];
+	foreach($doctorList as $doctor) {
+		$idList = $doctor['clinics']->value();
+		foreach($idList as $id){
+			$addressListId[$id][$doctor['ID']] = $doctor;
+		}
+	}
+}
+?>
+<?php
+/*Переопределение списка врачей и списка врачей в клиниках который собирается в 'search-form.phtml' */
+$js_clinicList = [];
+$js_doctorList = [];
+
+$sortClinic = [];
+foreach ($doctorList as $doctor) {
+	if($doctor['clinics']->value()){
+		$clinicIdList = $doctor['clinics']->value();
+		foreach($clinicIdList as $clinicId){
+			if(isset($js_clinicList[$sortClinic[$clinicId]])) {
+				$js_clinicList[$sortClinic[$clinicId]]['docList'][] = $doctor->id();
+			}else{
+				$clinicInfoList = \TAO::infoblock('Address')->getItems([
+					'filter' => ['ACTIVE' => 'Y', 'ID' => $clinicId]
+				]);
+				$clinic = array_shift($clinicInfoList);
+				$metro_list = \TAO::infoblock('metro')->getItems([
+					'filter' => ['ACTIVE' => 'Y', 'ID' => $clinic['metro']->value()]
+				]);
+				$metro = array_shift($metro_list);
+				$js_clinicList[$clinic['SORT']] = [
+					'name' => $clinic->title(),
+					'metro' => $metro->title()
+				];
+				$sortClinic[$clinic->id()] = $clinic['SORT'];
+				$js_clinicList[$clinic['SORT']]['docList'][] = $doctor->id();
+			}
+		}
+	}
+	$js_doctorList[$doctor->id()] = [
+		'name' => $doctor->title(),
+		'img' => $doctor->previewPicture()->resizedImage('fit150x200'),
+		'specialization' => $doctor['specialization']->value(),
+		'link' => $doctor->url()
+	];
+}
+asort($js_clinicList);
+?>
+
+<script>
+clinicList = <?= json_encode($js_clinicList) ?>;
+doctorList = <?= json_encode($js_doctorList) ?>;
+</script>
+<h2>Наши врачи</h2>
+<!-- <p class="h3">
+Поиск врача
+</p>-->
+<?php require \TAO::infoblock('doctors')->viewPath('search-form.phtml'); ?>
+
+<?php /*search form end*/?>
+<div class="b-cards">
+	<div class="row b-cards__search-panel js-form-search__result">
+		<?php foreach($addressListId as $id => $doctorsFromAddress) {?>
+			<?php $addressList = \TAO::infoblock('address')->getItems([
+				'filter' => ['ACTIVE' => 'Y', 'ID' => $id ]
+			]);
+			$address = array_shift($addressList);
+			?>
+			<p>
+				<?= $address->title() ?>
+			</p>
+			<div class="b-cards">
+				<div class="row">
+					<?php foreach ($doctorsFromAddress as $doctor) {?>
+						<div class="col-sm-4">
+							<div class="b-card b-card--doctor">
+								<a href="<?= $doctor->url() ?>" class="b-card__img db"
+									style="background-image: url(<?= $doctor->previewPicture()->resizedImage('fit150x200') ?>);"></a>
+								<a href="<?= $doctor->url() ?>" class="b-card__title db">
+									<?= $doctor->title() ?>
+								</a>
+								<div class="b-card__sub">
+									<?= $doctor['specialization']->value() ?>
+								</div>
+
+								<div class="b-card__btn-panel">
+									<a href="#" class="btn btn--doctor btn-primary" data-toggle="modal" data-target="#modal-feedback">Записаться на прием</a>								
+								</div>
+							</div>
+						</div>
+					<?php } ?>
+
+				</div>
+			</div>
+		<?php } ?>
+	</div>
+</div>
+
+<?= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render(); ?>
+
+<?php if(stripos($_SERVER["REDIRECT_URL"], 'services/protezirovanie-ortopediya')) { ?>
+	<p class="b-heading--secondary b-heading--black">
+		Записаться на прием
+	</p>
+
+	<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?php } ?>

@@ -1,0 +1,88 @@
+@import "../../../style/config";
+
+.b-gallery {
+	margin: 10px 0;
+
+	&__item {
+		display: block;
+		margin-bottom: 25px;
+
+		&--video {
+			position: relative;
+
+			&::before {
+				content: "";
+				display: block;
+				position: absolute;
+				left: 50%;
+				top: 150px;
+				transform: translate3d(-50%, -50%, 0) scale(1);
+				width: 80px;
+				height: 80px;
+				background-image: url(~img/common/play.png);
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				transition: opacity 0.3s, transform 0.15s;
+				opacity: 1;
+				pointer-events: none;
+			}
+
+			&:hover {
+				&::before {
+					opacity: 0.5;
+				}
+			}
+
+			&:active {
+				&::before {
+					transform: translate3d(-50%, -50%, 0) scale(0.9);
+				}
+			}
+		}
+	}
+
+	&__link {
+		font: 18px "BlissPro";
+		color: @secondary-color !important;
+		display: block;
+		margin: 5px 0 15px;
+
+		.ellipsis;
+
+		white-space: normal;
+	}
+
+	&__img {
+		margin: 0;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		display: block;
+		height: 300px;
+
+		&--hidden {
+			display: none;
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-gallery {
+		&__item {
+			&--video {
+				.modal--lg {
+					.modal-content {
+						padding: 0 10px;
+					}
+				}
+			}
+		}
+	}
+}
+
+.mfp-image-holder {
+	.mfp-content {
+		z-index: 2010;
+	}
+}

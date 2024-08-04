@@ -1,0 +1,104 @@
+<?php
+$uniqName = uniqid($name);
+?>
+<div class="modal fade modal--hidden" id="modal-support">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<div class="close" data-dismiss="modal"></div>
+				<p class="modal-title">
+					Написать руководителю Службы клиентской поддержки
+				</p>
+			</div>
+
+			<div class="tao-form tao-form-<?= $name ?> tao-form-<?= $uniqName ?>">
+				<?/*
+				<ul class="tao-form-errors"<?= (count($this->errors)>0? '' : ' style="display: none;"') ?>>
+					<?php foreach($this->errors as $field => $error) if (strlen($error)>1) { ?>
+						<li data-field="<?= $field ?>" class="error-field-<?= $field ?>"><?= $error ?></li>
+					<?php } ?>
+				</ul>
+				 */?>
+				<form id="tao-form-<?= $uniqName ?>" method="post" action="<?= $action ?>" class="tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+
+					<div class="modal-body">
+						<div class="b-form">
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text" name="<?= $fields['name']['code'] ?>"
+									class="form-control b-form__control b-field-<?= $fields['name']['code'] ?>"
+								>
+								<label for="">Ваше имя<span class="required">*</span></label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text" name="<?= $fields['lastname']['code'] ?>"
+									class="form-control b-form__control b-field-<?= $fields['lastname']['code'] ?>"
+								>
+								<label for="">Ваша фамилия<span class="required">*</span></label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<input type="text" name="<?= $fields['email']['code'] ?>"
+									class="form-control b-form__control b-field-<?= $fields['email']['code'] ?>"
+								>
+								<label for="">Ваш e-mail для ответа<span class="required">*</span></label>
+							</div>
+
+							<div class="b-form__group b-form__group--float-label b-form__group--required">
+								<!-- Порядок важен: сначала инпут, потом лэйбл -->
+								<textarea type="text"
+									class="form-control b-form__control b-field-<?= $fields['review']['code'] ?>"
+									style="height: 120px !important;"
+									name="<?= $fields['review']['code'] ?>"></textarea>
+								<label for="">Отзыв<span class="required">*</span></label>
+							</div>
+
+
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<input type="hidden" name="taoform" value="<?= $name ?>">
+						<div class="b-form__group b-form__note">
+							Этот сайт защищен reCAPTCHA и применяются
+							<a target="_blank" href="https://policies.google.com/privacy">Политика конфиденциальности</a> и
+							<a target="_blank" href="https://policies.google.com/terms">Условия обслуживания Google</a>.
+						</div>
+						<button class="btn btn-primary recaptchaForm"
+								id="popup-administration-from"
+								type="submit"
+								value="<?= $this->option('submit_text') ?>"
+								data-method="onRecaptchaPopupAdministrationForm">
+							Отправить
+						</button>
+					</div>
+					<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+					<input type="hidden" name="user_email" value="">
+					<input type="hidden" name="formtype" value="administration">
+					<input type="hidden" name="analytics" value="">
+					<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+				</form>
+				<?php/* if ($this->ajax()) { ?>
+					<?php $this->options['jsname'] = $uniqName ?>
+					<script>
+						var onRecaptchaPopupAdministrationForm = function(token) {
+							captchaFormProcess('<?= $uniqName ?>', 'popup-administration-from', <?= json_encode($this->options) ?>);
+						};
+					</script>
+				<?php } else { ?>
+					<script>
+						var onRecaptchaPopupAdministrationForm = function (token) {
+							captchaFormSubmit('<?= $uniqName ?>');
+						};
+					</script>
+				<?php } */?>
+			</div>
+
+		</div>
+	</div>
+</div>

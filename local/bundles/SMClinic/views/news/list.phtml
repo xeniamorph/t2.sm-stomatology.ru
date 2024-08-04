@@ -1,0 +1,30 @@
+<?php
+$pagenavDesc = '';
+if(intval($page) > 1) {
+	$pagenavDesc = ' - Страница №'.$page;
+}
+\TAO::App()->SetTitle('Новости стоматологической клиники «СМ-Стоматология»' . $pagenavDesc);
+\TAO::app()->SetPageProperty("description", "Последние события, актуальные новости и мероприятия стоматологической клиники «СМ-Стоматология». Подробнее с материалами можно ознакомиться на нашем сайте.");
+?>
+<div class="headline">
+	<div class="container">
+		<div class="headline__title">
+			<h1>Новости</h1>
+		</div>
+	</div>
+</div>
+<div class="news-cards-block">
+	<div class="container">
+		<div class="news-cards-block__wrap">
+			<div class="news-cards-block__items">
+				<?php foreach ($items as $item) { ?>
+					<?= $item->render() ?>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+</div>
+<?= $this->renderPageNavigator($page, $numPages, $pagerVar) ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

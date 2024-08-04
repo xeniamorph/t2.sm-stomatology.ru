@@ -1,0 +1,76 @@
+.b-diseases-list {
+	margin: 60px 0;
+
+	&__box .page-title-3 {
+		border-bottom: 1px solid rgba(189, 187, 187, 0.55);
+		padding-bottom: 20px;
+	}
+
+	&__box {
+		background: #f3f7f8;
+		-webkit-border-radius: 10px;
+		-moz-border-radius: 10px;
+		border-radius: 10px;
+		padding: 30px;
+	}
+
+	&__text {
+		font-size: 16px;
+		font-weight: bold;
+		margin: 0 0 50px;
+		line-height: 160%;
+	}
+
+	&__items {
+		-webkit-column-count: 4;
+		-moz-column-count: 4;
+		column-count: 4;
+	}
+
+	a {
+		margin: 3px 0;
+		display: block;
+		text-decoration: none;
+		padding: 3px 0;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+	}
+
+	a:hover {
+		color: #ad3d8c;
+		text-decoration: underline;
+	}
+
+	@media all and (max-width: 1024px) {
+		&__items {
+			-webkit-column-count: 2;
+			-moz-column-count: 2;
+			column-count: 2;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		margin: 40px 0;
+
+		&__text {
+			font-size: 14px;
+		}
+
+		&__box {
+			padding: 20px 15px;
+		}
+	}
+
+	@media all and (max-width: 480px) {
+		&__items {
+			-webkit-column-count: 1;
+			-moz-column-count: 1;
+			column-count: 1;
+		}
+
+		&__text {
+			margin: 0 0 30px;
+		}
+	}
+}

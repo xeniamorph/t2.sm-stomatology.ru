@@ -1,0 +1,42 @@
+@import "../../../style/config";
+
+.b-table {
+	margin: 30px 0;
+
+	td {
+		padding: 3px 15px;
+		color: #333;
+		border-bottom: 1px solid #e6e8dd;
+		border-right: 1px solid #e6e8dd;
+		vertical-align: middle;
+
+		&:last-child {
+			border-right: none;
+		}
+	}
+
+	tr {
+		&:hover {
+			background: #fbf0ec;
+		}
+
+		&:last-child {
+			td {
+				border-bottom: 2px solid #e6e8dd;
+			}
+		}
+	}
+
+	th {
+		font-size: 0.85em;
+		color: #000;
+		border-top: 2px solid #e6e8dd;
+		border-bottom: 2px solid #e6e8dd !important;
+		border-right: 1px solid #e6e8dd;
+		background: #fff !important;
+
+		&:last-child {
+			border-right: none;
+		}
+	}
+}

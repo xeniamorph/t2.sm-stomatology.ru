@@ -1,0 +1,25 @@
+<div class="action-offers">
+	<div class="container">
+		<div class="action-offers__title">Где можно оформить кредит на лечение зубов:</div>
+		<div class="action-offers__items">
+			{% for item in items %}
+				<div class="action-offers__item">
+					<div class="action-offers__top">
+						<div class="action-offers__header">
+							<div class="action-offers__subtitle">{{ item.title() }}</div>
+							<div class="action-offers__metro">{{ item['metroData'].title() }}</div>
+							<div class="action-offers__address">{{ item['address'] }}</div>
+							<div class="action-offers__label-wrapp">
+								{% for credit in item['creditData'] %}
+									<div class="action-offers__label-item">
+										<img src="{{ credit.previewPicture() }}" alt="{{ credit.title() }}">
+									</div>
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>

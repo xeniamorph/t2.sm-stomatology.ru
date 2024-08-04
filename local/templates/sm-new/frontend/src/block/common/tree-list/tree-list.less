@@ -1,0 +1,68 @@
+@import "../../../style/config";
+
+.b-tree-list {
+	list-style: none;
+	margin: 10px 0 20px 20px;
+	padding: 0;
+
+	.db;
+
+	ul {
+		list-style: none;
+		display: none;
+		margin: 10px 0;
+		padding: 0;
+		color: #7e7e7e;
+		font: 17px "BlissProLight";
+	}
+
+	& > li {
+		color: @secondary-color;
+		font: 18px "BlissPro";
+		cursor: pointer;
+
+		.pr;
+
+		&::before {
+			font-weight: 100;
+			content: "+";
+			color: fade(@secondary-color, 50%);
+			width: 20px;
+			top: 0;
+			left: -20px;
+
+			.dib;
+
+			.pa;
+		}
+
+		&:hover::before {
+			color: @secondary-color;
+		}
+
+		&.open {
+			color: @main-color;
+
+			&::before {
+				content: "‒";
+				color: fade(@secondary-color, 50%);
+			}
+
+			&:hover::before {
+				color: @secondary-color;
+			}
+
+			ul {
+				display: block;
+			}
+		}
+	}
+
+	&__item {
+		&--empty {
+			&::before {
+				display: none !important;
+			}
+		}
+	}
+}

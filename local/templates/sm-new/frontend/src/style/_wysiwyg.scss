@@ -1,0 +1,7 @@
+@mixin wysiwyg () {
+	.c-h1 {
+		color: $body-font-color;
+		font-weight: $global-weight-bold;
+		line-height: 1;
+	}
+}

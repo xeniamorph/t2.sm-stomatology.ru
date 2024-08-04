@@ -1,0 +1,51 @@
+<?php
+$html = '';
+$first = $page > 5 ? $page - 2 : 1;
+$last = $page + 5 > $numPages ? $numPages : $page + 2;
+
+
+
+if ($numPages > 1) {
+	if($page > 1) {
+		$firstPageLink = '<a href="'.$this->url("").'" class="b-pagination__btn active" rel="canonical">Начало</a>';
+	} else {
+		$firstPageLink = '<span class="b-pagination__btn">Начало</span>';
+	}
+
+	if($page < $numPages) {
+		$lastPageLink = '<a href="'.$this->url($numPages).'" class="b-pagination__btn active" rel="canonical">Конец</a>';
+	} else {
+		$lastPageLink = '<span class="b-pagination__btn">Конец</span>';
+	}
+
+}
+if($page > 1) {
+	$prevPageLink = '<a href="'.$this->url($page - 1).'" class="b-pagination__prev active" rel=prev></a>';
+} else {
+	$prevPageLink = '<span class="b-pagination__prev" rel=prev></span>';
+}
+
+if ($page < $numPages) {
+	$nextPageLink = '<a href="'.$this->url($page + 1).'" class="b-pagination__next active" rel=next></a>';
+} else {
+	$nextPageLink = '<span class="b-pagination__next" rel=next></span>';
+}
+
+if ($first > 1) {
+    $href = $this->url(1);
+    $pagesLink .= "<a href=\"{$href}\" class='b-pagination__num'>1</a> <span class='b-pagination__num'>...</span> ";
+}
+
+for ($i = $first; $i <= $last; $i++) {
+    $href = $this->url($i);
+    $extra = $i == $page ? ' active' : '';
+    $pagesLink .= '<a href="'. $href .'" class="b-pagination__num'. $extra .'">'. $i .'</a>';
+}
+
+if ($last < $numPages) {
+    $href = $this->url($numPages);
+    $pagesLink .= "<span class='b-pagination__num'>...</span> <a class='b-pagination__num' href=\"{$href}\">{$numPages}</a> ";
+}
+\TAO::app()->AddHeadString('<link rel="canonical" href="https://www.sm-stomatology.ru' . $this->url(1) . '" />', true);
+print '<div class="b-pagination__items">' .$firstPageLink . '<div class="b-pagination__item pages">' .$prevPageLink  . '<div class="b-pagination__page">' . $pagesLink . '</div>' . $nextPageLink . '</div>' .$lastPageLink . '</div>';
+?>

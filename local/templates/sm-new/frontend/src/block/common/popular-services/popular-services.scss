@@ -1,0 +1,134 @@
+.popular-services {
+	background: #f3f7f8;
+	height: 640px;
+	margin: 30px 0 150px;
+	width: 100%;
+	background-image: url("/local/templates/sm-new/img/price_item_img.png"), linear-gradient(to right, rgb(243, 247, 248), rgba(255, 255, 255, 0));
+	background-repeat: no-repeat, no-repeat;
+	background-position: 6%, 50%;
+
+	&__wrapp {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+
+	&__price-tible {
+		background: #fff;
+		margin-top: 60px;
+		padding: 30px;
+		min-width: 800px;
+		border-radius: 20px;
+		-webkit-box-shadow: -1px 16px 45px 2px rgba(201, 229, 233, 0.79);
+		-moz-box-shadow: -1px 16px 45px 2px rgba(201, 229, 233, 0.79);
+		box-shadow: -1px 16px 45px 2px rgba(201, 229, 233, 0.79);
+	}
+
+	&__price-tible:hover {
+		-webkit-box-shadow: -1px 16px 45px 2px rgba(164, 212, 218, 0.79);
+		-moz-box-shadow: -1px 16px 45px 2px rgba(157, 211, 218, 0.79);
+		box-shadow: -1px 16px 45px 2px rgba(155, 215, 224, 0.79);
+	}
+
+	&__link-title {
+		font-size: 28px;
+		line-height: 48px;
+		font-weight: 700;
+		margin-bottom: 40px;
+		margin-top: 100px;
+	}
+
+	&_link {
+		text-decoration: none;
+		background: #ae3d8d;
+		border-radius: 30px;
+		color: #fff;
+		padding: 15px 50px;
+		font-size: 16px;
+		font-weight: 500;
+		line-height: 24px;
+	}
+
+	&_link:hover {
+		background: #389dac;
+	}
+
+	@media all and (max-width: 1400px) {
+		background-position: -12%, 50%;
+
+		&__wrapp {
+			margin: 0 0 0 60px;
+		}
+	}
+
+	@media all and (max-width: 1280px) {
+		height: auto;
+		margin: 30px 0 60px;
+		width: 100%;
+		background-position: 100%, 50%;
+
+		&__wrapp {
+			flex-direction: column;
+			align-items: center;
+		}
+
+		&__link-title {
+			font-size: 28px;
+			line-height: 40px;
+			margin: 0;
+		}
+
+		&__link {
+			display: flex;
+			align-items: center;
+			width: 100%;
+			justify-content: space-evenly;
+			margin: 30px 0;
+		}
+
+		&__price-tible {
+			margin-top: 0;
+		}
+	}
+
+	@media all and (max-width: 991px) {
+		&__price-tible {
+			width: 100%;
+			min-width: 0;
+		}
+
+		&__wrapp {
+			margin: 0;
+		}
+	}
+
+	@media all and (max-width: 780px) {
+		margin: 30px 0 60px;
+	}
+
+	@media all and (max-width: 600px) {
+		margin: 30px 0 90px;
+
+		&__link {
+			flex-direction: column;
+		}
+
+		&__link-title {
+			margin: 0 0 20px 0;
+		}
+	}
+
+	@media all and (max-width: 480px) {
+		&__price-tible {
+			padding: 30px 10px;
+		}
+	}
+
+	@media all and (max-width: 321px) {
+		margin: 30px 0 60px;
+
+		&__price-tible {
+			padding: 10px 10px;
+		}
+	}
+}

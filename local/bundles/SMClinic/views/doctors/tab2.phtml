@@ -1,0 +1,39 @@
+<?php
+\TAO::load('file');
+$amountCertificates = count($this['certificates']->value());
+if($amountCertificates <= 3){
+	$amountInCol = 1;
+}else{
+	$amountInCol = ceil($amountCertificates / 3);
+}
+$col = 1;
+?>
+<div class="b-images-in-cols">
+	<div class="row">
+		<div class="col-sm-4">
+			<?php $i = 1; ?>
+			<?php foreach($this['certificates']->value() as $idImg) { ?>
+				<?php $img = new \TAO\File($idImg);?>
+					<a href="<?= $img->url() ?>" class="b-images-in-cols__link">
+						<img src="<?= $img->resizedImage('fit400x')?>" alt="">
+					</a>
+				<?php
+					if ($i == $amountInCol && $col < 3) {
+						$i = 1;
+						$col++;
+						echo '</div><div class="col-sm-4">';
+					}else {
+						$i++;
+					}
+				?>
+			<?php } ?>
+		</div>
+	</div>
+</div>
+
+
+<p class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</p>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>

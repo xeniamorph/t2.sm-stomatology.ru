@@ -1,0 +1,42 @@
+<?php
+\TAO::app()->setTitle('Архив акций | "СМ-Стоматология"');
+\TAO::app()->SetPageProperty("description", "Архив акций | Сеть стоматологических клиник в Москве - «СМ-Стоматология»");
+\TAO::navigation()->route()->add(['url' => '/stock/archive/', 'title' => 'Архив акций'])
+?>
+<div class="article-headline">
+	<div class="container">
+		<div class="article-headline__title">
+			<h1>Архив акций</h1>
+		</div>
+	</div>
+</div>
+
+<div class="action-cards">
+	<div class="container">
+		<a href="/stock/" class="action-cards__archive">
+			Действующие акции
+		</a>
+		<div class="action-cards__wrap">
+			<div class="action-cards__items">
+				<?php foreach ($items as $item) { ?>
+					<?= $item->render(['end_action' => true]) ?>
+				<?php } ?>
+			</div>
+
+			<?php if(count($items) > $numPages*$page) {?>
+				<div class="more-less">
+					<div class="container">
+						<div class="more-less__btn-wrapp">
+							<button class="more-less__button" data-url="page-<?=$page ? $page + 1 : 2?>">Показать еще акции</button>
+						</div>
+					</div>
+				</div>
+			<?php }?>
+		</div>
+	</div>
+</div>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

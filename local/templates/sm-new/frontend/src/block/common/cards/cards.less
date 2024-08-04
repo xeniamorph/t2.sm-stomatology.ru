@@ -1,0 +1,141 @@
+@import "../../../style/config";
+
+.b-cards {
+	margin: 30px 0;
+
+	&__search-panel {
+		margin-left: 0;
+		margin-right: 0;
+	}
+}
+
+.b-card {
+	text-align: center;
+
+	&__img {
+		background-position: center;
+		background-size: contain;
+		background-repeat: no-repeat;
+		height: 200px;
+		width: 150px;
+		margin: 0 auto 20px;
+	}
+
+	&__title {
+		color: @secondary-color;
+		font: 20px "BlissPro-Bold";
+		margin-bottom: 10px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	&__sub {
+		color: #919586;
+		font: 15px "BlissProLight";
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+	&--doctor {
+		height: 360px;
+	}
+
+	&--equipment {
+		height: 300px;
+	}
+
+	&--category {
+		height: 275px;
+	}
+
+	&__min-sum {
+		color: #a03339;
+		text-align: left;
+		position: relative;
+		margin: -12px 0 0;
+		font-size: 14px;
+	}
+}
+
+.b-card {
+	&--doctor {
+		position: relative;
+
+		&:hover {
+			background: #fbf0ec;
+
+			&::before {
+				display: block;
+			}
+
+			.b-card__btn-panel {
+				display: block;
+			}
+		}
+
+		&::before {
+			content: '';
+			position: absolute;
+			display: none;
+			width: 100%;
+			background: #fbf0ec;
+			height: 20px;
+			top: -20px;
+			left: 0;
+		}
+	}
+
+	&__btn-panel {
+		display: none;
+		background: #fbf0ec;
+		position: absolute;
+		width: 100%;
+		height: 100px;
+		z-index: 100;
+	}
+}
+
+.b-cards--equipment {
+	.b-card {
+		&__img {
+			height: 200px;
+			width: auto;
+			border: 1px solid #ddd;
+			background-size: cover;
+			cursor: pointer;
+		}
+
+		&__title {
+			max-height: 52px;
+			overflow: hidden;
+			cursor: pointer;
+		}
+	}
+}
+
+.b-cards--categories {
+	.b-card {
+		&__img {
+			height: 190px;
+			width: auto;
+			background-size: cover;
+			margin-bottom: 10px;
+			display: block;
+			overflow: hidden;
+		}
+
+		&__title {
+			font: 18px "BlissPro";
+			text-align: left !important;
+			padding: 0;
+			display: block !important;
+			max-height: 46px;
+			overflow: hidden;
+		}
+	}
+}
+
+.b-card--module-img {
+	text-align: center;
+	max-width: 100%;
+}

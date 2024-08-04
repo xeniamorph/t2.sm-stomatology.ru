@@ -1,0 +1,123 @@
+.page-form {
+	&__header {
+		margin: 0 0 30px;
+	}
+
+	&__row {
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -moz-box;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: flex-start;
+		-moz-box-pack: justify;
+		-ms-flex-pack: justify;
+		justify-content: flex-start;
+		margin: 0 0 40px;
+	}
+
+	&__cell {
+		position: relative;
+		width: 30%;
+		margin: 0 30px 0 0;
+	}
+
+	&__label {
+		display: block;
+		font-size: 16px;
+		margin: 0 0 8px;
+		font-weight: bold;
+	}
+
+	&__input {
+		display: block;
+		padding: 0 60px 0 20px;
+		background: #fff;
+		font-size: 16px;
+		border: 1px solid #e2e9e6;
+	}
+
+	&__input:hover {
+		-webkit-box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		-moz-box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+	}
+
+	&__input,
+	&__submit {
+		font-size: 16px;
+		-webkit-border-radius: 3px;
+		-moz-border-radius: 3px;
+		border-radius: 3px;
+		line-height: 54px;
+		height: 56px;
+		font-family: inherit;
+		width: 100%;
+	}
+
+	&__submit {
+		cursor: pointer;
+		display: block;
+		border: 0;
+		background: #db59b5;
+		color: #fff;
+		font-weight: bold;
+		border-radius: 30px;
+	}
+
+	&__submit:hover {
+		background: #389dac;
+		-webkit-box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		-moz-box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+		box-shadow: 4px 8px 24px 2px rgba(34, 60, 80, 0.15);
+	}
+
+	&__success {
+		padding: 20px 0;
+	}
+
+	&__agreement {
+		color: #389dac;
+		font-size: 13px;
+		line-height: 15px;
+	}
+
+	&__agreement a {
+		color: inherit;
+	}
+
+	@media all and (max-width: 768px) {
+		&__row {
+			-webkit-box-orient: vertical;
+			-webkit-box-direction: normal;
+			-webkit-flex-direction: column;
+			-moz-box-orient: vertical;
+			-moz-box-direction: normal;
+			-ms-flex-direction: column;
+			flex-direction: column;
+			margin: 0;
+		}
+
+		&__cell {
+			width: 100%;
+			margin: 0 0 15px;
+		}
+
+		&__cell-2 {
+			width: 100%;
+			text-align: center;
+			margin: 0 0 15px;
+		}
+
+		&__label {
+			margin: 0 0 8px;
+		}
+
+		&__input,
+		&__submit {
+			line-height: 46px;
+			height: 44px;
+		}
+	}
+}

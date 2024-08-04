@@ -1,0 +1,179 @@
+.n-header__box .n-header__logo {
+	left: 0;
+}
+
+@media (max-width: 1024px) {
+	.n-header__logo {
+		left: 0;
+	}
+}
+
+.breadcrumbs {
+	margin: 0 auto 30px;
+}
+
+.wrapper .wrapper__box {
+	padding: 185px 0 0d;
+}
+
+@media (max-width: 1024px) {
+	.wrapper .wrapper__box {
+		padding: 140px 0 0;
+	}
+}
+
+.footer .footer__top {
+	padding-bottom: 85px;
+}
+
+.footer__cols {
+	justify-content: space-between;
+}
+
+.footer__warning div {
+	padding: 35px 0 10px;
+}
+
+.page-container,
+.page-container-inner {
+	max-width: 1430px !important;
+}
+
+.page-container .page-container-inner {
+	padding: 0 !important;
+}
+
+.page-container .page-container-inner .image-block-1__text {
+	padding: 40px;
+}
+
+.page-container .kp-events {
+	padding: 15px;
+}
+
+.page-container .feedback-block {
+	padding: 40px;
+}
+
+.container .m-doctors__wrap {
+	padding-right: 0;
+	padding-left: 0;
+}
+
+@media (max-width: 1150px) {
+	.callback-form .page-form__cell {
+		flex-grow: 1;
+		margin-right: 0;
+	}
+	
+	.callback-form  .page-form__row {
+		column-gap: 30px; 
+		margin-bottom: 30px;
+	}
+}
+
+@media (max-width: 768px) {
+	.callback-form  .page-form__row {
+		margin-bottom: 0px;
+	}
+	
+	#mobileToolbar2 .right-bottom > div {
+		width: 140px;
+	}
+}
+
+.btn-appointment {
+	text-align: center;
+}
+
+#question-online-mainform-2 .leave-order {
+	gap: 30px;
+}
+
+#question-online-mainform-2 .leave-order div:nth-child(1){
+	flex-grow: 1;
+}
+
+@media only screen and (max-width: 768px) {
+	#question-online-mainform-2 .leave-order {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+	}
+}
+
+
+.consultation__item-img {
+	width: 100%;
+	max-height: 205px;
+}
+
+.consultation__item-img img {
+	height: 100%;
+	object-fit: cover;
+}
+
+.rezume-content__col {
+	flex-grow: 1;
+}
+
+.events-slider__col .events-slider__cost {
+	height: auto;
+	min-height: 95px;
+	align-items: stretch;
+}
+
+.events-slider__col .events-slider__cost div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	text-align: center
+}
+
+
+@media (max-width: 400px) {
+	.headline .headline__buttons {
+		width: 100%;
+	}
+	.headline .headline__buttons .kp-btn{
+		margin-right: 0;
+		width: 100%;
+	}
+	
+	.page-container .page-container-inner .image-block-1__text {
+		padding: 20px;
+	}
+	
+}
+
+@media (max-width: 480px) {
+	.page-container-inner .table-compare__table {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	
+	.rezume-intro__spec {
+		width: 100%;
+	}
+}
+
+
+.licenses-block__dots ul {
+	row-gap: 10px;
+}
+
+.alphabet-list__wrapper .alphabet-list__item {
+	margin-bottom: 30px;
+}
+.alphabet-list__wrapper .alphabet-list__item .alphabet-list__disease {
+	margin-left: 30px;
+	gap: 20px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.alphabet-list__disease a {
+	text-align: center;
+	background-color: #F9F9F7;
+}

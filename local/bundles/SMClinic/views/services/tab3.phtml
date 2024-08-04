@@ -1,0 +1,42 @@
+<?php
+if($item['diseases']->value()){
+	$diseaseList = \TAO::infoblock('disease')->getItems([
+		'filter' => ['ACTIVE' => 'Y', 'ID' => $item['diseases']->value()]
+	]);
+}
+?>
+<div class="b-content-dd">
+	<h2>Заболевания</h2>
+		<?//= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render(); ?>
+		<?php $i = 1;?>
+		<?php foreach($diseaseList as $disease) {?>
+			<div class="b-content-dd__links b-content-dd__links--block b-content-dd__items">
+			<a href="#tab3-bb<?= $i ?>"
+			   class="b-content-dd-link">
+				<span class="b-content-dd-link__txt"><?= $disease->title() ?></span>
+			</a>
+			<div class="b-content-dd-item" id="tab3-bb<?= $i ?>">
+				<div>
+					<?= $disease['PREVIEW_TEXT'] ?>
+				</div>
+				<a href="<?= $disease->url() ?>">
+					Подробнее
+				</a>
+
+				<br>
+				<br>
+			</div>
+			<?php $i++; ?>
+			</div>
+		<?php } ?>
+
+</div>
+
+<hr class="hr--light">
+
+<!-- <p class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</p>-->
+
+<?//= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+

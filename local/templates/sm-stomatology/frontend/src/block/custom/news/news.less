@@ -1,0 +1,59 @@
+@import "../../../style/config";
+@import "-list-item/-list-item";
+
+.b-news {
+	margin: 20px 0;
+
+	&__title {
+		margin: 0 30px 0 50px;
+		display: inline-block;
+	}
+
+	&-list {
+		margin: 30px 0;
+
+		.owl-item {
+			padding-top: 10px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-news {
+		margin-bottom: 110px;
+
+		.pr;
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: -50px;
+			left: 15px;
+			right: 15px;
+			height: 2px;
+			background: @third-color;
+			display: block;
+		}
+
+		&__title {
+			margin: 0 30px 0 50px;
+			display: block;
+			text-align: center;
+		}
+
+		&__link {
+			bottom: -100px;
+			left: 0;
+			right: 0;
+			text-align: center;
+
+			.pa;
+
+			.db;
+		}
+
+		&-list {
+			margin: 0;
+		}
+	}
+}

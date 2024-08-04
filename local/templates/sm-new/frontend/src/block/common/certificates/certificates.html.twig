@@ -1,0 +1,20 @@
+<div class="certificates">
+	<div class="container">
+		<div class="certificates__wrap white-base">
+			<div class="certificates__slider">
+			{% for certificate in certificates %}
+				<div class="certificates__slide">
+					<a class="certificates__card js-fancybox" href="{{ certificate.img }}" data-fancybox="licenses" rel="{{ galleryCode }}">
+						<div class="certificates__image">
+							<picture><img src="{{ certificate.imgResize }}"></picture>
+							<div class="certificates__lupe"></div>
+						</div>
+					</a>
+				</div>
+			{% endfor %}
+			</div>
+			<div class="certificates__prev"></div>
+			<div class="certificates__next"></div>
+		</div>
+	</div>
+</div>

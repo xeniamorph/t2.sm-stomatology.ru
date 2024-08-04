@@ -1,0 +1,98 @@
+<?php
+$uniqName = uniqid($name);
+?>
+<div class="modal fade modal--hidden" id="modal-lab">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+
+		<div class="modal-header">
+			<div class="close" data-dismiss="modal"></div>
+			<h4 class="modal-title modal-title-lab">
+				Купить<br /> "<?= $this->options['title']; ?>"
+			</h4>
+		</div>
+
+		<div class="tao-form tao-form-<?= $name ?> tao-form-<?= $uniqName ?>">
+		<form id="tao-form-<?= $uniqName ?>" method="post" action="<?= $action ?>" class="js-analytic-lab tao-form tao-form-<?= $uniqName ?> tao-form-<?= $name ?><?= $this->options['id-form']?>"<?= ($this->multipart? ' enctype="multipart/form-data"' : '') ?>>
+
+			<div class="modal-body">
+				<div class="b-form">
+
+					<div class="b-form__group b-form__group--float-label">
+						<input type="text"
+							class="form-control b-form__control b-field-<?= $fields['name']['code'] ?>"
+							name="<?= $fields['name']['code'] ?>"
+						>
+						<label for="">Имя</label>
+					</div>
+
+					<div class="b-form__group b-form__group--float-label b-form__group--required">
+						<input type="tel"
+							class="form-control b-form__control b-field-<?= $fields['phone']['code']?> b-form__phone"
+							name="<?= $fields['phone']['code'] ?>"
+						>
+						<label for="">Телефон<span class="required">*</span></label>
+					</div>
+
+					<div class="b-form__group b-form__group--float-label b-form__group--required">
+						<input type="email"
+							class="form-control b-form__control b-field-<?= $fields['email']['code']?> b-form__email"
+							name="<?= $fields['email']['code'] ?>"
+						>
+						<label for="">E-Mail<span class="required">*</span></label>
+					</div>
+
+					<?/*<div class="b-form__group b-form__group--float-label">
+						<textarea name="<?= $fields['address']['code'] ?>" class="form-control b-form__control"></textarea>
+						<label for="">Адрес доставки</label>
+					</div>*/?>
+
+					<div class="b-form__group">
+						<div class="b-form__select b-custom-select">
+							<select name="<?= $fields['delivery']['code'] ?>" class="form-control b-form__control">
+									<?/*<option value="Курьером">Курьером</option>*/?>
+									<option value="Самовывоз">Самовывоз</option>
+							</select>
+						</div>
+					</div>
+					<input type="hidden" name="<?= $fields['product']['code'] ?>" value="<?= $this->options['title']; ?>">
+					<input type="hidden" name="<?= $fields['amount']['code'] ?>" value="" id="product-amount">
+			</div>
+
+		</div>
+		<div class="modal-footer">
+			<input type="hidden" name="taoform" value="<?= $name ?>">
+			<button type="submit" class="btn btn-primary">
+				Оформить заказ
+			</button>
+		</div>
+		<div class="agreement">Нажимая на кнопку, вы даете согласие<br> на <a rel="canonical" href="/about/obrabotka-dannykh/" target="_blank">обработку своих персональных данных</a></div>
+		<input type="hidden" name="formtype" value="lab">
+		<input type="hidden" name="analytics" value="lab">
+		<input type="hidden" name="recaptcha_response" class="recaptcha-response">
+	</form>
+	<?/*
+	<script>
+		$(function () {
+			$(document).ready(function() {
+				addSourcesForm('#tao-form-<?= $uniqName ?>');
+				$('#product-amount').val($('.lab-amount').val());
+			});
+		});
+	</script>
+	<?php if ($this->ajax()) { ?>
+		<?php $this->options['jsname'] = $uniqName ?>
+		<script>
+			$(function() {
+				taoAjaxForm('<?= $uniqName ?>', <?= json_encode($this->options) ?>);
+			});
+		</script>
+	<?php } ?>
+	*/?>
+</div>
+
+
+
+		</div>
+	</div>
+</div>

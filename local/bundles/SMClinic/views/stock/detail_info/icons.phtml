@@ -1,0 +1,27 @@
+<div class="b-action-icons">
+	<div class="container">
+		<div class="b-action-icons__items">
+			<?php if($dateActive) {?>
+				<div class="b-action-icons__item"><img src="<?=SITE_TEMPLATE_PATH?>/img/ico-calendar.png" width="64" height="64">
+					<div>Срок действия акции:<br>
+						<span><?=$dateActive?></span>
+					</div>
+				</div>
+			<?php }?>
+			<?php if($benefit) {?>
+				<div class="b-action-icons__item"><img src="<?=SITE_TEMPLATE_PATH?>/img/ico-percent.png" width="64" height="64">
+					<div>Ваша выгода:<br>
+						<span><?=$benefit?></span>
+					</div>
+				</div>
+			<?php }?>
+			<?php if($cost) {?>
+				<div class="b-action-icons__item"><img src="<?=SITE_TEMPLATE_PATH?>/img/ico-rub.png" width="64" height="64">
+					<div>Стоимость услуги:<br>
+						<span><?=$cost?></span>
+					</div>
+				</div>
+			<?php }?>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,30 @@
+#_dev-menu {
+	position: fixed;
+	left: 0;
+	top: 10%;
+	z-index: 999;
+	background: rgba(0, 0, 0, 0.75);
+	padding: 10px;
+	color: #fff;
+	-webkit-border-radius: 0 5px 5px 0;
+	-moz-border-radius: 0 5px 5px 0;
+	border-radius: 0 5px 5px 0;
+	-webkit-transform: translateX(0%);
+	-moz-transform: translateX(0%);
+	-ms-transform: translateX(0%);
+	transform: translateX(0%);
+}
+
+#_dev-menu:hover {
+	-webkit-transform: translateX(0%);
+	-moz-transform: translateX(0%);
+	-ms-transform: translateX(0%);
+	transform: translateX(0%);
+}
+
+#_dev-menu-close {
+	cursor: pointer;
+	position: absolute;
+	right: 10px;
+	top: 10px;
+}

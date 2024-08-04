@@ -1,0 +1,33 @@
+<div class="licenses-block">
+	<div class="container">
+		<div class="licenses-block__title">
+			Лицензии
+		</div>
+		<div class="licenses-block__wrap blue_back">
+			<div class="licenses-block__slider">
+				{% for item in items %}
+					<div class="licenses-block__slide">
+						<a class="licenses-block__card js-fancybox" href="{{ item.img }}" data-fancybox="licenses" rel="{{ galleryCode }}">
+							<div class="licenses-block__image">
+								<picture><img src="{{ item.imgResize }}"></picture>
+								<div class="licenses-block__lupe"></div>
+							</div>
+						</a>
+					</div>
+				{% endfor %}
+			</div>
+			<div class="licenses-block__prev"></div>
+			<div class="licenses-block__dots"></div>
+			<div class="licenses-block__next"></div>
+		</div>
+
+		<div class="licenses-block__buttons">
+			{# <div class="licenses-block__button licenses-block__button_white">
+				<a href="#">Перейти в раздел лицензии</a>
+			</div>#}
+			<div class="licenses-block__button">
+				<a href="/about/legal-info/">Перейти в раздел «Правовая информация»</a>
+			</div>
+		</div>
+	</div>
+</div>

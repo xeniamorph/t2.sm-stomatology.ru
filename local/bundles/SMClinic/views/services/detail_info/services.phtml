@@ -1,0 +1,32 @@
+<?
+if ($item['RELATED_ELEMENTS']->value()) {
+	$services = \TAO::infoblock('services')->getItems([
+		'filter' => [
+			'ACTIVE' => 'Y',
+			'ID' => $item['RELATED_ELEMENTS']->value(),
+		]
+	]);
+
+?>
+	<div class="consultation-card">
+		<div class="container">
+			<div class="page-title-2">Другие услуги</div>
+			<div class="consultation__items">
+				<?php foreach ($services as $element) { ?>
+					<a class="consultation__item" href="<?= $element->url() ?>">
+						<div class="consultation__item-img">
+							<img src="<?= $element->previewPicture()->resizedImage('crop404x204') ?>" alt="<?= $element->title() ?> фото" title="<?= $element->title() ?>" loading="lazy">
+						</div>
+						<meta itemprop="name" content="<?= $element->title() ?>">
+						<div class="consultation__item-title">
+							<div itemprop="name"><?= $element->title() ?></div>
+						</div>
+						<div class="consultation__item-price">
+							<div class="consultation__button">Цена от <span><?= $element->getMinSum() ?></span> руб.</div>
+						</div>
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+	</div>
+<? } ?>

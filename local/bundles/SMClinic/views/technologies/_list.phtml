@@ -1,0 +1,33 @@
+<?php
+\TAO::App()->SetTitle('Технологии и оборудование | «СМ-Стоматология»');
+\TAO::app()->SetPageProperty("description", "Технологии и оборудование | Сеть стоматологических клиник в Москве - «СМ-Стоматология»"); 
+?>
+
+<h1 class="b-heading">
+	Технологии и оборудование
+	<a href="#" class="b-heading__link hidden-md-down"
+		data-toggle="modal" data-target="#modal-ask-question"
+	>
+		Есть вопросы?
+	</a>
+</h1>
+
+<br>
+
+<div class="b-gallery">
+	<div class="row">
+		<?php foreach ($items as $item) { ?>
+			<?= $item->render() ?>
+		<?php } ?>
+	</div>
+</div>
+
+<?= $this->data['DESCRIPTION'] ?>
+
+<hr class="hr--light">
+
+<h3 class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</h3>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>

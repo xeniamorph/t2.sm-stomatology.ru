@@ -1,0 +1,7 @@
+@mixin site-fonts () {
+	// Подключайте тут все используемые шрифты, ниже представлен пример использования миксина, не рекомендую его править (лучше скопировать строчку)
+	//@include font-face($name: "Open Sans", $path: "normal-italic", $weight: normal, $style: italic, $woff2: true);
+	@include font-face($name: "OpenSans", $path: "font/OpenSans-Regular", $weight: normal, $style: normal, $woff2: true);
+	@include font-face($name: "OpenSans", $path: "font/OpenSans-SemiBold", $weight: bold, $style: normal, $woff2: true);
+	@include font-face($name: "OpenSans", $path: "font/OpenSans-Bold", $weight: 800, $style: normal, $woff2: true);
+}

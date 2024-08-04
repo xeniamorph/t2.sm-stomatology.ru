@@ -1,0 +1,75 @@
+@color: #a03339;
+
+.b-socials {
+	&__item {
+		span {
+			display: block;
+			width: 55px;
+			height: 55px;
+			border-radius: 50%;
+			border: 1px solid @color;
+			text-align: center;
+			margin-bottom: 30px;
+			color: @color;
+			background: #fff;
+			animation-name: rotate-social-back;
+			animation-duration: 0.3s;
+			animation-timing-function: ease-in;
+
+			.fa {
+				line-height: 52px;
+				font-size: 24px;
+			}
+		}
+
+		&:hover {
+			span {
+				animation-name: rotate-social;
+				animation-duration: 0.3s;
+				animation-direction: alternate;
+				animation-fill-mode: forwards;
+				animation-timing-function: ease-out;
+			}
+		}
+	}
+}
+
+@keyframes rotate-social {
+	0% {
+		transform: rotateY(0);
+		background: none;
+		color: @color;
+	}
+
+	50% {
+		transform: rotateY(90deg);
+		background: none;
+		color: @color;
+	}
+
+	100% {
+		transform: rotateY(0);
+		background: @color;
+		color: #fff;
+	}
+}
+
+@keyframes rotate-social-back {
+	0% {
+		transform: rotateY(0);
+		background: @color;
+		color: #fff;
+	}
+
+	50% {
+		transform: rotateY(90deg);
+		background: none;
+		color: @color;
+	}
+
+	100% {
+		transform: rotateY(0);
+		background: none;
+		color: @color;
+	}
+}

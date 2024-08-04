@@ -1,0 +1,53 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Стоматологи-терапевты", 
+		"/doctors/stomatologi-terapevty/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Стоматологи-хирурги", 
+		"/doctors/stomatologi-khirurgi/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Стоматологи-имплантологи", 
+		"/doctors/stomatologi-implantologi/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Стоматологи-ортодонты", 
+		"/doctors/stomatologi-ortodonty/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Стоматологи-ортопеды", 
+		"/doctors/stomatologi-ortopedy/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Стоматологи-пародонтологи", 
+		"/doctors/stomatologi-parodontologi/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Детские стоматологи", 
+		"/doctors/detskie-stomatologi/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>

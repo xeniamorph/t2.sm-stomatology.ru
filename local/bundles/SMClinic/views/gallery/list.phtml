@@ -1,0 +1,38 @@
+<h1 class="b-heading">
+	Фото/Видео
+	<a href="#" class="b-heading__link hidden-md-down"
+		data-toggle="modal" data-target="#modal-ask-question"
+	>
+		Есть вопросы?
+	</a>
+</h1>
+
+
+<div class="b-tabs">
+
+	<ul class="nav nav-tabs">
+		<li class="nav-item">
+			<a class="nav-link active"
+			   data-toggle="tab" href="#photo-tab" role="tab">
+				Фото
+			</a>
+		</li>
+		<li class="nav-item">
+			<a class="nav-link"
+			   data-toggle="tab" href="#video-tab" role="tab">
+				Видео
+			</a>
+		</li>
+	</ul>
+
+	<div class="tab-content">
+		<div class="tab-pane active" id="photo-tab" role="tabpanel">
+			<? require dirname(__FILE__).'/tab1.phtml'; ?>
+		</div>
+
+		<div class="tab-pane" id="video-tab" role="tabpanel">
+			<? require dirname(__FILE__).'/tab2.phtml'; ?>
+		</div>
+	</div>
+
+</div>

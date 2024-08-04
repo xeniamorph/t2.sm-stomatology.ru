@@ -1,0 +1,78 @@
+.bg-privilege {
+	background-image: url(/local/templates/sm-new/img/main_bg_image.jpg);
+	padding: 20px 0;
+	background-size: cover;
+
+	&__wrapper {
+		display: flex;
+		align-items: center;
+	}
+
+	&__title {
+		color: white;
+		font-size: 28px;
+		font-weight: bold;
+		margin-bottom: 40px;
+		line-height: 48px;
+	}
+
+	&__text {
+		color: white;
+		margin-bottom: 30px;
+
+		p {
+			margin: 0;
+		}
+	}
+
+	&__text span {
+		line-height: 25px;
+		font-weight: 700;
+	}
+
+	&__text-title {
+		font-weight: 900;
+		margin-bottom: 20px;
+	}
+
+	&__text-col {
+		width: 50%;
+	}
+
+	&__list {
+		padding-left: 20px;
+	}
+
+	&__list li {
+		list-style-type: disc;
+	}
+
+	&__img-wrapp img {
+		width: 100%;
+	}
+
+	@media all and (max-width: 1100px) {
+		&__text-col {
+			width: 80%;
+		}
+	}
+
+	@media all and (max-width: 991px) {
+		&__text-col {
+			width: 100%;
+		}
+	}
+
+	@media all and (max-width: 768px) {
+		&__wrapper {
+			flex-direction: column;
+		}
+	}
+
+	@media all and (max-width: 480px) {
+		&__title {
+			font-size: 25px;
+			line-height: 30px;
+		}
+	}
+}

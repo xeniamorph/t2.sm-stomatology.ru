@@ -1,0 +1,61 @@
+<?php
+if($item['technologies']->value()) {
+	$technologies = \TAO::infoblock('technologies')->getItems([
+		'filter' => ['ACTIVE', 'ID' => $item['technologies']->value()]
+	]);
+}
+?>
+
+<div class="b-cards b-cards--equipment">
+	<h2>Оборудование</h2>
+	<div class="row">
+		<?php $i = 0;?>
+		<?php  foreach($technologies as $technology){ ?>
+			<?php $i++; ?>
+			<div class="col-sm-4">
+				<div class="b-card b-card--equipment">
+					<div class="b-card__img"
+						data-toggle="modal" data-target="#modal-eq-<?= $i ?>"
+						 style="background-image: url(<?= $technology->previewPicture()->resizedImage(fit272x200) ?>);"></div>
+					 <div class="b-card__title" data-toggle="modal" data-target="#modal-eq-<?= $i ?>">
+					<?= $technology->title() ?>
+					</div>
+					<div class="modal fade modal--hidden modal--equipment" id="modal-eq-<?= $i ?>">
+						<div class="modal-dialog" role="document">
+							<div class="modal-content">
+								<div class="modal-header">
+									<div class="close" data-dismiss="modal"></div>
+								</div>
+								<div class="modal-body">
+									<div class="b-card--module-img">
+										<img src="<?= $technology->previewPicture()->resizedImage(fit480x306) ?>" alt="">
+									</div>
+									<h4 class="modal-title">
+										<?= $technology->title() ?>
+									</h4>
+									<p>
+										<?= $technology['PREVIEW_TEXT']?>
+									</p>
+									<a href="<?= $technology->url() ?>">
+										Узнать больше
+									</a>
+									<br>
+									<br>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php } ?>
+	</div>
+</div>
+
+<?//= \TAO::Form('Callback')->setOption('layout','callback-in-text')->render(); ?>
+
+<!--<p class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</p>-->
+
+<?//= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+

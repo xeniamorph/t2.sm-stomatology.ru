@@ -1,0 +1,16 @@
+<div class="b-pager">
+
+</div>
+
+<div class="b-pagination">
+	<div class="container">
+		<div class="b-pagination__bg">
+			<div class="b-pagination__text">
+				Страница <span><?=$page?></span>  из <?=$numPages?>
+			</div>
+			<div class="b-pagination__wrap">
+				<?= $this->renderLinks($page, $numPages) ?>
+			</div>
+		</div>
+	</div>
+</div>

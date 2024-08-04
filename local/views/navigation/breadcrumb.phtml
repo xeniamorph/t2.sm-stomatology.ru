@@ -1,0 +1,31 @@
+<div class="breadcrumbs">
+	<div class="container">
+		<div class="breadcrumbs__wrap">
+			<ul class="breadcrumbs__list" itemscope="" itemtype="http://schema.org/BreadcrumbList">
+				<li class="breadcrumbs__home" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+					<a class="breadcrumbs__link breadcrumbs__link_home" href="/" itemprop="item" >
+						<span itemprop="name">Главная</span>
+						<meta itemprop="position" content="0">
+					</a>
+				</li>
+				<?php foreach ($links as $i => $link) {?>
+					<?php if (\TAO\Urls::isCurrent($link->url)) { ?>
+						<li class="breadcrumbs__item" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+							<span itemprop="item">
+								<span class="breadcrumbs__current" itemprop="name"><?= $link->title ?></span>
+								<meta itemprop="position" content="<?= $i + 1 ?>">
+							</span>
+						</li>
+					<?php } else {	?>
+						<li class="breadcrumbs__item" itemscope="" itemprop="itemListElement" itemtype="http://schema.org/ListItem">
+							<a class="breadcrumbs__link" href="<?= $link->url ?>" itemprop="item">
+								<span itemprop="name"><?= $link->title ?></span>
+								<meta itemprop="position" content="<?= $i + 1 ?>">
+							</a>
+						</li>
+					<?php } ?>
+				<?php } ?>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,62 @@
+@import "../../../style/config";
+
+@color: #a03339;
+@colorHover: #b63c41;
+
+.btn {
+	border-radius: 3px !important;
+
+	&--doctor {
+		margin: 4px 0;
+		width: 92%;
+	}
+
+	&-primary {
+		background: @color !important;
+		border: 1px solid @color !important;
+		color: #fff !important;
+		font: 15px "BlissPro";
+
+		&:hover,
+		&:focus,
+		&:active {
+			background: @colorHover !important;
+			border: 1px solid @colorHover !important;
+		}
+	}
+
+	&-secondary {
+		background: #1b5773 !important;
+		border: 1px solid #1b5773 !important;
+		color: #fff !important;
+		font: 15px "BlissPro";
+
+		&:hover,
+		&:focus,
+		&:active {
+			background: #2b6783 !important;
+			border: 1px solid #2b6783 !important;
+		}
+	}
+
+	&-warning {
+		background: @fourth-color !important;
+		border: 1px solid @fourth-color !important;
+		color: #fff !important;
+		font: 15px "BlissPro-Bold";
+
+		&:hover,
+		&:focus,
+		&:active {
+			background: @fourth-color - #111 !important;
+			border: 1px solid @fourth-color - #111 !important;
+		}
+	}
+
+	&--fixed-width {
+		font-size: 20px;
+		margin-bottom: 15px;
+		width: 250px;
+		text-transform: uppercase;
+	}
+}

@@ -1,0 +1,19 @@
+<div class="article-similar-block">
+	<div class="container">
+		<h2 class="page-title-2">
+			Фотогалерея
+		</h2>
+		<?php
+		foreach ($this['gallery']->valueData() as $key=>$data) {
+			$img = new \TAO\File($data['VALUE']);
+			$galleryImg[$key] = [
+				'resized' => $img->resizedImage('crop257x257'),
+				'max' => $img
+			];
+		}
+
+		print TAO::frontend()->renderBlock('article/article-similar', [
+			'images' => $galleryImg
+		]);?>
+	</div>
+</div>

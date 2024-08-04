@@ -1,0 +1,74 @@
+@import "../../../style/config";
+
+.b-tabs {
+	margin: 20px 0;
+
+	.nav-tabs {
+		border-bottom: 2px solid #e6e7dc;
+	}
+
+	.nav-link {
+		border-radius: 0 !important;
+		font: 18px/20px "BlissPro";
+		color: #388da7;
+
+		&--selected {
+			color: #fff;
+			background: @main-color;
+		}
+	}
+
+	.nav-tabs .nav-link.active,
+	.nav-tabs .nav-link.active:focus,
+	.nav-tabs .nav-link.active:hover,
+	.nav-tabs .nav-item.open .nav-link,
+	.nav-tabs .nav-item.open .nav-link:focus,
+	.nav-tabs .nav-item.open .nav-link:hover {
+		background-color: #e6e7dc;
+		border-color: #e6e7dc #e6e7dc transparent;
+		color: @secondary-color;
+	}
+}
+
+.tab-content {
+	padding: 20px 0;
+}
+
+@media (max-width: @media-bs-lg) {
+	.b-tabs {
+		.nav-link {
+			font-size: 16px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-md) {
+	.b-tabs {
+		.nav-link {
+			font-size: 14px;
+			padding-left: 6px;
+			padding-right: 6px;
+		}
+	}
+}
+
+@media (max-width: @media-bs-xs) {
+	.b-tabs {
+		.nav-tabs {
+			border-bottom: none;
+		}
+
+		.nav-item {
+			display: block;
+			float: none;
+		}
+
+		.nav-link {
+			.ellipsis;
+
+			font-size: 18px;
+			text-align: center;
+			display: block;
+		}
+	}
+}

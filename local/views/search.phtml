@@ -1,0 +1,67 @@
+<?php
+\TAO::navigation()->route()->add(['url' => '/search/', 'title' => 'Поиск']);
+?>
+<div class="b-heading">
+	<h1>Результаты поиска</h1>
+	<a href="#" class="b-heading__link hidden-md-down"
+		data-toggle="modal" data-target="#modal-ask-question"
+	>
+		Есть вопросы?
+	</a>
+</div>
+
+<div class="b-form b-form--inline b-form--bg">
+	<form method="get" class="search-page-form">
+		<div class="row">
+			<div class="col-md-12 col-lg-8">
+				<div class="b-form__group b-form__group--float-label b-form__group--m0">
+					<input type="text" onkeyup="this.setAttribute('value', this.value);" id="search" class="form-control b-form__control b-form__control--empty" name="q" value="<?= htmlspecialchars($query) ?>">
+					<label>Поиск</label>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-4">
+				<div class="b-form__group b-form__group--m0 b-form__buttons">
+					<input class="btn btn-primary btn-lg" type="submit" value="<?= \TAO::t('find') ?>">
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+
+<?php if ($count==0 && $query) { ?>
+	<h3 class="search-empty"><?= \TAO::t('no_results') ?></h3>
+<?php } else { ?>
+
+<div class="b-search-results">
+	<div class="b-search-results__top">
+		<?php
+		$_GET['page'] = $_GET['page'] ? $_GET['page'] : 1;
+		$maxNumOnPage = $perPage * $_GET['page'];
+		$lastOnPage = ($maxNumOnPage <= $count) ? $maxNumOnPage : $count;
+		?>
+		<?= $maxNumOnPage - $perPage + 1 ?> &mdash; <?=  $lastOnPage ?> из <?= $count ?>
+	</div>
+	<div class="b-search-results__list">
+	<?echo "<pre>";
+			var_dump($rows);?>
+		<?php foreach($rows as $row) {
+
+			include($tplRow);
+		} ?>
+	</div>
+</div>
+<?php } ?>
+<?php
+	if ($count>0 && $query) {
+		$pagination = \TAO::pager('page')->setType('common')->setUrl($_SERVER['REQUEST_URI']);
+		print $pagination->render( $_GET['page'] ? $_GET['page'] : 1, $numPages );
+	}
+?>
+
+<h3 class="b-heading--secondary b-heading--black">
+	Записаться на прием
+</h3>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+</div>

@@ -1,0 +1,7 @@
+<?= TAO::frontend()->renderBlock('news/news-card', [
+	'url' => $this->url(),
+	'img' => $this->previewPicture()->resizedImage('fit100x100'),
+	'title' => $this->title(),
+	'date' => $this->dateFrom('d.m.Y'),
+	'desc' => $this['PREVIEW_TEXT'],
+]); ?>

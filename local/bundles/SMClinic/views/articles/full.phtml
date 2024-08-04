@@ -1,0 +1,183 @@
+<?php
+\TAO::navigation()->flag('articles');
+\TAO::navigation()->route()->add(['url' => $this->url(), 'title' => $this->title()]);
+$this->preparePage();
+
+if($this['diseases']->value()){
+	$diseaseList = \TAO::infoblock('disease')->getItems([
+		'filter' => ['ACTIVE' => 'Y', 'ID' => $this['diseases']->value()]
+	]);
+}
+
+if($this['articles']->value()){
+	$articlesList = \TAO::infoblock('articles')->getItems([
+		'filter' => ['ACTIVE' => 'Y', 'ID' => $this['articles']->value()]
+	]);
+}?>
+
+<div itemscope itemtype="https://schema.org/Article">
+	<div class="heading-btn">
+		<div class="container">
+			<div class="heading-btn__wrap ">
+				<div class="heading-btn__title">
+					<h1 itemprop="name"><?= $this->title() ?></h1>
+				</div>
+				<div class="heading-btn__btn-wrapp">
+					<div><a class="btn-appointment question js-open-popup" href="" data-target=".popup-form-feedback" data-analytics="OrderDoctor">Записаться на прием</a></div>
+					<div><a class="btn-appointment js-open-popup" href="" data-toggle="modal" data-target=".modal-ask-question">Есть вопросы?</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="article-author-block">
+		<div class="article-author">
+			<div class="container">
+				<div class="article-author__box">
+					<div class="article-author__wrapper">
+						<div class="article-author__item left-col">
+							<?php if($this->property('author')->value()){
+								$authorInfo = $this->getAuthorInfo();?>
+								<div>Автор статьи</div>
+								<a href="<?=$authorInfo['link']?>"><span itemprop="author"> <?=$authorInfo['name']?> </span></a>
+							<?php } ?>
+						</div>
+
+						<div class="article-author__item right-col">
+							<div class="data-publication">Дата публикации: <span itemprop="datePublished"><?=$this->dateCreate()?></span> </div>
+							<div class="date-update">Дата обновления:&nbsp; <span itemprop="dateModified"><?=$this->dateChange()?></span></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="article-tools">
+			<div class="container">
+				<div class="article-tools__box">
+					<div class="article-tools__left"><a class="article-tools__back" href="/about/articles/">Вернуться к статьям</a></div>
+					<div class="article-tools__right">
+						<div class="article-socials">
+							<div class="article-socials__caption">Поделиться в социальных сетях:</div>
+							<div class="article-socials__items">
+								<script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+								<script src="//yastatic.net/share2/share.js"></script>
+								<div class="ya-share2"
+									 data-services="collections,vkontakte,odnoklassniki,moimir"
+									 data-counter=""></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="article-content">
+		<div class="container">
+			<div class="article-content__wrap">
+				<div class="article-content__content text">
+					<div class="article-content__image" itemprop="image" itemscope itemtype="http://schema.org/ImageObject">
+						<img src="<?= $this->previewPicture()->resizedImage('fit267x267') ?>" loading="lazy" itemprop="contentUrl">
+						<meta itemprop="name" content="<?=$this->title()?>">
+					</div>
+					<div itemprop="articleBody">
+						<?= $this['DETAIL_TEXT'] ?>
+					</div>
+				</div>
+
+				<?php if($this->property('sources')->value()){?>
+					<div class="b-text text">
+						<div class="b-text__text blue_back">
+							<div class="b-text__box blue_back">
+								<div class="b-text__title">
+									<h2>Источники</h2>
+								</div>
+								<?= $this->property('sources')->value()['TEXT']?>
+							</div>
+						</div>
+					</div>
+				<?php }?>
+			</div>
+
+			<?php if($this->property('questions')->value()){?>
+				<div class="faq-block">
+					<h2 class="faq-block__title">
+						Вопрос и ответ
+					</h2>
+					<div class="faq">
+						<?php foreach ($this->property('questions')->valueData() as $key=>$question) {?>
+							<div class="faq-item">
+								<input class="faq-input" type="checkbox" id="faq_<?=$key + 1?>">
+								<label class="faq-title" for="faq_<?=$key + 1?>"><?= $question['DESCRIPTION']?></label>
+								<div class="faq-text">
+									<?= $question['VALUE']['TEXT'] ?>
+								</div>
+							</div>
+						<?php } ?>
+					</div>
+				</div>
+			<?php }?>
+
+			<div class="article-switch__nav">
+				<?php if($this->prev()) {?>
+					<a href="<?= $this->prev()->url() ?>" class="article-switch__prev">
+						Предыдущая статья
+					</a>
+				<?php } ?>
+				<?php if($this->next()) {?>
+					<a href="<?= $this->next()->url() ?>" class="article-switch__next">
+						Следующая статья
+					</a>
+				<?php } ?>
+			</div>
+		</div>
+
+		<?php if(count($articlesList) > 0){ ?>
+			<div class="article-topic">
+				<div class="container">
+					<div class="article-topic__header page-title-3">Статьи по теме</div>
+					<div class="article-topic__wrap">
+						<div class="article-topic__slider">
+							<?php foreach ($articlesList as $article) {?>
+								<a href="<?=$article->url()?>" class="article-topic__slide">
+									<div class="article-topic__item">
+										<div class="article-topic__top">
+											<div class="article-topic__image"><img src="<?= $article->previewPicture()->resizedImage('crop120x120') ?>" loading="lazy"></div>
+											<div class="article-topic__title"><?=$article->title()?></div>
+											<div class="article-topic__text"><?=$article['PREVIEW_TEXT']?></div>
+										</div>
+									</div>
+								</a>
+							<?php }?>
+						</div>
+						<div class="article-topic__nav">
+							<div class="article-topic__prev"></div>
+							<div class="article-topic__next"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php }?>
+
+		<?php if(count($diseaseList) > 0){ ?>
+			<div class="b-diseases-list">
+				<div class="container">
+					<div class="b-diseases-list__box">
+						<div class="anchor" id="diseases"></div>
+						<div class="page-title-3">Список заболеваний</div>
+						<div class="b-diseases-list__items">
+							<?php foreach ($diseaseList as $disease) {?>
+								<a href="<?=$disease->url()?>"><?=$disease->title()?></a>
+							<?php }?>
+						</div>
+					</div>
+				</div>
+			</div>
+		<?php }?>
+	</div>
+</div>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

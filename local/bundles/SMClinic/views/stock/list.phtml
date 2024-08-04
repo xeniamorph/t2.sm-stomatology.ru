@@ -1,0 +1,68 @@
+<?php
+\TAO::app()->setTitle('Акции и скидки в «СМ-Стоматология» | Сеть стоматологических клиник в Москве');
+\TAO::app()->SetPageProperty("description", "Акции и скидки на стоматологические услуги в сети клиник «СМ-Стоматология». Записаться на прием или получить онлайн консультацию на сайте.");
+?>
+<div class="article-headline">
+	<div class="container">
+		<div class="article-headline__title">
+			<h1>Акции</h1>
+		</div>
+	</div>
+</div>
+
+<?php $items = $this->getItems($args);?>
+<?php $mainAction = $this->getItems([
+	'elements_of' => 'stock',
+	'filter' => [
+		'ACTIVE' => 'Y',
+		'!PROPERTY_archive_VALUE' => 'Y',
+		'PROPERTY_main_VALUE' => 'Y'
+	]
+]);
+
+$mainAction = array_pop($mainAction);
+if($mainAction){?>
+	<div class="action-preview">
+		<div class="container">
+			<div class="action-preview__box">
+				<div class="action-preview__image"><img src="<?=$mainAction->previewPicture()->resizedImage('fit387x388')?>"></div>
+				<div class="action-preview__text">
+					<div class="action-preview__date-wrapper">
+						<div class="action-preview__date-label">Акции</div>
+						<div class="action-preview__date-text">
+							<?php if ($mainAction->property("PERIOD")->value()): ?>
+								<?=$mainAction->property("PERIOD")->value()?>
+							<?php else: ?>
+								Акция проводится <span>с <?=$mainAction->dateFrom('d.m.Y')?> по <?=$mainAction->dateTo('d.m.Y')?></span>
+							<?php endif; ?>
+						</div>
+					</div>
+					<div class="action-preview__title">
+						<div class="action-preview__h2"><?=$mainAction->title()?></div>
+						<div class="action-preview__line"></div>
+					</div>
+					<?=$mainAction['PREVIEW_TEXT']?>
+					<a class="action-preview__button" href="<?=$mainAction->url()?>">Подробнее</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<?php }?>
+<div class="action-cards">
+	<div class="container">
+		<div class="action-cards__items">
+			<?php foreach ($items as $item) {
+				if($item->property('main')->value()) continue;?>
+				<?= $item->render() ?>
+			<?php } ?>
+		</div>
+		<a href="/stock/archive/" class="action-cards__archive action-cards__archive--top">
+			АРХИВ АКЦИЙ
+		</a>
+	</div>
+</div>
+
+<?= \TAO::Form('Appointment')->setOption('layout','appointment-in-text')->render() ?>
+<?= \TAO::frontend()->renderBlock('common/licenses-block', [
+	'items' => SMClinicHelper::getLicenses()
+]);?>

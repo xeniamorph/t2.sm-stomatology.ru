@@ -1,0 +1,23 @@
+<div class="b-news-list-item<?= ($first) ? ' b-news-list-item--selected' : '' ?>">
+	<div style="background-image: url(<?= $this->previewPicture()->url() ?>);"
+		 class="b-news-list-item__img"></div>
+	<div class="b-news-list-item__date">
+		<?php $date = $this->getFormatedDate() ?>
+		<span>
+			<?= $date['DD'] ?>
+		</span>
+		<?= $date['MM'] ?>
+		<br>
+		<?= $date['YYYY'] ?>
+	</div>
+	<div class="b-news-list-item__content">
+		<p class="b-news-list-item__title">
+			<a href="<?= $this->url() ?>">
+				<?= $this->title() ?>
+			</a>
+		</p>
+		<div class="b-news-list-item__text">
+			<?= $this['PREVIEW_TEXT'] ?>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,5 @@
+{% for link in links %}
+	<a class="b-footer-menu-group__link" {% if target_blank %} target="_blank" {% endif %} href="{{link.url}}">
+		{{link.title}}
+	</a>
+{% endfor %}
