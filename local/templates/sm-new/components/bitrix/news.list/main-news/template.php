@@ -30,20 +30,20 @@ $admin = $USER->isAdmin() ? true : false;
 					}
 					$data = date('d.m.Y', strtotime($arItem["ACTIVE_FROM"]));
 					?>
-					<div class="news-card">
-						<a class="news-card__cell" href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+					<a class="news-card" href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+						<div class="news-card__cell">
 							<div class="news-card__left">
 								<img class="news-card__image" src="<?= CFile::ResizeImageGet($arItem["PREVIEW_PICTURE"], array('width'=>100, 'height'=>100), BX_RESIZE_IMAGE_EXACT, true)['src'] ?>">
 							</div>
 							<div class="news-card__date-label news-card__date-label--main"><?=$data?></div>
-						</a>
+						</div>
 						<div class="news-card__cell-text">
 							<div class="news-card__title">
 								<?= $arItem["NAME"] ?>
 							</div>
 							<?= $arItem["PREVIEW_TEXT"] ?>
 						</div>
-					</div>
+					</a>
 				<?php endforeach?>
 			</div>
 			<div class="news-block__show">

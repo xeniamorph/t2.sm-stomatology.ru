@@ -1454,7 +1454,7 @@ a.kp-btn_small,
 	-webkit-justify-content: space-between;
 	-moz-box-pack: justify;
 	-ms-flex-pack: justify;
-	justify-content: space-between;background-color:red;
+	justify-content: space-between;
 }
 .events-slider__col {
 	width: 48%;

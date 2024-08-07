@@ -20,6 +20,9 @@
 	.wrapper .wrapper__box {
 		padding: 140px 0 0;
 	}
+	.price__header.price-label:last-child {
+		font-size: 16px;
+	}
 }
 
 .footer .footer__top {
@@ -65,9 +68,9 @@
 		flex-grow: 1;
 		margin-right: 0;
 	}
-	
+
 	.callback-form  .page-form__row {
-		column-gap: 30px; 
+		column-gap: 30px;
 		margin-bottom: 30px;
 	}
 }
@@ -76,9 +79,12 @@
 	.callback-form  .page-form__row {
 		margin-bottom: 0px;
 	}
-	
+
 	#mobileToolbar2 .right-bottom > div {
 		width: 140px;
+	}
+	.headline__title h1 {
+		font-size: 1.8em;
 	}
 }
 
@@ -100,6 +106,19 @@
 		flex-direction: column;
 		gap: 10px;
 	}
+	.price__row .price__header:first-child {
+		flex-grow: inherit;
+	}
+	.price__toggles .price__toggle.active::before {
+		width: inherit;
+	}
+	.price__header .price__toggles {
+		flex-direction: inherit;
+	}
+	.price__toggles .price__toggle {
+		margin: 0 40px 10px 0;
+	}
+
 }
 
 
@@ -140,11 +159,16 @@
 		margin-right: 0;
 		width: 100%;
 	}
-	
+
 	.page-container .page-container-inner .image-block-1__text {
 		padding: 20px;
 	}
-	
+	.price__toggles .price__toggle {
+		font-size: 14px;
+	}
+	.price__header.price-label:last-child {
+		font-size: 14px;
+	}
 }
 
 @media (max-width: 480px) {
@@ -152,7 +176,7 @@
 		margin-left: 0;
 		margin-right: 0;
 	}
-	
+
 	.rezume-intro__spec {
 		width: 100%;
 	}
@@ -176,4 +200,33 @@
 .alphabet-list__disease a {
 	text-align: center;
 	background-color: #F9F9F7;
+}
+@media only screen and (max-width: 1024px) {
+	.footer__text-item a {
+		color: #0d545e;
+	}
+}
+.article-tools__right .article-socials .ya-share2__item_service_moimir .ya-share2__badge .ya-share2__icon::before {
+	background-image: url("/images/ico-mail.svg");
+	background-size: 100%;
+}
+.rezume-intro a.rezume-intro__spec.right-btn {
+	color: #ae3d8d;
+	border: 1px solid #ae3d8d;
+}
+
+@media all and (min-width: 768px) {
+	.btn-appointment.question-pc{background:#ae3d8d;color:#fff}.btn-appointment.question-pc:hover{background:#389ead}
+}
+@media all and (max-width: 640px) {
+	.rezume-intro__left .rezume-intro__top .n-header__button_pink {max-width:inherit;height:39px;font-size:12px;}
+}
+
+/* Стиль для новостей на главной */
+.news-block__items .news-card {
+	text-decoration: none !important;
+}
+
+.news-card__cell-text p {
+	color: black !important;
 }
